@@ -1,0 +1,73 @@
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+/Library/
+ 
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+LibsBuild/
+LibsTest/
+LibsTest.meta
+Build/
+LibsBuild.meta
+obj/
+cave/
+Сave/
+caveios/
+cave/build
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln*
+*.user
+*.unityproj
+*.booproj
+*.apk
+.vs/
+/ConsoleParser/bin/
+ 
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/launch.json
+.vscode/settings.json
+Unity.PackageManagerUI.Editor.rsp
+Unity.TextMeshPro.Editor.rsp
+Unity.TextMeshPro.rsp
+UnityEditor.StandardEvents.rsp
+Assets/Plugins/NuGetPackages/
+.idea/
+.idea/.idea.ourcave/riderModule.iml
+.idea/.idea.ourcave/.idea/contentModel.xml
+.idea/.idea.ourcave/.idea/indexLayout.xml
+.idea/.idea.ourcave/.idea/modules.xml
+.idea/.idea.ourcave/.idea/vcs.xml
+.idea/.idea.ourcave/.idea/workspace.xml
+Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
+Assets/Plugins/Editor/JetBrains.meta
+Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll.meta
+Assets/WwiseSettings.xml
+Assets/WwiseSettings.xml.meta
+Assets/StreamingAssets/Audio/
+Assets/StreamingAssets/Audio.meta
+/Logs
+
+ConsoleParser/packages/
+ConsoleParser/Parser/bin/
+Csvs/
+
+Builds/
+*.mp4
+.vsconfig
