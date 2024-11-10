@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxValue>k__BackingField: 100
   <Speed>k__BackingField: 5
+  <GrenadeFrontForce>k__BackingField: 20
+  <GrenadeUpForce>k__BackingField: 0
+  <GrenadeThrowsTimeout>k__BackingField: 1

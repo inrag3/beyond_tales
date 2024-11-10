@@ -1,44 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    public int damage;
+    private Rigidbody _rb;
 
-    private Rigidbody rb;
-
-    private bool targetHit;
+    private bool _targetHit;
+    
+    public event Action<Grenade> Hit;
+    public bool IsPreventDestroy {get; set; }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Grenade collision");
         // make sure only to stick to the first target you hit
-        if (targetHit)
+        if (_targetHit)
             return;
-        else
-            targetHit = true;
+        _targetHit = true;
 
-        // check if you hit an enemy
-        /*if(collision.gameObject.GetComponent<BasicEnemy>() != null)
-        {
-            BasicEnemy enemy = collision.gameObject.GetComponent<BasicEnemy>();
-
-            enemy.TakeDamage(damage);
-
-            // destroy projectile
-            Destroy(gameObject);
-        }*/
 
         // make sure projectile sticks to surface
-        rb.isKinematic = true;
+        _rb.isKinematic = true;
 
         // make sure projectile moves with target
         transform.SetParent(collision.transform);
+        Hit?.Invoke(this);
+        
+        if(!IsPreventDestroy)
+            Destroy(gameObject);
     }
 }
