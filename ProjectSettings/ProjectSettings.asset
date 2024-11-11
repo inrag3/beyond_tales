@@ -856,8 +856,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: beyond_tales
-  metroPackageVersion: 
+  metroPackageName: beyondtales
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -865,7 +865,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: beyond_tales
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: beyond_tales
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
