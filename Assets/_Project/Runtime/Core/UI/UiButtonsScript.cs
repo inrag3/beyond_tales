@@ -9,4 +9,8 @@ public class UiButtonsScript : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+    public void ExitPressed()
+    {
+        Application.Quit();
+    }
 }
