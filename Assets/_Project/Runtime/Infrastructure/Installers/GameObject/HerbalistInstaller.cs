@@ -14,6 +14,7 @@ namespace _Project.Runtime.Infrastructure.Installers.GameObject
             Container.Bind<Animer>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<Mover>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GrenadeThrower>().AsSingle();
         }
     }
 }
