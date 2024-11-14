@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using _Project.Runtime.Config;
 using _Project.Runtime.Infrastructure;
 using _Project.Runtime.Infrastructure.Factories;
@@ -7,7 +8,8 @@ using Zenject;
 
 namespace _Project.Runtime.Core.Herbalist
 {
-    public class GrenadeThrower : ITickable, IDisposable
+    public class GrenadeThrower : ITickable, IDisposable, IGrenadeProvider
+    
     {
         private const string GrenadePath = "Granade";
         private const string ExplosionPath = "ExplosionCenter";
@@ -72,6 +74,9 @@ namespace _Project.Runtime.Core.Herbalist
             var explosion = _instantiator.InstantiatePrefabForComponent<GrenadeExplosion>(prefab);
             explosion.transform.parent = grenade.transform.parent;
             explosion.transform.position = grenade.transform.position;
+            
+            Grenades.Add(grenade);
+            GrenadesUpdated?.Invoke();
 
         }
 
@@ -84,5 +89,18 @@ namespace _Project.Runtime.Core.Herbalist
         {
             _timer.TimeEnded -= ResetThrow;
         }
+
+        public  List<Grenade> Grenades { get; private set; } = new  List<Grenade>();
+        
+        public event Action GrenadesUpdated;
+    }
+
+    public interface IGrenadeProvider
+    {
+        
+        public List<Grenade> Grenades { get; }
+
+        public event Action GrenadesUpdated;
+        
     }
 }
