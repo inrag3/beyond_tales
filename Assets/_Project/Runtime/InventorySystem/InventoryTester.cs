@@ -1,27 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using MoreMountains.Tools;
 using UnityEngine;
+using Zenject;
 
-public class InventoryTester : MMSingleton<InventoryTester>
+public class InventoryTester : ITickable
 {
-    private PlayerInventory _playerInventory = new PlayerInventory();
+    private IPlayerInventory _playerInventory;
 
-    public PlayerInventory PlayerInventory => _playerInventory;
+    public IPlayerInventory PlayerInventory => _playerInventory;
 
-    protected void Start()
+    [Inject]
+    private InventoryTester(IPlayerInventory playerInventory)
     {
-        foreach (var itemData in ItemContainer.Instance.ItemDatas)
-        {
-            if (itemData.Value.StartQuantity >= 0)
-            {
-                _playerInventory.AddItem(itemData.Key, itemData.Value.StartQuantity);
-            }
-        }
+        _playerInventory = playerInventory;
     }
 
-    private void Update()
+
+    public void Tick()
     {
         if (Input.GetKeyDown(KeyCode.L))
         {

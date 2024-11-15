@@ -1,26 +1,26 @@
-using System.Collections;
 using System.Collections.Generic;
-using MoreMountains.Tools;
 using UnityEngine;
+using Zenject;
 
-public class ItemContainer : MMSingleton<ItemContainer>
+public class ItemContainer : IItemContainer, IInitializable
 {
-    private Dictionary<ItemEnum, ItemData> _itemDatas;
+    private const string ItemsLocationPath = "Items";
 
-    public IReadOnlyDictionary<ItemEnum, ItemData> ItemDatas => _itemDatas;
-    protected override void Awake()
+    private Dictionary<ItemEnum, ItemData> _itemData;
+
+    public IReadOnlyDictionary<ItemEnum, ItemData> ItemData => _itemData;
+
+    public void Initialize()
     {
-        base.Awake();
-        _itemDatas = new Dictionary<ItemEnum, ItemData>();
-        foreach (var itemData in Resources.LoadAll<ItemData>("Items"))
+        _itemData = new Dictionary<ItemEnum, ItemData>();
+        foreach (var itemData in Resources.LoadAll<ItemData>(ItemsLocationPath))
         {
-            _itemDatas.Add(itemData.ItemEnum, itemData);
+            _itemData.Add(itemData.ItemEnum, itemData);
         }
-        
     }
+}
 
-    public ItemData GetItemData(ItemEnum itemEnum)
-    {
-        return _itemDatas[itemEnum];
-    }
+public interface IItemContainer
+{
+    IReadOnlyDictionary<ItemEnum, ItemData> ItemData { get; }
 }

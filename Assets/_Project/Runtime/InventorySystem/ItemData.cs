@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "new Item", menuName = "Item")]
@@ -10,12 +8,14 @@ public class ItemData : ScriptableObject, IEquatable<ItemData>
 
     [Tooltip("Максимальное количество предметов этого типа которое может быть в инвентаре. " +
              "Если поставить отрицательное значение, то можно будет подбирать бесконечное количество")]
-    [SerializeField] private int _maxStackSize;
+    [SerializeField]
+    private int _maxStackSize;
 
     [Tooltip("Количество предметов этого типа, с которым игрок начинает игру." +
              "Если выставить 0, то предметов будет 0, но сам предмет будет инициализирован в инвентаре." +
              "Если выставить отрицательное значение, то такая инициализация происходить не будет")]
-    [SerializeField] private int _startQuantity;
+    [SerializeField]
+    private int _startQuantity;
 
     public ItemEnum ItemEnum => _itemEnum;
 

@@ -1,25 +1,30 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class TestInventoryView : MonoBehaviour
 {
     [SerializeField] private Text _text;
+    private IPlayerInventory _playerInventory;
 
-    private void Start()
+    [Inject]
+    private void Construct(IPlayerInventory playerInventory)
     {
-        OnChangeInventory(default, default,default);
-        InventoryTester.Instance.PlayerInventory.OnChangeInventoryItemCount += OnChangeInventory;
+        _playerInventory = playerInventory;
+    }
+
+
+    private void Awake()
+    {
+        OnChangeInventory(default, default, default);
+        _playerInventory.OnChangeInventoryItemCount += OnChangeInventory;
     }
 
     private void OnChangeInventory(ItemEnum itemEnum, int prev, int cur)
     {
         StringBuilder sb = new StringBuilder();
-
-        foreach (var kv in InventoryTester.Instance.PlayerInventory.Items)
+        foreach (var kv in _playerInventory.Items)
         {
             sb.Append($"{kv.Key}: {kv.Value}\n");
         }
@@ -29,6 +34,6 @@ public class TestInventoryView : MonoBehaviour
 
     private void OnDestroy()
     {
-        InventoryTester.Instance.PlayerInventory.OnChangeInventoryItemCount -= OnChangeInventory;
+        _playerInventory.OnChangeInventoryItemCount -= OnChangeInventory;
     }
 }

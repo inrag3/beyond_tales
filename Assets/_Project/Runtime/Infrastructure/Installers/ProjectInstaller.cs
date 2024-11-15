@@ -25,6 +25,10 @@ namespace _Project.Runtime.Infrastructure.Installers
             Container.BindInterfacesTo<Health>().AsTransient().NonLazy();
             Container.Bind<Timer>().AsTransient().NonLazy();
             Container.BindInterfacesAndSelfTo<GrenadeThrower>().AsSingle().NonLazy();
+            
+            Container.BindInterfacesAndSelfTo<ItemContainer>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerInventory>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<InventoryTester>().AsSingle().NonLazy();
         }
 
         private void BindServices()
