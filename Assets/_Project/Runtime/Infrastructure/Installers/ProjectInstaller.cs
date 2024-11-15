@@ -24,6 +24,7 @@ namespace _Project.Runtime.Infrastructure.Installers
 
             Container.BindInterfacesTo<Health>().AsTransient().NonLazy();
             Container.Bind<Timer>().AsTransient().NonLazy();
+            Container.BindInterfacesAndSelfTo<GrenadeThrower>().AsSingle().NonLazy();
         }
 
         private void BindServices()

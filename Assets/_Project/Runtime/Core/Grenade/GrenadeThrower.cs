@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using _Project.Runtime.Config;
 using _Project.Runtime.Infrastructure;
 using _Project.Runtime.Infrastructure.Factories;
@@ -7,11 +9,14 @@ using Zenject;
 
 namespace _Project.Runtime.Core.Herbalist
 {
-    public class GrenadeThrower : ITickable, IDisposable
+    public class GrenadeThrower : IInitializable, ITickable, IDisposable, IGrenadeProvider
+
     {
         private const string GrenadePath = "Granade";
         private const string ExplosionPath = "ExplosionCenter";
 
+        private int _totalGrenadeCount = 3;
+        private bool _isRecoveringGrenades = false;
         private bool _readyToThrow = true;
 
 
@@ -21,7 +26,10 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly IAssetManager _assetManager;
         private readonly IInstantiator _instantiator;
         private readonly IGrenadeConfig _grenadeConfig;
-        private readonly Timer _timer;
+        private readonly Timer _throwCollDownTimer;
+        private readonly Timer _grenadeRecoveryTimer;
+        private readonly List<GrenadeExplosion> _explosions = new();
+        public event Action<IReadOnlyList<GrenadeExplosion>> GrenadesUpdated;
 
         public GrenadeThrower(
             IHerbalistProvider herbalistProvider,
@@ -29,7 +37,8 @@ namespace _Project.Runtime.Core.Herbalist
             IInstantiator instantiator,
             IAssetManager assetManager,
             IGrenadeConfig grenadeConfig,
-            Timer timer
+            Timer throwCollDownTimer,
+            Timer grenadeRecoveryTimer
         )
         {
             _herbalistProvider = herbalistProvider;
@@ -37,19 +46,26 @@ namespace _Project.Runtime.Core.Herbalist
             _instantiator = instantiator;
             _assetManager = assetManager;
             _grenadeConfig = grenadeConfig;
-            _timer = timer;
-            timer.TimeEnded += ResetThrow;
+            _throwCollDownTimer = throwCollDownTimer;
+            _grenadeRecoveryTimer = grenadeRecoveryTimer;
         }
 
+        public void Initialize()
+        {
+            _throwCollDownTimer.TimeEnded += ResetThrow;
+            _grenadeRecoveryTimer.TimeEnded += RecoverGrenade;
+        }
 
         public void Tick()
         {
-            if (!(_inputService.IsGrenadeButtonPressed && _readyToThrow))
+            if (!(_inputService.IsGrenadeButtonPressed && _readyToThrow && _totalGrenadeCount > 0))
                 return;
             _readyToThrow = false;
+            _totalGrenadeCount--;
 
             GameObject prefab = _assetManager.Get(GrenadePath);
             var grenade = _instantiator.InstantiatePrefabForComponent<Grenade>(prefab);
+            grenade.transform.position = _herbalistProvider.Herbalist.Transform.position;
             grenade.transform.position += Vector3.up;
             grenade.transform.parent = null;
 
@@ -60,8 +76,17 @@ namespace _Project.Runtime.Core.Herbalist
             rigidbody.AddForce(forceToAdd, ForceMode.Impulse);
 
             grenade.Hit += GrenadeContactCallback;
+            
+            _throwCollDownTimer.Start(_grenadeConfig.GrenadeThrowsTimeout);
 
-            _timer.Start(_grenadeConfig.GrenadeThrowsTimeout);
+
+            if (!_isRecoveringGrenades)
+            {
+                _isRecoveringGrenades = true;
+                _grenadeRecoveryTimer.Start(_grenadeConfig.GrenadeRecoveryTimeout);
+
+            }
+
         }
 
         private void GrenadeContactCallback(Grenade grenade)
@@ -73,16 +98,48 @@ namespace _Project.Runtime.Core.Herbalist
             explosion.transform.parent = grenade.transform.parent;
             explosion.transform.position = grenade.transform.position;
 
+            explosion.Timer.TimeEnded += () =>
+            {
+                _explosions.Remove(explosion);
+                GrenadesUpdated?.Invoke(new ReadOnlyCollection<GrenadeExplosion>(_explosions));
+                explosion.SelfDestroy();
+            };
+            
+            explosion.Timer.Start(_grenadeConfig.GrenadeExplosionTimeout);
+
+            _explosions.Add(explosion);
+            GrenadesUpdated?.Invoke(new ReadOnlyCollection<GrenadeExplosion>(_explosions));
         }
 
         private void ResetThrow()
         {
+            Debug.Log("Reset throw");
             _readyToThrow = true;
+        }
+
+        private void RecoverGrenade()
+        {
+            Debug.Log("Reset grenade");
+
+            _totalGrenadeCount++;
+            if (_totalGrenadeCount < _grenadeConfig.GrenadeMaxCount)
+            {
+                Debug.Log("next iteration grenade resetting");
+                _grenadeRecoveryTimer.Start(_grenadeConfig.GrenadeRecoveryTimeout);
+            }
+
+            _isRecoveringGrenades = false;
         }
 
         public void Dispose()
         {
-            _timer.TimeEnded -= ResetThrow;
+            _throwCollDownTimer.TimeEnded -= ResetThrow;
+            _grenadeRecoveryTimer.TimeEnded -= RecoverGrenade;
         }
+    }
+
+    public interface IGrenadeProvider
+    {
+        public event Action<IReadOnlyList<GrenadeExplosion>> GrenadesUpdated;
     }
 }
