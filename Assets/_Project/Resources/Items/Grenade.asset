@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Grenade
   m_EditorClassIdentifier: 
   _itemEnum: 0
-  _maxStackSize: -1
+  _maxStackSize: 3
+  _startQuantity: 3
