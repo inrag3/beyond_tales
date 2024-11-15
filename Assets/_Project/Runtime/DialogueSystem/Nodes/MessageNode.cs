@@ -1,16 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using XNode;
+﻿using UnityEngine;
 
 [NodeTint("#00C12B")]
 public class MessageNode : DialogueBaseNode
 {
-	[Tooltip("Имя актера, который произносит текущее сообщение")]
-	public string ActorName;
+    [Tooltip("Имя актера, который произносит текущее сообщение")]
+    public string ActorName;
 
-	[TextArea(5,5)]
-	public string message;
-	
-	
+    [TextArea(5, 5)] public string message;
 }

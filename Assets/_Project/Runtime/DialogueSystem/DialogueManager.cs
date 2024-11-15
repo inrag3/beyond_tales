@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using DialogueSystem.Nodes;
 using UnityEngine;
 using UnityEngine.UI;
-using XNode;
-
 
 namespace DialogueSystem
 {
     public class DialogueManager : MonoBehaviour
     {
-
         /// <summary>
         /// Синглтон паттерн
         /// </summary>
@@ -21,26 +17,23 @@ namespace DialogueSystem
 
         [Tooltip("Ссылка на поле, куда выводятся все произносимые фразы")] [SerializeField]
         private Text messageText;
-        [Tooltip("Ссылка на текстовое поле имени правого собеседника")]
-        [SerializeField]
+
+        [Tooltip("Ссылка на текстовое поле имени правого собеседника")] [SerializeField]
         protected Text rightActorName;
-        [Tooltip("Ссылка на аватарку правого собеседника")]
-        [SerializeField]
+
+        [Tooltip("Ссылка на аватарку правого собеседника")] [SerializeField]
         protected Image rightActorAvatar;
-        
-        [Tooltip("Ссылка на текстовое поле имени левого собеседника")]
-        [SerializeField]
+
+        [Tooltip("Ссылка на текстовое поле имени левого собеседника")] [SerializeField]
         protected Text leftActorName;
-        [Tooltip("Ссылка на аватарку левого собеседника")]
-        [SerializeField]
+
+        [Tooltip("Ссылка на аватарку левого собеседника")] [SerializeField]
         protected Image leftActorAvatar;
 
-        [Tooltip("Ссылка на панель ответов")] 
-        [SerializeField]
+        [Tooltip("Ссылка на панель ответов")] [SerializeField]
         protected AnswersPanel answersPanel;
-        
-        [Tooltip("Актер игрока. Всегда неявно инициализируется в диалоге")]
-        [SerializeField]
+
+        [Tooltip("Актер игрока. Всегда неявно инициализируется в диалоге")] [SerializeField]
         protected Actor playerActor;
 
         [Header("TypeWriter settings")] [Tooltip("Скорость распечатки сообщений")] [SerializeField]
@@ -64,11 +57,12 @@ namespace DialogueSystem
         /// Нода, которую надо обработать следующей
         /// </summary>
         protected Node nextNode;
-        
+
         /// <summary>
         /// Список актеров в текущем диалоге
         /// </summary>
         protected List<Actor> actors;
+
         /// <summary>
         /// Варианты ответов, закэшированные через CashAnswerNode
         /// </summary>
@@ -84,21 +78,10 @@ namespace DialogueSystem
         {
             instance = this;
             dialogueHider = GetComponent<CanvasGroup>();
-            cashedAnswers=new List<(Node, Answer)>();
+            cashedAnswers = new List<(Node, Answer)>();
             HideDialogueView();
-            actors=new List<Actor>();
+            actors = new List<Actor>();
             actors.Add(playerActor);
-        }
-
-        void Start()
-        {
-          
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         /// <summary>
@@ -157,15 +140,15 @@ namespace DialogueSystem
         {
             nextNode = node.GetNextNode();
             var actor = GetActorByName(node.ActorName);
-            if(actor==null) Debug.LogError($"Актера с именем *{node.ActorName}* не существует");
+            if (actor == null) Debug.LogError($"Актера с именем *{node.ActorName}* не существует");
 
             string actorName = actor.name;
             leftActorName.text = actorName;
             leftActorAvatar.sprite = actor.avatar;
-            
-            
+
+
             dialogueHider.alpha = 1;
-            
+
             yield return StartCoroutine(TypeMessage(node.message));
 
             yield return new WaitForSeconds(preEndDelay);
@@ -194,9 +177,9 @@ namespace DialogueSystem
         protected IEnumerator ProcessChoiceNode(ChoiceNode node)
         {
             List<Answer> tempAnswerList = new List<Answer>(node.answers);
-            tempAnswerList.AddRange(cashedAnswers.ConvertAll(t=>t.Item2));
+            tempAnswerList.AddRange(cashedAnswers.ConvertAll(t => t.Item2));
             answersPanel.SetAnswers(tempAnswerList);
-            yield return new WaitWhile(()=>answersPanel.IsActive);
+            yield return new WaitWhile(() => answersPanel.IsActive);
             int choice = answersPanel.SelectionPointer;
             //Debug.Log($"Choice = {choice}");
             if (choice >= node.answers.Count)
@@ -205,14 +188,15 @@ namespace DialogueSystem
             }
             else
             {
-                nextNode=node.GetNodeByAnswer(choice);   
+                nextNode = node.GetNodeByAnswer(choice);
             }
+
             cashedAnswers.Clear();
         }
 
         protected IEnumerator ProcessCashAnswerNode(CashAnswerNode node)
         {
-            cashedAnswers.Add((node.GetAnswerNode(),node.answer));
+            cashedAnswers.Add((node.GetAnswerNode(), node.answer));
             nextNode = node.GetNextNode();
             yield break;
         }
@@ -229,7 +213,7 @@ namespace DialogueSystem
         protected IEnumerator ProcessCheckNode(CheckNode node)
         {
             bool flag = true;
-            
+
             //Todo Решить нужны ли нам storyMarks и если да то, добавить для них где-то хранилище
             /*switch (node)
             {
@@ -263,7 +247,6 @@ namespace DialogueSystem
             }
 
             messageText.text = message;
-
         }
 
         protected void ShowDialogueView()
@@ -300,6 +283,5 @@ namespace DialogueSystem
 
             return null;
         }
-        
     }
 }

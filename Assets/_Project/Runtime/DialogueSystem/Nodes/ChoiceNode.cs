@@ -1,12 +1,12 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using DialogueSystem.Nodes;
 using UnityEngine;
-using XNode;
+
 [NodeTint("#FFBF00")]
 public class ChoiceNode : DialogueBaseNode
 {
-
-    [Output(dynamicPortList = true,connectionType = ConnectionType.Override)] 
+    [Output(dynamicPortList = true, connectionType = ConnectionType.Override)]
     public List<Answer> answers = new List<Answer>();
 
     public Node GetNodeByAnswer(int answerNum)
@@ -27,7 +27,8 @@ public class ChoiceNode : DialogueBaseNode
     }
 }
 
-[System.Serializable] public class Answer {
-    [TextArea]
-    public string text;
+[Serializable]
+public class Answer
+{
+    [TextArea] public string text;
 }

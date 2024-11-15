@@ -1,30 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AnswerItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler, IPointerClickHandler
+public class AnswerItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [Tooltip("Ссылка на текстовое поле")]
-    [SerializeField]
+    [Tooltip("Ссылка на текстовое поле")] [SerializeField]
     private Text text;
-    [Tooltip("Ссылка на картинку, подсвечиваемую при выборе")]
-    [SerializeField]
+
+    [Tooltip("Ссылка на картинку, подсвечиваемую при выборе")] [SerializeField]
     private Image HighlightImage;
+
     /// <summary>
     /// Ссылка на скрипт панели ответов
     /// </summary>
     private AnswersPanel panel;
+
     /// <summary>
     /// Порядковый номер ответа в списке
     /// </summary>
     private int number;
+
     // Start is called before the first frame update
     void Start()
     {
         HighlightImage.gameObject.SetActive(false);
     }
+
     /// <summary>
     /// Панель вызывает эту функцию, чтобы передать вней порядковый номер и ссылку на себя
     /// </summary>
@@ -38,6 +39,7 @@ public class AnswerItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         text.text = answer.text;
     }
+
     /// <summary>
     /// Вызывается панелью в момент, когда игрок наводит на этот вариант ответа
     /// </summary>

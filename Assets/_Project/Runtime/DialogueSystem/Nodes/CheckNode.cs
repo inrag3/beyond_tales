@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using MoreMountains.Feedbacks;
-using MoreMountains.Tools;
-using UnityEngine;
-using XNode;
+﻿using DialogueSystem.Nodes;
 
 [CreateNodeMenu("Checks/Check")]
 public class CheckNode : DialogueBaseNode
@@ -15,7 +9,7 @@ public class CheckNode : DialogueBaseNode
     public Node GetNextNodeByCheck(bool check)
     {
         var port = GetOutputPort(check ? "pass" : "fail");
-        
+
         return port.IsConnected ? port.Connection.node : null;
     }
 }

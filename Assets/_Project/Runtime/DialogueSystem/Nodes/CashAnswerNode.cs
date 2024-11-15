@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using XNode;
+﻿using DialogueSystem.Nodes;
 
 /// <summary>
 /// Нода которая запоминает описанный в ней ответ, чтобы потом добавить его
@@ -11,19 +8,19 @@ using XNode;
 [NodeTint("#999923")]
 public class CashAnswerNode : DialogueBaseNode
 {
-   [Output(backingValue = ShowBackingValue.Never,connectionType = ConnectionType.Override)] 
-   public DialogueBaseNode answerNode;
-   
-   public Answer answer;
+    [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
+    public DialogueBaseNode answerNode;
 
-   public Node GetAnswerNode()
-   {
-      var port = GetOutputPort("answerNode");
-      if (port.IsConnected)
-      {
-         return port.Connection.node;
-      }
+    public Answer answer;
 
-      return null;
-   }
+    public Node GetAnswerNode()
+    {
+        var port = GetOutputPort("answerNode");
+        if (port.IsConnected)
+        {
+            return port.Connection.node;
+        }
+
+        return null;
+    }
 }
