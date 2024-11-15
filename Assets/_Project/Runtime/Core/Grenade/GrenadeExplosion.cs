@@ -1,9 +1,21 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace _Project.Runtime.Core.Herbalist
 {
-    public class GrenadeExplosion: MonoBehaviour
+    public class GrenadeExplosion : MonoBehaviour
     {
-        
+        public Timer Timer { get; private set; }
+
+        [Inject]
+        private void Construct(Timer timer)
+        {
+            Timer = timer;
+        }
+
+        public void SelfDestroy()
+        {
+            Destroy(gameObject);
+        }
     }
 }
