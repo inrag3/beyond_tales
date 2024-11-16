@@ -15,7 +15,6 @@ namespace _Project.Runtime.Core.Herbalist
         private const string GrenadePath = "Granade";
         private const string ExplosionPath = "ExplosionCenter";
 
-        private int _totalGrenadeCount = 3;
         private bool _isRecoveringGrenades = false;
         private bool _readyToThrow = true;
 
@@ -29,6 +28,8 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly Timer _throwCollDownTimer;
         private readonly Timer _grenadeRecoveryTimer;
         private readonly List<GrenadeExplosion> _explosions = new();
+        private readonly IPlayerInventory _inventory;
+        private readonly IItemContainer _itemContainer;
         public event Action<IReadOnlyList<GrenadeExplosion>> GrenadesUpdated;
 
         public GrenadeThrower(
@@ -37,6 +38,8 @@ namespace _Project.Runtime.Core.Herbalist
             IInstantiator instantiator,
             IAssetManager assetManager,
             IGrenadeConfig grenadeConfig,
+            IPlayerInventory inventory,
+            IItemContainer itemContainer,
             Timer throwCollDownTimer,
             Timer grenadeRecoveryTimer
         )
@@ -46,6 +49,8 @@ namespace _Project.Runtime.Core.Herbalist
             _instantiator = instantiator;
             _assetManager = assetManager;
             _grenadeConfig = grenadeConfig;
+            _inventory = inventory;
+            _itemContainer = itemContainer;
             _throwCollDownTimer = throwCollDownTimer;
             _grenadeRecoveryTimer = grenadeRecoveryTimer;
         }
@@ -58,10 +63,10 @@ namespace _Project.Runtime.Core.Herbalist
 
         public void Tick()
         {
-            if (!(_inputService.IsGrenadeButtonPressed && _readyToThrow && _totalGrenadeCount > 0))
+            if (!(_inputService.IsGrenadeButtonPressed && _readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0))
                 return;
             _readyToThrow = false;
-            _totalGrenadeCount--;
+            _inventory.RemoveItems(ItemEnum.Grenade,1);
 
             GameObject prefab = _assetManager.Get(GrenadePath);
             var grenade = _instantiator.InstantiatePrefabForComponent<Grenade>(prefab);
@@ -91,7 +96,6 @@ namespace _Project.Runtime.Core.Herbalist
 
         private void GrenadeContactCallback(Grenade grenade)
         {
-            Debug.Log("Grenade contact: " + grenade.transform.position);
 
             GameObject prefab = _assetManager.Get(ExplosionPath);
             var explosion = _instantiator.InstantiatePrefabForComponent<GrenadeExplosion>(prefab);
@@ -119,16 +123,18 @@ namespace _Project.Runtime.Core.Herbalist
 
         private void RecoverGrenade()
         {
-            Debug.Log("Reset grenade");
 
-            _totalGrenadeCount++;
-            if (_totalGrenadeCount < _grenadeConfig.GrenadeMaxCount)
+            _inventory.AddItem(ItemEnum.Grenade,1);
+            if (_inventory.Items[ItemEnum.Grenade] < _itemContainer.ItemData[ItemEnum.Grenade].MaxStackSize)
             {
-                Debug.Log("next iteration grenade resetting");
                 _grenadeRecoveryTimer.Start(_grenadeConfig.GrenadeRecoveryTimeout);
             }
+            else
+            {
+                _isRecoveringGrenades = false;
+            }
 
-            _isRecoveringGrenades = false;
+            
         }
 
         public void Dispose()

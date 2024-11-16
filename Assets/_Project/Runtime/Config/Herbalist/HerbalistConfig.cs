@@ -17,6 +17,5 @@ namespace _Project.Runtime.Config.Herbalist
         [field: SerializeField] public float GrenadeThrowsTimeout { get; private set; }
         [field: SerializeField] public float GrenadeRecoveryTimeout { get; private set; }
         [field: SerializeField] public float GrenadeExplosionTimeout { get; private set; }
-        [field: SerializeField] public int GrenadeMaxCount { get; private set; }
     }
 }
