@@ -6,6 +6,7 @@ using _Project.Runtime.Infrastructure;
 using _Project.Runtime.Infrastructure.Factories;
 using UnityEngine;
 using Zenject;
+using BeyondTales.InventorySystem;
 
 namespace _Project.Runtime.Core.Herbalist
 {

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using BeyondTales.InventorySystem;
 
 public class ItemContainer : IItemContainer, IInitializable
 {

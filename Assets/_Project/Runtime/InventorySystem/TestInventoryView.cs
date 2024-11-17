@@ -2,6 +2,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using BeyondTales.InventorySystem;
 
 public class TestInventoryView : MonoBehaviour
 {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Zenject;
+using BeyondTales.InventorySystem;
 
 public class InventoryTester : ITickable
 {
@@ -19,12 +20,10 @@ public class InventoryTester : ITickable
         if (Input.GetKeyDown(KeyCode.L))
         {
             _playerInventory.AddItem(ItemEnum.Grenade);
-            _playerInventory.AddItem(ItemEnum.Flower);
         }
         else if (Input.GetKeyDown(KeyCode.O))
         {
             _playerInventory.RemoveItems(ItemEnum.Grenade, 1);
-            _playerInventory.RemoveItems(ItemEnum.Flower, 1);
         }
     }
 }

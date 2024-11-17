@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using BeyondTales.InventorySystem;
 
 [CreateAssetMenu(fileName = "new Item", menuName = "Item")]
 public class ItemData : ScriptableObject, IEquatable<ItemData>
@@ -42,10 +43,4 @@ public class ItemData : ScriptableObject, IEquatable<ItemData>
     {
         return _itemEnum.GetHashCode();
     }
-}
-
-public enum ItemEnum
-{
-    Grenade,
-    Flower
 }
