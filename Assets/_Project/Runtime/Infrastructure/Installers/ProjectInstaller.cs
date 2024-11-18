@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Collections;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.Infrastructure.Factories;
+using UnityEngine;
 using Zenject;
 
 namespace _Project.Runtime.Infrastructure.Installers
 {
     public sealed class ProjectInstaller : MonoInstaller, IInitializable
     {
+        
+        [SerializeField]
+        private CoroutinePerformer _coroutinePerformer;
         public override void InstallBindings()
         {
             Container.BindInterfacesTo<ProjectInstaller>().FromInstance(this).AsSingle().NonLazy();
@@ -18,11 +23,18 @@ namespace _Project.Runtime.Infrastructure.Installers
             BindServices();
 
             Container.BindInterfacesTo<Health>().AsTransient().NonLazy();
+            Container.Bind<Timer>().AsTransient().NonLazy();
+            Container.BindInterfacesAndSelfTo<GrenadeThrower>().AsSingle().NonLazy();
+            
+            Container.BindInterfacesAndSelfTo<ItemContainer>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerInventory>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<InventoryTester>().AsSingle().NonLazy();
         }
 
         private void BindServices()
         {
             Container.Bind<IInputService>().To<StandaloneInputService>().AsSingle().NonLazy();
+            Container.Bind<ICoroutinePerformer>().FromInstance(_coroutinePerformer).AsSingle().NonLazy();
         }
 
         private void BindAssetManager()
@@ -41,4 +53,11 @@ namespace _Project.Runtime.Infrastructure.Installers
             Container.Resolve<HerbalistFactory>().Create();
         }
     }
+}
+
+public interface ICoroutinePerformer
+{
+    public Coroutine StartPerform(IEnumerator coroutine);
+
+    public void StopPerform(Coroutine coroutine);
 }

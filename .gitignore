@@ -3,6 +3,7 @@
 # =============== #
 Temp/
 /Library/
+/[Uu]ser[Ss]ettings/
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #

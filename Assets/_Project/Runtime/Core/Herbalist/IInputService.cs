@@ -5,5 +5,7 @@
         public float Horizontal { get; }
         public float Vertical { get; }
         public bool IsRollButtonPressed { get; }
+        
+        public bool IsGrenadeButtonPressed { get; }
     }
 }

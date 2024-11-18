@@ -31,6 +31,7 @@ namespace _Project.Runtime.Core.Herbalist
 
             var movement = new Vector3(moveHorizontal, 0f, moveVertical);
             movement = Quaternion.Euler(0, 45, 0) * movement;
+            movement.Normalize();
 
             float value = Math.Clamp(movement.magnitude, 0, 1);
             _animer.PlayMove(value);
