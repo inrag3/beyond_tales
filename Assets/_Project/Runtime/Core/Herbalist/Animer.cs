@@ -1,21 +1,25 @@
 ﻿using System;
 using UnityEngine;
 
-public sealed class Animer
+namespace _Project.Runtime.Core.Herbalist
 {
-    private Animator _animator;
-
-    public Animer(Animator animator)
+    public sealed class Animer
     {
-        _animator = animator;
-    }
+        private static readonly int Running = Animator.StringToHash("Running");
+        private readonly Animator _animator;
 
-    public void PlayDeath()
-    {
+        public Animer(Animator animator)
+        {
+            _animator = animator;
+        }
 
-    }
-    public void PlayMove(float value)
-    {
+        public void PlayDeath()
+        {
+        }
 
+        public void PlayMove(float value)
+        {
+            _animator.SetFloat(Running, value);
+        }
     }
 }
