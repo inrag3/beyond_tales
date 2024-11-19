@@ -13,26 +13,27 @@ namespace _Project.Runtime.Core.Herbalist
         private Rigidbody _rigidbody;
         private Animer _animer;
         private Mover _mover;
-        private IHealth _health;
 
         [Inject]
         private void Construct(IHealth health, Animer animer)
         {
-            _health = health;
+            Health = health;
             _animer = animer;
         }
 
-        public Transform Transform => transform;
+        public IHealth Health { get; private set; }
 
-        private void OnEnable()
-        {
-            IDisposable subscription = _health.Value.Subscribe(OnHealthChanged);
-            _disposables.Add(subscription);
-        }
+        public Transform Transform => transform;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void OnEnable()
+        {
+            IDisposable subscription = Health.Value.Subscribe(OnHealthChanged);
+            _disposables.Add(subscription);
         }
 
         private void OnHealthChanged(int value)
@@ -46,15 +47,12 @@ namespace _Project.Runtime.Core.Herbalist
 
         public void TakeDamage(int value)
         {
-
-            _health.Increase(value);
+            Health.Decrease(value);
         }
 
         private void OnDestroy()
         {
             _disposables.Dispose();
         }
-
-
     }
 }
