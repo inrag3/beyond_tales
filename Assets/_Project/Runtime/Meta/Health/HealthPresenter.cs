@@ -1,22 +1,20 @@
 ﻿using System;
-using _Project.Runtime.Meta.Health;
+using _Project.Runtime.Core.Health;
 using R3;
 using Zenject;
 
-namespace _Project.Runtime.Core.Health
+namespace _Project.Runtime.Meta.Health
 {
-    public class HealthPresenter : IInitializable, IDisposable
+    public sealed class HealthPresenter : IInitializable, IDisposable
     {
-        private readonly IReadOnlyHealth _health;
-        private readonly IHealthView _view;
+        private readonly IHealth _health;
+        private readonly HealthView _view;
         private IDisposable _subscription;
-
-        private HealthPresenter(IReadOnlyHealth health, IHealthView view)
+        public HealthPresenter(HealthView view, IHealth health)
         {
-            _view = view;
             _health = health;
+            _view = view;
         }
-
         public void Initialize()
         {
             _subscription = _health.Value.Subscribe(OnHealthChanged);
@@ -24,7 +22,8 @@ namespace _Project.Runtime.Core.Health
 
         private void OnHealthChanged(int value)
         {
-            _view.SetHealth(value);
+            float result = value * 1f / _health.MaxValue;
+            _view.SetHealth(result);
         }
 
         public void Dispose()
