@@ -66,7 +66,7 @@ namespace _Project.Runtime.Core.Herbalist
             if (!(_inputService.IsGrenadeButtonPressed && _readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0))
                 return;
             _readyToThrow = false;
-            _inventory.RemoveItems(ItemEnum.Grenade,1);
+            _inventory.RemoveItem(ItemEnum.Grenade,1);
 
             GameObject prefab = _assetManager.Get(GrenadePath);
             var grenade = _instantiator.InstantiatePrefabForComponent<Grenade>(prefab);

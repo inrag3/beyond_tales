@@ -23,8 +23,8 @@ public class InventoryTester : ITickable
         }
         else if (Input.GetKeyDown(KeyCode.O))
         {
-            _playerInventory.RemoveItems(ItemEnum.Grenade, 1);
-            _playerInventory.RemoveItems(ItemEnum.Flower, 1);
+            _playerInventory.RemoveItem(ItemEnum.Grenade, 1);
+            _playerInventory.RemoveItem(ItemEnum.Flower, 1);
         }
     }
 }

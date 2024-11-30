@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9212517019548994111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1daf7a29fb4094547a6c6f2efb6130d5, type: 3}
+  m_Name: Message
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1544, y: -200}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: -9212517019548994111}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: pass
+        node: {fileID: 1989267708047137565}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -9212517019548994111}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  ActorName: You
+  message: "\u0421\u043F\u0430\u0441\u0438\u0431\u043E, \u0434\u044F\u0434\u044F
+    \u0412\u0430\u043A\u0443\u043B\u0430"
 --- !u!114 &-8236990418416380259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +177,10 @@ MonoBehaviour:
       _node: {fileID: -4050562766816213306}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: input
+        node: {fileID: 1471019155748120908}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -242,6 +290,9 @@ MonoBehaviour:
   - {fileID: -1918429482517852042}
   - {fileID: -4050562766816213306}
   - {fileID: 176461513778442493}
+  - {fileID: 1471019155748120908}
+  - {fileID: 1989267708047137565}
+  - {fileID: -9212517019548994111}
 --- !u!114 &176461513778442493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +328,10 @@ MonoBehaviour:
       _node: {fileID: 176461513778442493}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: input
+        node: {fileID: 1471019155748120908}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -286,6 +340,127 @@ MonoBehaviour:
   output: {fileID: 0}
   ActorName: You
   message: "\u041C\u043D\u0435 \u0438 \u0442\u0443\u0442 \u0445\u043E\u0440\u043E\u0448\u043E!"
+--- !u!114 &1471019155748120908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1daf7a29fb4094547a6c6f2efb6130d5, type: 3}
+  m_Name: Message
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 952, y: -200}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 1471019155748120908}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -4050562766816213306}
+        reroutePoints: []
+      - fieldName: output
+        node: {fileID: 176461513778442493}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1471019155748120908}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1989267708047137565}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  ActorName: "\u0412\u0430\u043A\u0443\u043B\u0430"
+  message: "\u0412\u043E\u0442 \u0434\u0435\u0440\u0436\u0438!"
+--- !u!114 &1989267708047137565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b6b51c6a9249f0b8a6c9f217cdc284, type: 3}
+  m_Name: Add Items
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1240, y: -184}
+  ports:
+    keys:
+    - pass
+    - fail
+    - input
+    - output
+    values:
+    - _fieldName: pass
+      _node: {fileID: 1989267708047137565}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: -9212517019548994111}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: fail
+      _node: {fileID: 1989267708047137565}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 1989267708047137565}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 1471019155748120908}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1989267708047137565}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  pass: {fileID: 0}
+  fail: {fileID: 0}
+  itemsToAdd:
+  - itemType: 0
+    quantity: 5
+  AddIfPossible: 1
 --- !u!114 &8007487759956397242
 MonoBehaviour:
   m_ObjectHideFlags: 0
