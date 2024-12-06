@@ -7,5 +7,6 @@
         public bool IsRollButtonPressed { get; }
         
         public bool IsGrenadeButtonPressed { get; }
+        public bool IsDialogButtonPressed { get; }
     }
 }
