@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c88074a27351f408b8607909a620e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requiredFlowerType: 1
+  _requiredFlowerType: 2
 --- !u!1 &862640824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c88074a27351f408b8607909a620e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requiredFlowerType: 1
+  _requiredFlowerType: 3
 --- !u!1 &897456018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1086224761313166, guid: fa66820763744ef46b5a9cfb5ef88187,

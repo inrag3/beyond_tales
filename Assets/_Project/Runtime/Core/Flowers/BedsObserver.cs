@@ -13,6 +13,7 @@ public class BedsObserver : MonoBehaviour
         }
     }
 
+
     private void OnBedCompleted()
     {
         if (_beds.All(bed => bed.IsComplete))

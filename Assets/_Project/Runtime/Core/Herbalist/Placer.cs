@@ -6,9 +6,7 @@ using System.Collections.Generic;
 
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Installers.GameObject;
-using UnityEngine;
-using Zenject;
-using BeyondTales.InventorySystem;
+using System.Linq;
 
 public class Placer : ITickable
 {
@@ -32,7 +30,12 @@ public class Placer : ITickable
         {
             Vector3 origin = _herbalistProvider.Herbalist.Transform.position;
 
-            List<Bed> bedList = new List<Bed>(_allBeds);
+            float plantingRadius = 3.0f;
+
+            List<Bed> bedList = new List<Bed>(_allBeds)
+            .Where(bed => Vector3.Distance(origin, bed.Transform.position) <= plantingRadius)
+            .ToList();
+
             Bed closestBed = bedList.Closest(origin);
 
             if (closestBed != null)
@@ -60,10 +63,30 @@ public class Placer : ITickable
         GameObject flowerPrefab = Resources.Load<GameObject>("Prefabs/Flower");
         if (flowerPrefab != null)
         {
+            Material flowerMaterial = GetMaterialForFlowerType(flowerType);
+            if (flowerMaterial == null)
+            {
+                return;
+            }
             GameObject spawnedFlower = Object.Instantiate(flowerPrefab);
             Flower flower = spawnedFlower.GetComponent<Flower>();
-            flower.SetFlowerType(flowerType);
+            flower.SetFlowerType(flowerType, flowerMaterial);
             bed.Plant(flower);
+        }
+    }
+
+    private Material GetMaterialForFlowerType(ItemEnum flowerType)
+    {
+        switch (flowerType)
+        {
+            case ItemEnum.RedFlower:
+                return Resources.Load<Material>("Prefabs/Materials/Red");
+            case ItemEnum.BlueFlower:
+                return Resources.Load<Material>("Prefabs/Materials/Blue");
+            case ItemEnum.YellowFlower:
+                return Resources.Load<Material>("Prefabs/Materials/Yellow");
+            default:
+                return null;
         }
     }
 }

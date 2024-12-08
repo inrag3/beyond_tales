@@ -28,7 +28,7 @@ public class Picker : ITickable
             return;
 
         Vector3 origin = _herbalistProvider.Herbalist.Transform.position;
-        float pickupRadius = 5.0f;
+        float pickupRadius = 3.0f;
 
         var flowers = _scanner.Scan<Flower>(origin, pickupRadius);
 
@@ -36,6 +36,11 @@ public class Picker : ITickable
 
         if (closestFlower is Flower flower)
         {
+            if (flower.IsPlanted)
+            {
+                return;
+            }
+
             flower.Pick();
             _playerInventory.AddItem(flower.FlowerType);
         }
