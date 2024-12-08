@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Runtime.Core.Herbalist;
 using DialogueSystem;
 using UnityEngine;
 using Zenject;
@@ -10,14 +11,18 @@ public class TestDialogueLauncher : MonoBehaviour
 
     [Inject]
     private DialogueManager _dialogueManager;
-    
-    public void Construct(DialogueManager dialogueManager)
+
+    private IInputService _inputService;
+
+
+    [Inject]
+    private void Construct(IInputService inputService)
     {
-        _dialogueManager = dialogueManager;
+        _inputService = inputService;
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (_inputService.IsDialogButtonPressed)
         {
             _dialogueManager.StartDialogue(_dialogue);
         }

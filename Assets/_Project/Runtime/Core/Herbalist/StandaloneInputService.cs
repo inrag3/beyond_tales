@@ -8,5 +8,6 @@ namespace _Project.Runtime.Core.Herbalist
         public float Vertical => Input.GetAxisRaw("Vertical");
         public bool IsRollButtonPressed => Input.GetKeyDown(KeyCode.Space);
         public bool IsGrenadeButtonPressed => Input.GetKeyDown(KeyCode.Q);
+        public bool IsDialogButtonPressed => Input.GetKeyDown(KeyCode.Tab);
     }
 }
