@@ -53,7 +53,7 @@ public class Placer : ITickable
         ItemEnum requiredFlowerType = bed.RequiredFlowerType;
         if (_playerInventory.GetItemCount(requiredFlowerType) > 0)
         {
-            _playerInventory.RemoveItems(requiredFlowerType, 1);
+            _playerInventory.RemoveItems(new ItemQuantityPair[]{ new(){itemType = requiredFlowerType,quantity = 1 }});
             SpawnFlowerOnBed(bed, requiredFlowerType);
         }
     }

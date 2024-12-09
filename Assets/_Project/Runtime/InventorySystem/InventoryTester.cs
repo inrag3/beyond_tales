@@ -23,7 +23,7 @@ public class InventoryTester : ITickable
         }
         else if (Input.GetKeyDown(KeyCode.O))
         {
-            _playerInventory.RemoveItems(ItemEnum.Grenade, 1);
+            _playerInventory.RemoveItems(new ItemQuantityPair[]{ new(){itemType = ItemEnum.Grenade,quantity = 1 }});
         }
     }
 }
