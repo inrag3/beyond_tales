@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 using Zenject;
 using BeyondTales.InventorySystem;
 
@@ -57,7 +58,7 @@ public class PlayerInventory : IPlayerInventory, IInitializable
         return 0;
     }
 
-    public bool RemoveItems(ItemEnum itemEnum, int quantity)
+    public bool RemoveItem(ItemEnum itemEnum, int quantity)
     {
         if (_items.TryGetValue(itemEnum, out var quant))
         {
@@ -73,6 +74,59 @@ public class PlayerInventory : IPlayerInventory, IInitializable
 
         return false;
     }
+
+    public bool HasItems(ItemQuantityPair[] its)
+    {
+        foreach (var itPair in its)
+        {
+            if (GetItemCount(itPair.itemType) < itPair.quantity)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public bool CanAddItems(ItemQuantityPair[] its, bool addIfPossible)
+    {
+        foreach (var itPair in its)
+        {
+            int maxCount = _itemContainer.ItemData[itPair.itemType].MaxStackSize;
+            if (maxCount < 0)
+            {
+                continue;
+            }
+
+            if (GetItemCount(itPair.itemType) + itPair.quantity > maxCount)
+            {
+                return false;
+            }
+        }
+
+        if (addIfPossible)
+        {
+            AddItems(its);
+        }
+
+        return true;
+    }
+
+    public void AddItems(ItemQuantityPair[] its)
+    {
+        foreach (var itPair in its)
+        {
+            AddItem(itPair.itemType, itPair.quantity);
+        }
+    }
+
+    public void RemoveItems(ItemQuantityPair[] its)
+    {
+        foreach (var itPair in its)
+        {
+            RemoveItem(itPair.itemType, itPair.quantity);
+        }
+    }
 }
 
 public interface IPlayerInventory
@@ -82,5 +136,19 @@ public interface IPlayerInventory
     event Action<ItemEnum, int, int> OnChangeInventoryItemCount;
     void AddItem(ItemEnum itemEnum, int quantity = 1);
     int GetItemCount(ItemEnum itemEnum);
-    bool RemoveItems(ItemEnum itemEnum, int quantity);
+    bool RemoveItem(ItemEnum itemEnum, int quantity);
+
+    public bool CanAddItems(ItemQuantityPair[] its, bool AddIfPossible);
+
+    public bool HasItems(ItemQuantityPair[] its);
+    public void AddItems(ItemQuantityPair[] its);
+
+    public void RemoveItems(ItemQuantityPair[] its);
+}
+
+[Serializable]
+public class ItemQuantityPair
+{
+    public ItemEnum itemType;
+    public int quantity;
 }

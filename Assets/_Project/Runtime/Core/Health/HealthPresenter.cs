@@ -1,5 +1,4 @@
 ﻿using System;
-using _Project.Runtime.Meta;
 using _Project.Runtime.Meta.Health;
 using R3;
 using Zenject;
@@ -8,9 +7,9 @@ namespace _Project.Runtime.Core.Health
 {
     public class HealthPresenter : IInitializable, IDisposable
     {
-        private IReadOnlyHealth _health;
+        private readonly IReadOnlyHealth _health;
+        private readonly IHealthView _view;
         private IDisposable _subscription;
-        private IHealthView _view;
 
         private HealthPresenter(IReadOnlyHealth health, IHealthView view)
         {
@@ -25,7 +24,7 @@ namespace _Project.Runtime.Core.Health
 
         private void OnHealthChanged(int value)
         {
-            _view.SetValue(value);
+            _view.SetHealth(value);
         }
 
         public void Dispose()

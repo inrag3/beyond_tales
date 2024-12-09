@@ -3,6 +3,7 @@ using System.Collections;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.Infrastructure.Factories;
+using DialogueSystem;
 using UnityEngine;
 using Zenject;
 
@@ -29,6 +30,7 @@ namespace _Project.Runtime.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<ItemContainer>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerInventory>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<InventoryTester>().AsSingle().NonLazy();
+            
         }
 
         private void BindServices()

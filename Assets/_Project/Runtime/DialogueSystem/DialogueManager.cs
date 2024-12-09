@@ -2,9 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DialogueSystem.Nodes;
+using DialogueSystem.Nodes.Checks;
+using ElectricServiceCompany;
 using UnityEngine;
 using UnityEngine.UI;
 using XNode;
+using Zenject;
 
 
 namespace DialogueSystem
@@ -15,7 +19,7 @@ namespace DialogueSystem
         /// <summary>
         /// Синглтон паттерн
         /// </summary>
-        public static DialogueManager instance;
+        //public static DialogueManager instance;
 
         [SerializeField] private RectTransform dialogueView;
 
@@ -80,14 +84,20 @@ namespace DialogueSystem
 
         public bool IsDialogueOpen => isDialogueOpen;
 
-        private void Awake()
+        private IPlayerInventory _playerInventory;
+        
+        
+        [Inject]
+        public void Construct(IPlayerInventory playerInventory)
         {
-            instance = this;
             dialogueHider = GetComponent<CanvasGroup>();
+            Debug.Log(dialogueHider.IsNullOrDestroyed());
             cashedAnswers=new List<(Node, Answer)>();
             HideDialogueView();
             actors=new List<Actor>();
             actors.Add(playerActor);
+
+            _playerInventory = playerInventory;
         }
 
         void Start()
@@ -149,6 +159,9 @@ namespace DialogueSystem
                     break;
                 case CashAnswerNode node:
                     yield return StartCoroutine(ProcessCashAnswerNode(node));
+                    break;
+                case RemoveItemsNode node:
+                    yield return StartCoroutine(ProcessRemoveItemsNode(node));
                     break;
             }
         }
@@ -225,19 +238,33 @@ namespace DialogueSystem
             nextNode = node.GetNextNode();
             yield break;
         }
+        
+        protected IEnumerator ProcessRemoveItemsNode(RemoveItemsNode node)
+        {
+            _playerInventory.RemoveItems(node.itemsToRemove);
+            nextNode = node.GetNextNode();
+            yield break;
+        }
 
         protected IEnumerator ProcessCheckNode(CheckNode node)
         {
             bool flag = true;
             
             //Todo Решить нужны ли нам storyMarks и если да то, добавить для них где-то хранилище
-            /*switch (node)
+            switch (node)
             {
-                case StoryMarksCheckNode marksNode:
+                /*case StoryMarksCheckNode marksNode:
                     flag = !PlayerData.instance.HasAtLeastOneMark(marksNode.ForbiddenMarks) &&
                            PlayerData.instance.HasStoryMarks(marksNode.RequiredMarks);
+                    break;*/
+                case InventoryCheckNode checkNode:
+                    flag = _playerInventory.HasItems(checkNode.requiredItems);
                     break;
-            }*/
+                case AddItemsNode addNode:
+                    flag = _playerInventory.CanAddItems(addNode.itemsToAdd,
+                        addNode.AddIfPossible);
+                    break;
+            }
 
             nextNode = node.GetNextNodeByCheck(flag);
             yield break;

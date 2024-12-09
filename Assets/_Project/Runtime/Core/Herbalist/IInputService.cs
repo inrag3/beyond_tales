@@ -9,5 +9,6 @@
         public bool IsGrenadeButtonPressed { get; }
 
         bool IsInteractButtonPressed { get; }
+        public bool IsDialogButtonPressed { get; }
     }
 }
