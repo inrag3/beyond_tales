@@ -14,8 +14,12 @@ namespace _Project.Runtime.Infrastructure.Installers.GameObject
             Container.Bind<Animer>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<Mover>().AsSingle();
-            
-                
+
+            Container.BindInterfacesTo<Scanner>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<Picker>().AsSingle().NonLazy();
+
+            Container.BindInterfacesTo<Placer>().AsSingle().NonLazy();
+            Container.Bind<Bed[]>().FromMethod(_ => FindObjectsOfType<Bed>()).AsSingle();
         }
     }
 }

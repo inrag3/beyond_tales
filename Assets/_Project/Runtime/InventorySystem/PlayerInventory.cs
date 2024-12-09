@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Serialization;
 using Zenject;
+using BeyondTales.InventorySystem;
 
 public class PlayerInventory : IPlayerInventory, IInitializable
 {
@@ -32,32 +33,19 @@ public class PlayerInventory : IPlayerInventory, IInitializable
     public void AddItem(ItemEnum itemEnum, int quantity = 1)
     {
         var itemData = _itemContainer.ItemData[itemEnum];
-        if (_items.TryGetValue(itemEnum, out var quant))
+        if (_items.TryGetValue(itemEnum, out var currentQuantity))
         {
-            if (itemData.MaxStackSize < 0 || quantity + quant <= itemData.MaxStackSize)
+            if (itemData.MaxStackSize < 0 || currentQuantity + quantity <= itemData.MaxStackSize)
             {
-                _items[itemEnum] = quantity + quant;
-                OnChangeInventoryItemCount?.Invoke(itemEnum, quant, quantity + quant);
-            }
-            else
-            {
-                _items[itemEnum] = itemData.MaxStackSize;
-                OnChangeInventoryItemCount?.Invoke(itemEnum, quant, itemData.MaxStackSize);
+                _items[itemEnum] += quantity;
             }
         }
         else
         {
-            if (itemData.MaxStackSize < 0 || quantity < itemData.MaxStackSize)
-            {
-                _items[itemEnum] = quantity;
-            }
-            else
-            {
-                _items[itemEnum] = itemData.MaxStackSize;
-            }
-
-            OnChangeInventoryItemCount?.Invoke(itemEnum, 0, _items[itemEnum]);
+            _items[itemEnum] = quantity;
         }
+
+        OnChangeInventoryItemCount?.Invoke(itemEnum, currentQuantity, _items[itemEnum]);
     }
 
     public int GetItemCount(ItemEnum itemEnum)

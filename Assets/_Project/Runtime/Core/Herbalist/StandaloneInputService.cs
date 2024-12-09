@@ -9,5 +9,6 @@ namespace _Project.Runtime.Core.Herbalist
         public bool IsRollButtonPressed => Input.GetKeyDown(KeyCode.Space);
         public bool IsGrenadeButtonPressed => Input.GetKeyDown(KeyCode.Q);
         public bool IsDialogButtonPressed => Input.GetKeyDown(KeyCode.Tab);
+        public bool IsInteractButtonPressed => Input.GetKeyDown(KeyCode.E);
     }
 }

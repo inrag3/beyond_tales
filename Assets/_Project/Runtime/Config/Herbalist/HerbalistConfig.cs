@@ -3,7 +3,7 @@
 namespace _Project.Runtime.Config.Herbalist
 {
     [CreateAssetMenu(fileName = "HealthConfig", menuName = "Configs/HealthConfig", order = 0)]
-    public sealed class HerbalistConfig : ScriptableObject, IHealthConfig, ISpeedConfig, IGrenadeConfig
+    public sealed class HerbalistConfig : ScriptableObject, IHealthConfig, ISpeedConfig, IGrenadeConfig, IPickerConfig
     {
         [field: SerializeField] public int MaxValue { get; private set; }
 
@@ -17,5 +17,8 @@ namespace _Project.Runtime.Config.Herbalist
         [field: SerializeField] public float GrenadeThrowsTimeout { get; private set; }
         [field: SerializeField] public float GrenadeRecoveryTimeout { get; private set; }
         [field: SerializeField] public float GrenadeExplosionTimeout { get; private set; }
+
+        [field: Header("Picker")]
+        [field: SerializeField] public float Radius { get; private set; }
     }
 }
