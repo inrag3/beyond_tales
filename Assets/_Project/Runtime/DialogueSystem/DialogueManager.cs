@@ -83,6 +83,7 @@ namespace DialogueSystem
         protected bool isDialogueOpen;
 
         public bool IsDialogueOpen => isDialogueOpen;
+        public event Action Ended;
 
         private IPlayerInventory _playerInventory;
         
@@ -94,7 +95,7 @@ namespace DialogueSystem
             Debug.Log(dialogueHider.IsNullOrDestroyed());
             cashedAnswers=new List<(Node, Answer)>();
             HideDialogueView();
-            actors=new List<Actor>();
+            actors= new List<Actor>();
             actors.Add(playerActor);
 
             _playerInventory = playerInventory;
@@ -305,6 +306,7 @@ namespace DialogueSystem
 
         protected void HideDialogueView()
         {
+            Ended?.Invoke();
             dialogueHider.alpha = 0;
             isDialogueOpen = false;
             cashedAnswers.Clear();
