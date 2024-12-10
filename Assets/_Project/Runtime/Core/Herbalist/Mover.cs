@@ -1,12 +1,13 @@
 ﻿using System;
 using _Project.Runtime.Config.Herbalist;
+using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
 using UnityEngine;
 using Zenject;
 
 namespace _Project.Runtime.Core.Herbalist
 {
-    public sealed class Mover : ITickable
+    public sealed class Mover : ITickable, IPauseHandler
     {
         private readonly int _speed;
         private readonly IInputService _inputService;
@@ -44,6 +45,16 @@ namespace _Project.Runtime.Core.Herbalist
 
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+        }
+
+        public void Pause()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Unpause()
+        {
+            throw new NotImplementedException();
         }
     }
 }

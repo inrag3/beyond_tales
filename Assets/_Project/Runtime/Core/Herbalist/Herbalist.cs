@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Runtime.Core.Health;
+using _Project.Runtime.Core.PauseHandler;
 using R3;
 using UnityEngine;
 using Zenject;
@@ -7,7 +8,7 @@ using Zenject;
 namespace _Project.Runtime.Core.Herbalist
 {
     [RequireComponent(typeof(Rigidbody), typeof(Animator))]
-    public class Herbalist : MonoBehaviour, IHerbalist
+    public class Herbalist : MonoBehaviour, IHerbalist, IPauseHandler
     {
         private readonly CompositeDisposable _disposables = new();
         private Rigidbody _rigidbody;
@@ -53,6 +54,16 @@ namespace _Project.Runtime.Core.Herbalist
         private void OnDestroy()
         {
             _disposables.Dispose();
+        }
+
+        public void Pause()
+        {
+            
+        }
+
+        public void Unpause()
+        {
+            
         }
     }
 }
