@@ -1,7 +1,5 @@
-using UnityEngine;
 using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Core.Interactables.Processors;
-using _Project.Runtime.InventorySystem;
 
 public class Flower : Item
 {

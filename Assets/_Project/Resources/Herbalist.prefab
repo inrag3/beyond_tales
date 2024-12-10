@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 2461951552394233794}
   - component: {fileID: 8709018595859169793}
   - component: {fileID: 4548683944772690011}
+  - component: {fileID: 941054514476184994}
   m_Layer: 0
   m_Name: Herbalist
   m_TagString: Untagged
@@ -161,6 +162,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 6942282459425171452}
+--- !u!65 &941054514476184994
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209956359868747588}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.18, z: 1}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &310680031608897767
 GameObject:
   m_ObjectHideFlags: 0

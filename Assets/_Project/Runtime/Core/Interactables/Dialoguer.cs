@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Core.PauseHandler;
 using DialogueSystem;
-using Unity.VisualScripting;
+using UnityEngine;
+using Zenject;
 
 public class Dialoguer : IInitializable, IDisposable
 {

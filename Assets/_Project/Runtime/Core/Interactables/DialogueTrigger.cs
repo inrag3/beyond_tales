@@ -1,20 +1,19 @@
 using System;
-using _Project.Runtime.Core.Herbalist;
 using UnityEngine;
 
-
-[RequireComponent(typeof(SphereCollider))]
-public class DialogueTrigger : MonoBehaviour
+namespace _Project.Runtime.Core.Interactables
 {
-    [SerializeField] private DialogueGraph _graph;
-
-    public event Action<DialogueGraph> Entered;
-    
-    private void OnTriggerEnter(Collider other)
+    [RequireComponent(typeof(SphereCollider))]
+    public class DialogueTrigger : MonoBehaviour
     {
-        if (other.TryGetComponent(out Herbalist _))
+        [SerializeField] private DialogueGraph _graph;
+        public event Action<DialogueGraph> Entered;
+        private void OnTriggerEnter(Collider other)
         {
-            Entered?.Invoke(_graph);
+            if (other.TryGetComponent(out Herbalist.Herbalist _))
+            {
+                Entered?.Invoke(_graph);
+            }
         }
     }
 }
