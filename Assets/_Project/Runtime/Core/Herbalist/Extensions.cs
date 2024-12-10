@@ -4,7 +4,7 @@ using _Project.Runtime.Core.Herbalist;
 
 public static class Extensions
 {
-    public static T Closest<T>(this List<T> items, Vector3 origin) where T : ITransformable
+    public static T Closest<T>(this IEnumerable<T> items, Vector3 origin) where T : ITransformable
     {
         T closest = default;
         float minDistance = float.MaxValue;
@@ -21,4 +21,7 @@ public static class Extensions
 
         return closest;
     }
+    
+    
+    
 }

@@ -1,36 +1,22 @@
 using UnityEngine;
-using BeyondTales.InventorySystem;
-using _Project.Runtime.Core.Herbalist;
+using _Project.Runtime.Core.Interactables;
+using _Project.Runtime.Core.Interactables.Processors;
+using _Project.Runtime.InventorySystem;
 
-public class Flower : MonoBehaviour, ITransformable
+public class Flower : Item
 {
-    [SerializeField] private ItemEnum _flowerType;
-    [SerializeField] private Material _flowerMaterial;
-
-    public ItemEnum FlowerType => _flowerType;
-    public Material FlowerMaterial => _flowerMaterial;
-    public Transform Transform => this.transform;
-
-    public bool IsPlanted { get; set; }
-
-    public void Pick()
+    public override void Interact(IInteractableVisitor visitor)
     {
+        if (!IsInteractable)
+            return;
+        
+        IsInteractable = false;
+        visitor.Accept(this);
         Destroy(gameObject);
     }
 
-    public void SetFlowerType(ItemEnum flowerType, Material material)
+    public void Plant()
     {
-        _flowerType = flowerType;
-        _flowerMaterial = material;
-        ApplyMaterial();
-    }
-
-    private void ApplyMaterial()
-    {
-        var renderer = GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            renderer.material = _flowerMaterial;
-        }
+        IsInteractable = false;
     }
 }

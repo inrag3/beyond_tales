@@ -82,6 +82,6 @@ namespace _Project.Runtime.Infrastructure.Factories
     {
         public IObservableCollection<Enemy> Enemies { get; }
     }
-    
-    
 }
+
+

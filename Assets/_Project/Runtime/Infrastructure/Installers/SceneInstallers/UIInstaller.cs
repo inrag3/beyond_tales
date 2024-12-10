@@ -15,7 +15,7 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
             
             Container.BindInterfacesTo<HealthViewFactory>().AsSingle().NonLazy();
             Container.BindInterfacesTo<EnemiesHealthPresenter>().AsSingle().NonLazy();
-            
+
             Container.BindInterfacesAndSelfTo<HealthPresenter>().AsSingle().WithArguments(_healthView).NonLazy();
         }
     }

@@ -1,3 +1,4 @@
+using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.InventorySystem;
 
 namespace _Project.Runtime.Core.Interactables.Processors
@@ -12,10 +13,31 @@ namespace _Project.Runtime.Core.Interactables.Processors
             _inventory = inventory;
         }
 
-        public void Processed(Item item)
+        public void Process(Item item)
         {
-            ItemValue data = item.Value;
+            ItemValue data = item.Data;
             _inventory.AddItem(data.ItemEnum, data.Value);
+        }
+    }
+    
+    public class BedProcessor
+    {
+        private readonly IPlayerInventory _inventory;
+        private readonly Planter _planter;
+
+        public BedProcessor(IPlayerInventory inventory, Planter planter)
+        {
+            _planter = planter;
+            _inventory = inventory;
+        }
+
+        public void Process(Bed bed)
+        {
+            ItemEnum requiredFlowerType = bed.RequiredFlowerType;
+            if (_inventory.GetItemCount(requiredFlowerType) <= 0) 
+                return;
+            _inventory.RemoveItem(requiredFlowerType, 1);
+            _planter.Plant(bed);
         }
     }
 }

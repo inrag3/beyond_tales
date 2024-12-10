@@ -1,42 +1,28 @@
 using UnityEngine;
 using System;
-using BeyondTales.InventorySystem;
-using _Project.Runtime.Core.Herbalist;
-using System.Collections.Generic;
+using _Project.Runtime.Core.Interactables;
+using _Project.Runtime.Core.Interactables.Processors;
+using _Project.Runtime.InventorySystem;
 
-public class Bed : MonoBehaviour, ITransformable
+public class Bed : Interactable
 {
     [SerializeField] private ItemEnum _requiredFlowerType;
-    private Flower _plantedFlower;
-    private bool _isComplete;
-    private Material _flowerMaterial;
-
-    public bool IsComplete => _isComplete;
     public ItemEnum RequiredFlowerType => _requiredFlowerType;
-
     public event Action OnBedCompleted;
-
-    public Transform Transform => this.transform;
-
+    public override void Interact(IInteractableVisitor visitor)
+    {
+        if (!IsInteractable)
+            return;
+        
+        visitor.Accept(this);
+    }
+    
     public void Plant(Flower flower)
     {
-        _plantedFlower = flower;
-        _flowerMaterial = flower.FlowerMaterial;
-        _plantedFlower.transform.SetParent(this.transform);
-        _plantedFlower.transform.localPosition = Vector3.zero;
-        ApplyMaterialToPlantedFlower();
-        _isComplete = true;
-        flower.IsPlanted = true;
-
+        IsInteractable = false;
+        flower.transform.SetParent(transform);
+        flower.transform.localPosition = Vector3.zero;
+        flower.Plant();
         OnBedCompleted?.Invoke();
-    }
-
-    private void ApplyMaterialToPlantedFlower()
-    {
-        var renderer = _plantedFlower.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            renderer.material = _flowerMaterial;
-        }
     }
 }

@@ -1,8 +1,9 @@
-using System.Collections.Generic;
-using UnityEngine;
-using _Project.Runtime.Core.Herbalist;
-
-internal interface IScanner
+namespace _Project.Runtime.Core.Herbalist
 {
-    List<T> Scan<T>(Vector3 at, float radius) where T : ITransformable; 
+    internal interface IScanner<out T>
+    {
+        //Возвращает лист ближайщих
+        public T Get();
+        public bool IsEmpty { get; }
+    }
 }

@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using UnityEngine;
-using Zenject;
-
-namespace BeyondTales.InventorySystem
+namespace _Project.Runtime.InventorySystem
 {
 	public enum ItemEnum
 	{

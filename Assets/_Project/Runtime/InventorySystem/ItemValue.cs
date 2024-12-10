@@ -1,5 +1,4 @@
 using System;
-using BeyondTales.InventorySystem;
 using UnityEngine;
 
 namespace _Project.Runtime.InventorySystem

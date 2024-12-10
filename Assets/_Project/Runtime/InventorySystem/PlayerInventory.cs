@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using _Project.Runtime.InventorySystem;
 using UnityEngine.Serialization;
 using Zenject;
-using BeyondTales.InventorySystem;
 
 public class PlayerInventory : IPlayerInventory, IInitializable
 {

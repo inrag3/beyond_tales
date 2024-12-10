@@ -1,6 +1,6 @@
 using System;
+using _Project.Runtime.InventorySystem;
 using UnityEngine;
-using BeyondTales.InventorySystem;
 
 [CreateAssetMenu(fileName = "new Item", menuName = "Item")]
 public class ItemData : ScriptableObject, IEquatable<ItemData>

@@ -1,6 +1,6 @@
+using _Project.Runtime.InventorySystem;
 using UnityEngine;
 using Zenject;
-using BeyondTales.InventorySystem;
 
 public class InventoryTester : ITickable
 {

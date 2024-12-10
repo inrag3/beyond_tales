@@ -1,10 +1,17 @@
 using UnityEngine;
 using System.Linq;
+using Zenject;
 
 public class BedsObserver : MonoBehaviour
 {
-    [SerializeField] private Bed[] _beds;
+    private Bed[] _beds;
 
+    [Inject]
+    private void Construct(Bed[] beds)
+    {
+        _beds = beds;
+    }
+    
     private void Start()
     {
         foreach (var bed in _beds)
@@ -12,18 +19,25 @@ public class BedsObserver : MonoBehaviour
             bed.OnBedCompleted += OnBedCompleted;
         }
     }
-
-
+    
     private void OnBedCompleted()
     {
-        if (_beds.All(bed => bed.IsComplete))
+        if (_beds.All(bed => !bed.IsInteractable))
         {
             OnAllBedsCompleted();
         }
     }
-
+    
     private void OnAllBedsCompleted()
     {
-        Debug.Log("Все грядки заполнены");
+        Debug.Log("Complete!");
+    }
+    
+    private void OnDestroy()
+    {
+        foreach (var bed in _beds)
+        {
+            bed.OnBedCompleted -= OnBedCompleted;
+        }
     }
 }

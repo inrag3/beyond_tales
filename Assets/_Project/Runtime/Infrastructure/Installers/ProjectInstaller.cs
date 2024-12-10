@@ -2,6 +2,7 @@
 using System.Collections;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Herbalist;
+using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
 using DialogueSystem;
 using UnityEngine;
@@ -31,6 +32,8 @@ namespace _Project.Runtime.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<PlayerInventory>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<InventoryTester>().AsSingle().NonLazy();
             
+            
+            Container.BindInterfacesAndSelfTo<PauseHandler>().AsSingle().NonLazy();
         }
 
         private void BindServices()
@@ -47,6 +50,7 @@ namespace _Project.Runtime.Infrastructure.Installers
         private void BindFactories()
         {
             Container.BindInterfacesAndSelfTo<HerbalistFactory>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<FlowerFactory>().AsSingle().NonLazy();
         }
 
         [Obsolete]
