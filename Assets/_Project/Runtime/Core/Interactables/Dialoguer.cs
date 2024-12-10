@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _Project.Runtime.Core.PauseHandler;
 using DialogueSystem;
 using Unity.VisualScripting;
 
