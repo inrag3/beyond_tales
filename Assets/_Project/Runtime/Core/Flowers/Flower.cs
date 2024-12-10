@@ -5,16 +5,16 @@ public class Flower : Item
 {
     public override void Interact(IInteractableVisitor visitor)
     {
-        if (!IsInteractable)
+        if (!IsAccessible)
             return;
         
-        IsInteractable = false;
+        IsAccessible = false;
         visitor.Accept(this);
         Destroy(gameObject);
     }
 
     public void Plant()
     {
-        IsInteractable = false;
+        IsAccessible = false;
     }
 }

@@ -1,13 +1,12 @@
-using _Project.Runtime.Meta.Health;
+using _Project.Runtime.Meta;
 using UnityEngine;
 using Zenject;
 
 namespace _Project.Runtime.Infrastructure.Factories.UI
 {
-    public class HealthViewFactory : IHealthViewFactory, IInitializable
+    public class HintViewFactory : IHintViewFactory, IInitializable
     {
-        private const string ViewPath = "UI/HealthView";
-
+        private const string ViewPath = "UI/HintView";
         private readonly IAssetManager _assetManager;
         private readonly IInstantiator _instantiator;
         private Object _prefab;
@@ -17,15 +16,20 @@ namespace _Project.Runtime.Infrastructure.Factories.UI
             _prefab = _assetManager.Get(ViewPath);
         }
 
-        public HealthViewFactory(IInstantiator instantiator, IAssetManager assetManager)
+        public HintViewFactory(IInstantiator instantiator, IAssetManager assetManager)
         {
             _instantiator = instantiator;
             _assetManager = assetManager;
         }
 
-        public HealthView Create()
+        public IView Create(Transform parent)
         {
-            return _instantiator.InstantiatePrefabForComponent<HealthView>(_prefab);
+            return _instantiator.InstantiatePrefabForComponent<HintView>(_prefab, parent);
         }
+    }
+
+    public interface IHintViewFactory
+    {
+        public IView Create(Transform parent);
     }
 }

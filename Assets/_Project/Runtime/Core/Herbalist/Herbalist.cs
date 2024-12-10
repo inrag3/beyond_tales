@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Runtime.Core.Health;
+using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Core.PauseHandler;
 using R3;
 using UnityEngine;
@@ -16,11 +17,14 @@ namespace _Project.Runtime.Core.Herbalist
         private Mover _mover;
 
         [Inject]
-        private void Construct(IHealth health, Animer animer)
+        private void Construct(IHealth health, Animer animer, IScanner<Interactable> scanner)
         {
+            Scanner = scanner;
             Health = health;
             _animer = animer;
         }
+
+        public IScanner<Interactable> Scanner { get; private set; }
 
         public IHealth Health { get; private set; }
 

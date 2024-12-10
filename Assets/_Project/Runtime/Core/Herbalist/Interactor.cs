@@ -1,3 +1,4 @@
+using System;
 using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Core.Interactables.Processors;
 using Zenject;
@@ -10,7 +11,7 @@ namespace _Project.Runtime.Core.Herbalist
         private IScanner<Interactable> _scanner;
         private IPlayerInventory _playerInventory;
         private IInteractableVisitor _visitor;
-
+        
         [Inject]
         private void Construct(
             IInputService inputService, 
@@ -22,14 +23,22 @@ namespace _Project.Runtime.Core.Herbalist
             _inputService = inputService;
         }
 
+
+        private bool IsAccessible(Interactable interactable) => 
+            interactable.IsAccessible;
+        
         public void Tick()
         {
             if (!_inputService.IsInteractButtonPressed || _scanner.IsEmpty)
                 return;
             
-            var intractable = _scanner.Get();
+            Interactable intractable = _scanner.Get(IsAccessible);
+            
+            if (intractable == null)
+                return;
             
             intractable.Interact(_visitor);
+            _scanner.Remove(intractable);
         }
     }
 }

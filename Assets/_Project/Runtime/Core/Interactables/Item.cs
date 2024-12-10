@@ -11,7 +11,7 @@ namespace _Project.Runtime.Core.Interactables
         
         public override void Interact(IInteractableVisitor visitor)
         {
-            IsInteractable = false; 
+            IsAccessible = false; 
             Destroy(this);
             visitor.Accept(this);
         }

@@ -11,7 +11,7 @@ public class Bed : Interactable
     public event Action OnBedCompleted;
     public override void Interact(IInteractableVisitor visitor)
     {
-        if (!IsInteractable)
+        if (!IsAccessible)
             return;
         
         visitor.Accept(this);
@@ -19,7 +19,7 @@ public class Bed : Interactable
     
     public void Plant(Flower flower)
     {
-        IsInteractable = false;
+        IsAccessible = false;
         flower.transform.SetParent(transform);
         flower.transform.localPosition = Vector3.zero;
         flower.Plant();

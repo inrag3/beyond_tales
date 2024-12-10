@@ -1992,7 +1992,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -2494,7 +2494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacee79af22f411fb11763aa61afea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _triggers: []
   _dialogueManager: {fileID: 496490753}
 --- !u!114 &1900101884
 MonoBehaviour:
@@ -2509,6 +2508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthView: {fileID: 935124361}
+  _canvas: {fileID: 1509677121}
 --- !u!114 &1900101885
 MonoBehaviour:
   m_ObjectHideFlags: 0

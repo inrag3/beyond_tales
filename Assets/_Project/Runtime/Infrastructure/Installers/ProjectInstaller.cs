@@ -2,8 +2,10 @@
 using System.Collections;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Herbalist;
+using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
+using _Project.Runtime.Infrastructure.Factories.UI;
 using DialogueSystem;
 using UnityEngine;
 using Zenject;
@@ -18,8 +20,7 @@ namespace _Project.Runtime.Infrastructure.Installers
         public override void InstallBindings()
         {
             Container.BindInterfacesTo<ProjectInstaller>().FromInstance(this).AsSingle().NonLazy();
-
-
+            
             BindAssetManager();
             BindFactories();
             BindServices();
@@ -51,6 +52,8 @@ namespace _Project.Runtime.Infrastructure.Installers
         {
             Container.BindInterfacesAndSelfTo<HerbalistFactory>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<FlowerFactory>().AsSingle().NonLazy();
+            
+            Container.BindInterfacesAndSelfTo<HintViewFactory>().AsSingle().NonLazy();
         }
 
         [Obsolete]

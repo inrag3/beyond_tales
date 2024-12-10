@@ -1,48 +1,78 @@
+using System;
 using System.Collections.Generic;
 using _Project.Runtime.Infrastructure.Factories;
+using ObservableCollections;
 using UnityEngine;
 using Zenject;
 
 namespace _Project.Runtime.Core.Herbalist
 {
-    public class Scanner<T> : IScanner<T>, ITickable where T : ITransformable
+    [RequireComponent(typeof(SphereCollider))]
+    public class Scanner<T> : MonoBehaviour, IScanner<T> where T : ITransformable
     {
-        private const float RADIUS = 2f;
-        private readonly Collider[] _colliders = new Collider[20];
-        private readonly IHerbalistProvider _herbalistProvider;
-        private readonly Dictionary<T, Collider> _cache = new();
-        private readonly HashSet<Collider> _cacheColliders = new();
-        public Scanner(IHerbalistProvider herbalistProvider)
+        [SerializeField] private float _radius = 2f;
+        [SerializeField] private SphereCollider _collider;
+        private void OnValidate()
+        {
+            _collider.radius = _radius;
+        }
+        
+        private readonly Dictionary<Collider, T> _colliders = new();
+        
+        private readonly ObservableHashSet<T> _components = new(20);
+        private IHerbalistProvider _herbalistProvider;
+
+        [Inject]
+        public void Construct(IHerbalistProvider herbalistProvider)
         {
             _herbalistProvider = herbalistProvider;
         }
-        public bool IsEmpty => _cache.Count == 0;
-        
-        public void Tick()
+
+        public IObservableCollection<T> Components => _components;
+        public bool IsEmpty => _components.Count == 0;
+
+        private void OnTriggerEnter(Collider other)
         {
-            int size = Physics.OverlapSphereNonAlloc(_herbalistProvider.Herbalist.Transform.position, RADIUS, _colliders);
-            for (var i = 0; i < size; i++)
-            {
-                Collider collider = _colliders[i];
-                if (_cacheColliders.Contains(collider))
-                    continue;
-                
-                if (!collider.TryGetComponent(out T component))
-                    continue;
-                
-                _cacheColliders.Add(collider);
-                _cache.Add(component, collider);
-            }
+            if (!other.TryGetComponent(out T component))
+                return;
+            
+            _colliders[other] = component;
+            _components.Add(component);
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (!_colliders.TryGetValue(other, out T component))
+                return;
+
+            _colliders.Remove(other);
+            _components.Remove(component);
         }
 
         public T Get()
         {
-            var keys = _cache.Keys;
-            var closest = keys.Closest(_herbalistProvider.Herbalist.Transform.position);
-            var collider = _cache[closest];
-            _cacheColliders.Remove(collider);
-            _cache.Remove(closest);
+            Vector3 at = _herbalistProvider.Herbalist.Transform.position;
+            T closest = _components.Closest(at);
             return closest;
         }
+
+        public void Remove(T component)
+        {
+            _components.Remove(component);
+        }
+
+        public T Get(Predicate<T> predicate)
+        {
+            Vector3 at = _herbalistProvider.Herbalist.Transform.position;
+            T closest = _components.Closest(at, predicate);
+            return closest;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(_collider.transform.position, _radius);
+        }
     }
+    
 }

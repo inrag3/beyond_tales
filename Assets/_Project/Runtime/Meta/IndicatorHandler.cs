@@ -4,9 +4,9 @@ using _Project.Runtime.Infrastructure.Factories.UI;
 using UnityEngine;
 using Zenject;
 
-namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
+namespace _Project.Runtime.Meta
 {
-    public class IndicatorHandler : IInitializable, ILateTickable
+    public class IndicatorHandler : IInitializable, ITickable
     {
         private readonly Dictionary<ITransformable, IView> _indicators = new();
         private Camera _camera;
@@ -24,18 +24,20 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
 
         public void Unregister(ITransformable transform)
         {
-            var view = _indicators[transform];
+            if (!_indicators.TryGetValue(transform, out IView view))
+                return;
+            
             view.Hide();
             _indicators.Remove(transform);
         }
 
-        public void LateTick()
+        public void Tick()
         {
             foreach (var pair in _indicators)
             {
-                var target = pair.Key;
-                var view = pair.Value;
-                var targetScreenPosition = _camera.WorldToScreenPoint(target.Transform.position);
+                ITransformable target = pair.Key;
+                IView view = pair.Value;
+                Vector3 targetScreenPosition = _camera.WorldToScreenPoint(target.Transform.position);
                 view.Transform.transform.position = targetScreenPosition;
             }
         }
