@@ -1,3 +1,5 @@
+using _Project.Runtime.InventorySystem;
+
 namespace _Project.Runtime.Core.Interactables.Processors
 {
     public class ItemProcessor

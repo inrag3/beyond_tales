@@ -1,4 +1,5 @@
 using _Project.Runtime.Core.Interactables.Processors;
+using _Project.Runtime.InventorySystem;
 using UnityEngine;
 
 namespace _Project.Runtime.Core.Interactables

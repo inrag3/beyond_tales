@@ -1,9 +1,13 @@
 using System;
+using BeyondTales.InventorySystem;
 using UnityEngine;
 
-[Serializable]
-public struct ItemValue
+namespace _Project.Runtime.InventorySystem
 {
-    [field: SerializeField] public ItemEnum ItemEnum { get; private set; }
-    [field: SerializeField] public int Value { get; private set; }
+    [Serializable]
+    public struct ItemValue
+    {
+        [field: SerializeField] public ItemEnum ItemEnum { get; private set; }
+        [field: SerializeField] public int Value { get; private set; }
+    }
 }
