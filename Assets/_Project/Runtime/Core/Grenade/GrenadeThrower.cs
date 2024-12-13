@@ -67,7 +67,7 @@ namespace _Project.Runtime.Core.Herbalist
             if (!(_inputService.IsGrenadeButtonPressed && _readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0))
                 return;
             _readyToThrow = false;
-            _inventory.RemoveItem(ItemEnum.Grenade,1);
+            _inventory.RemoveItem(ItemEnum.Grenade, 1);
 
             GameObject prefab = _assetManager.Get(GrenadePath);
             var grenade = _instantiator.InstantiatePrefabForComponent<Grenade>(prefab);
@@ -82,7 +82,7 @@ namespace _Project.Runtime.Core.Herbalist
             rigidbody.AddForce(forceToAdd, ForceMode.Impulse);
 
             grenade.Hit += GrenadeContactCallback;
-            
+
             _throwCollDownTimer.Start(_grenadeConfig.GrenadeThrowsTimeout);
 
 
@@ -90,14 +90,11 @@ namespace _Project.Runtime.Core.Herbalist
             {
                 _isRecoveringGrenades = true;
                 _grenadeRecoveryTimer.Start(_grenadeConfig.GrenadeRecoveryTimeout);
-
             }
-
         }
 
         private void GrenadeContactCallback(Grenade grenade)
         {
-
             GameObject prefab = _assetManager.Get(ExplosionPath);
             var explosion = _instantiator.InstantiatePrefabForComponent<GrenadeExplosion>(prefab);
             explosion.transform.parent = grenade.transform.parent;
@@ -107,25 +104,41 @@ namespace _Project.Runtime.Core.Herbalist
             {
                 _explosions.Remove(explosion);
                 GrenadesUpdated?.Invoke(new ReadOnlyCollection<GrenadeExplosion>(_explosions));
+                UpdateSecondWorldOverlap(explosion.transform.position, (a) => a.TriggerWorldChangeBack());
                 explosion.SelfDestroy();
             };
-            
+
             explosion.Timer.Start(_grenadeConfig.GrenadeExplosionTimeout);
 
             _explosions.Add(explosion);
+
+            UpdateSecondWorldOverlap(grenade.transform.position, (a) => a.TriggerWorldChange());
+
             GrenadesUpdated?.Invoke(new ReadOnlyCollection<GrenadeExplosion>(_explosions));
+        }
+
+        private void UpdateSecondWorldOverlap(Vector3 position, Action<SecondWorldExChangingTrigger> callback)
+        {
+            Collider[] hitColliders =
+                Physics.OverlapSphere(position, _grenadeConfig.GrenadeTransformWorldRadius);
+
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.TryGetComponent<SecondWorldExChangingTrigger>(out SecondWorldExChangingTrigger trigger))
+                {
+                    callback.Invoke(trigger);
+                }
+            }
         }
 
         private void ResetThrow()
         {
-            Debug.Log("Reset throw");
             _readyToThrow = true;
         }
 
         private void RecoverGrenade()
         {
-
-            _inventory.AddItem(ItemEnum.Grenade,1);
+            _inventory.AddItem(ItemEnum.Grenade, 1);
             if (_inventory.Items[ItemEnum.Grenade] < _itemContainer.ItemData[ItemEnum.Grenade].MaxStackSize)
             {
                 _grenadeRecoveryTimer.Start(_grenadeConfig.GrenadeRecoveryTimeout);
@@ -134,8 +147,6 @@ namespace _Project.Runtime.Core.Herbalist
             {
                 _isRecoveringGrenades = false;
             }
-
-            
         }
 
         public void Dispose()

@@ -2,11 +2,9 @@
 using System.Collections;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Herbalist;
-using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Factories.UI;
-using DialogueSystem;
 using UnityEngine;
 using Zenject;
 
