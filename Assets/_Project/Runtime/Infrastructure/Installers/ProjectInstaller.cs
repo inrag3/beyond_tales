@@ -52,8 +52,8 @@ namespace _Project.Runtime.Infrastructure.Installers
         {
             Container.BindInterfacesAndSelfTo<HerbalistFactory>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<FlowerFactory>().AsSingle().NonLazy();
-            
             Container.BindInterfacesAndSelfTo<HintViewFactory>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<EnemyFactory>().AsSingle().NonLazy();
         }
 
         [Obsolete]

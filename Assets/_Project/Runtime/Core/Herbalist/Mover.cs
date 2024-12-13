@@ -52,7 +52,7 @@ namespace _Project.Runtime.Core.Herbalist
             throw new NotImplementedException();
         }
 
-        public void Unpause()
+        public void Resume()
         {
             throw new NotImplementedException();
         }

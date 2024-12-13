@@ -1,9 +1,8 @@
-using _Project.Runtime.Core.PauseHandler;
-
 namespace _Project.Runtime.Infrastructure.Factories
 {
-    public interface ISpawner : IPauseHandler
+    public interface ISpawner
     {
         public void Begin();
+        public void Stop();
     }
 }

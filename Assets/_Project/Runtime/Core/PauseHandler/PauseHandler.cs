@@ -26,11 +26,11 @@ namespace _Project.Runtime.Core.PauseHandler
                 handler.Pause();
             }
         }
-        public void Unpause()
+        public void Resume()
         {
             foreach (var handler in _handlers)
             {
-                handler.Unpause();
+                handler.Resume();
             }
         }
     }

@@ -1,4 +1,5 @@
 using System.Collections;
+using _Project.Runtime.Core.PauseHandler;
 using ObservableCollections;
 using UnityEngine;
 using Zenject;
@@ -8,11 +9,11 @@ namespace _Project.Runtime.Infrastructure.Factories
     public class EnemySpawner : MonoBehaviour, ISpawner, IEnemiesProvider
     {
         [SerializeField] private float _cooldown;
-        
+
+        private readonly ObservableHashSet<Enemy> _enemies = new();
         private IEnemyFactory _factory;
         private Coroutine _coroutine;
         private WaitForSeconds _waitForSeconds;
-        private ObservableHashSet<Enemy> _enemies;
         public IObservableCollection<Enemy> Enemies => _enemies;
 
         [Inject]
@@ -25,6 +26,8 @@ namespace _Project.Runtime.Infrastructure.Factories
         {
             _coroutine = StartCoroutine(Spawn());
         }
+        public void Stop() => 
+            StopCoroutine(_coroutine);
         
         private IEnumerator Spawn()
         {
@@ -37,7 +40,6 @@ namespace _Project.Runtime.Infrastructure.Factories
                 yield return _waitForSeconds;
             }
         }
-        
         private void OnDied(Enemy enemy)
         {
             //TODO сделать пул объектов, чтобы не спавнить по миллион раз
@@ -45,11 +47,5 @@ namespace _Project.Runtime.Infrastructure.Factories
             _enemies.Remove(enemy);
             enemy.Destroy();
         }
-
-        public void Pause() => 
-            StopCoroutine(_coroutine);
-
-        public void Unpause() => 
-            Begin();
     }
 }

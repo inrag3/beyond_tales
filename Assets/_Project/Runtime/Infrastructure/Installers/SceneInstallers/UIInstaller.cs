@@ -15,17 +15,9 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
         [SerializeField] private HealthView _healthView;
         [SerializeField] private Canvas _canvas;
         
-        private IAssetManager _assetManager;
-
-        [Inject]
-        private void Construct(IAssetManager assetManager)
-        {
-            _assetManager = assetManager;
-        }
-        
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<IndicatorHandler>().AsSingle();
+            Container.BindInterfacesTo<IndicatorHandler>().AsSingle();
             
             Container.BindInterfacesTo<HintPresenter>().AsSingle().NonLazy();
             

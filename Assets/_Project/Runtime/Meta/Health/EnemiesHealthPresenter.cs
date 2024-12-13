@@ -11,11 +11,11 @@ namespace _Project.Runtime.Meta.Health
     public class EnemiesHealthPresenter : IInitializable, IDisposable
     {
         private readonly List<IEnemiesProvider> _enemiesProviders;
-        private readonly IndicatorHandler _indicatorHandler;
+        private readonly IIndicatorHandler _indicatorHandler;
         private readonly IHealthViewFactory _healthViewFactory;
 
         public EnemiesHealthPresenter(List<IEnemiesProvider> enemiesProviders,
-            IndicatorHandler indicatorHandler,
+            IIndicatorHandler indicatorHandler,
             IHealthViewFactory healthViewFactory)
         {
             _healthViewFactory = healthViewFactory;
@@ -25,7 +25,7 @@ namespace _Project.Runtime.Meta.Health
         
         public void Initialize()
         {
-            foreach (var enemiesProvider in _enemiesProviders)
+            foreach (IEnemiesProvider enemiesProvider in _enemiesProviders)
             {
                 enemiesProvider.Enemies.CollectionChanged += OnCollectionChanged;
             }
@@ -33,27 +33,24 @@ namespace _Project.Runtime.Meta.Health
 
         private void OnCollectionChanged(in NotifyCollectionChangedEventArgs<Enemy> e)
         {
+            Enemy enemy;
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                foreach (Enemy enemy in e.NewItems)
-                {
-                    var view = _healthViewFactory.Create();
-                    _indicatorHandler.Register(enemy, view);
-                }
+                enemy = e.NewItem;
+                IView view = _healthViewFactory.Create();
+                _indicatorHandler.Register(enemy, view);
             }
 
             if (e.Action != NotifyCollectionChangedAction.Remove)
                 return;
-            
-            foreach (Enemy enemy in e.OldItems)
-            {
-                _indicatorHandler.Unregister(enemy);
-            }
+
+            enemy = e.OldItem;
+            _indicatorHandler.Unregister(enemy);
         }
 
         public void Dispose()
         {
-            foreach (var enemiesProvider in _enemiesProviders)
+            foreach (IEnemiesProvider enemiesProvider in _enemiesProviders)
             {
                 enemiesProvider.Enemies.CollectionChanged -= OnCollectionChanged;
             }

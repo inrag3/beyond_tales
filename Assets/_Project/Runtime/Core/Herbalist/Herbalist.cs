@@ -65,7 +65,7 @@ namespace _Project.Runtime.Core.Herbalist
             
         }
 
-        public void Unpause()
+        public void Resume()
         {
             
         }

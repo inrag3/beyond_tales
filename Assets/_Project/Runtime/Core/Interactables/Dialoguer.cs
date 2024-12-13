@@ -50,6 +50,6 @@ public class Dialoguer : IInitializable, IDisposable
 
     private void OnDialogueEnded()
     {
-        _pauseHandler.Unpause();
+        _pauseHandler.Resume();
     }
 }

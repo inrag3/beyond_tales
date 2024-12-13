@@ -6,7 +6,7 @@ using Zenject;
 
 namespace _Project.Runtime.Meta
 {
-    public class IndicatorHandler : IInitializable, ITickable
+    public class IndicatorHandler : IInitializable, ITickable, IIndicatorHandler
     {
         private readonly Dictionary<ITransformable, IView> _indicators = new();
         private Camera _camera;
@@ -41,5 +41,11 @@ namespace _Project.Runtime.Meta
                 view.Transform.transform.position = targetScreenPosition;
             }
         }
+    }
+
+    public interface IIndicatorHandler
+    {
+        public void Register(ITransformable transform, IView view);
+        public void Unregister(ITransformable transform);
     }
 }

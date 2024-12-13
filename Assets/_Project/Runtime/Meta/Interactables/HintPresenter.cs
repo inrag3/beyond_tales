@@ -13,7 +13,7 @@ namespace _Project.Runtime.Meta.Interactables
 {
     public class HintPresenter : IInitializable, IDisposable
     {
-        private readonly IndicatorHandler _indicatorHandler;
+        private readonly IIndicatorHandler _indicatorHandler;
         private readonly IHintViewFactory _hintViewFactory;
         private readonly Canvas _canvas;
         private readonly IScanner<Interactable> _scanner;
@@ -21,7 +21,7 @@ namespace _Project.Runtime.Meta.Interactables
 
         public HintPresenter(
             IHerbalistProvider provider,
-            IndicatorHandler indicatorHandler,
+            IIndicatorHandler indicatorHandler,
             IHintViewFactory hintViewFactory,
             Canvas canvas)
         {
@@ -57,7 +57,7 @@ namespace _Project.Runtime.Meta.Interactables
 
         public void Dispose()
         {
-            _scanner.Components.CollectionChanged -= OnCollectionChanged;
+            _provider.Herbalist.Scanner.Components.CollectionChanged -= OnCollectionChanged;
         }
     }
 }
