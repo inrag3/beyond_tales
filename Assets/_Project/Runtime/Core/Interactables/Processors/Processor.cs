@@ -1,3 +1,5 @@
+using _Project.Runtime.Core.Interactables.Items;
+
 namespace _Project.Runtime.Core.Interactables.Processors
 {
     public class Processor : IInteractableVisitor

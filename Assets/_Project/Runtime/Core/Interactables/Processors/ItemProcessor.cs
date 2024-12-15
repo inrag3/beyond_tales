@@ -1,4 +1,5 @@
 using _Project.Runtime.Core.Herbalist;
+using _Project.Runtime.Core.Interactables.Items;
 using _Project.Runtime.InventorySystem;
 
 namespace _Project.Runtime.Core.Interactables.Processors
