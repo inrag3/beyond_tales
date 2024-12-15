@@ -6,11 +6,13 @@ using Zenject;
 
 namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
 {
-    public class SceneInstaller : MonoInstaller
+    public class SceneInstaller : MonoInstaller, IInitializable
     {
         
         public override void InstallBindings()
         {
+            Container.BindInterfacesTo<SceneInstaller>().FromInstance(this).AsSingle().NonLazy();
+            
             Container.Bind<Bed[]>().FromMethod(_ => FindObjectsOfType<Bed>()).AsSingle();
             
             Container.Bind<List<ISpawner>>().FromMethod(_ =>
@@ -20,6 +22,11 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
             }).AsSingle();
             
             Container.BindInterfacesAndSelfTo<Waver>().AsSingle().NonLazy();
+        }
+        
+        public void Initialize()
+        {
+            Container.Resolve<HerbalistFactory>().Create();
         }
     }
 }
