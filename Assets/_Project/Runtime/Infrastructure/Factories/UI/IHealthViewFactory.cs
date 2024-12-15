@@ -5,7 +5,7 @@ namespace _Project.Runtime.Infrastructure.Factories.UI
 {
     public interface IHealthViewFactory
     {
-        public HealthView Create();
+        public HealthView Create(Transform parent);
     }
     
     

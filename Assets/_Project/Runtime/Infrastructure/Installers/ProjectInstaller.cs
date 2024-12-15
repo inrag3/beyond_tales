@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using _Project.Runtime.Core;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.Core.PauseHandler;
@@ -10,14 +10,12 @@ using Zenject;
 
 namespace _Project.Runtime.Infrastructure.Installers
 {
-    public sealed class ProjectInstaller : MonoInstaller, IInitializable
+    public sealed class ProjectInstaller : MonoInstaller
     {
-        
-        [SerializeField]
-        private CoroutinePerformer _coroutinePerformer;
+        [SerializeField] private CoroutinePerformer _coroutinePerformer;
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<ProjectInstaller>().FromInstance(this).AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<SceneManager>().AsSingle().NonLazy();
             
             BindAssetManager();
             BindFactories();
@@ -52,12 +50,6 @@ namespace _Project.Runtime.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<FlowerFactory>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<HintViewFactory>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<EnemyFactory>().AsSingle().NonLazy();
-        }
-
-        [Obsolete]
-        public void Initialize()
-        {
-            Container.Resolve<HerbalistFactory>().Create();
         }
     }
 }

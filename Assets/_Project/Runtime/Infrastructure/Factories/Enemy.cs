@@ -9,6 +9,8 @@ namespace _Project.Runtime.Infrastructure.Factories
 {
     public class Enemy : MonoBehaviour, IDamageable, ITransformable, IPauseHandler
     {
+        [field: SerializeField] public Point Point { get; private set; }
+        
         private IHerbalistProvider _herbalistProvider;
 
         [Inject]
