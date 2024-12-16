@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class Actor
+namespace _Project.Runtime.DialogueSystem
 {
-    public string name;
+    [Serializable]
+    public class Actor
+    {
+        public string name;
 
-    public Sprite avatar;
+        public Sprite avatar;
     
+    }
 }

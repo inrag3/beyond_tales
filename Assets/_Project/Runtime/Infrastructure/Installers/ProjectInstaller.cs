@@ -6,6 +6,7 @@ using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Factories.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace _Project.Runtime.Infrastructure.Installers
@@ -13,15 +14,19 @@ namespace _Project.Runtime.Infrastructure.Installers
     public sealed class ProjectInstaller : MonoInstaller
     {
         [SerializeField] private CoroutinePerformer _coroutinePerformer;
+        [SerializeField] private GizmosDrawer _gizmosDrawer;
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<SceneManager>().AsSingle().NonLazy();
+            Container.Bind<GizmosDrawer>().FromInstance(_gizmosDrawer).AsSingle().NonLazy();
             
+           
             BindAssetManager();
             BindFactories();
             BindServices();
 
-            Container.BindInterfacesTo<Health>().AsTransient().NonLazy();
+            Container.BindInterfacesTo<Health>().AsSingle().NonLazy();
+            
             Container.Bind<Timer>().AsTransient().NonLazy();
             Container.BindInterfacesAndSelfTo<GrenadeThrower>().AsSingle().NonLazy();
             
@@ -35,7 +40,8 @@ namespace _Project.Runtime.Infrastructure.Installers
 
         private void BindServices()
         {
-            Container.Bind<IInputService>().To<StandaloneInputService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<StandaloneInputService>().AsSingle().NonLazy();
+            
             Container.Bind<ICoroutinePerformer>().FromInstance(_coroutinePerformer).AsSingle().NonLazy();
         }
 

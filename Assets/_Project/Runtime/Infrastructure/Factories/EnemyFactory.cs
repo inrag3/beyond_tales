@@ -1,3 +1,4 @@
+using _Project.Runtime.Core.Enemies;
 using ObservableCollections;
 using UnityEngine;
 using Zenject;

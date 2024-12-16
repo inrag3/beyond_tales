@@ -77,7 +77,9 @@ namespace _Project.Runtime.Core.Herbalist
 
             Rigidbody rigidbody = grenade.GetComponent<Rigidbody>();
 
-            Vector3 forceToAdd = _herbalistProvider.Herbalist.Transform.forward * _grenadeConfig.GrenadeFrontForce +
+            Vector3 direction = _inputService.Mouse - _herbalistProvider.Herbalist.Transform.position;
+            direction.Normalize(); 
+            Vector3 forceToAdd = direction * _grenadeConfig.GrenadeFrontForce +
                                  prefab.transform.up * _grenadeConfig.GrenadeUpForce;
             rigidbody.AddForce(forceToAdd, ForceMode.Impulse);
 

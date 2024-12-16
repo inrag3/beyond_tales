@@ -20,7 +20,7 @@ namespace _Project.Runtime.Meta.Health
             _subscription = _health.Value.Subscribe(OnHealthChanged);
         }
 
-        private void OnHealthChanged(int value)
+        private void OnHealthChanged(float value)
         {
             float result = value * 1f / _health.MaxValue;
             _view.SetHealth(result);

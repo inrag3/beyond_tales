@@ -1,4 +1,6 @@
-﻿namespace _Project.Runtime.Core.Herbalist
+﻿using UnityEngine;
+
+namespace _Project.Runtime.Core.Herbalist
 {
     public interface IInputService
     {
@@ -8,7 +10,10 @@
         
         public bool IsGrenadeButtonPressed { get; }
 
-        bool IsInteractButtonPressed { get; }
+        public bool IsInteractButtonPressed { get; }
         public bool IsDialogButtonPressed { get; }
+
+        public bool IsAttackButtonPressed { get; }
+        public Vector3 Mouse { get; }
     }
 }

@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using _Project.Runtime.AI.Core;
 using _Project.Runtime.Core;
+using _Project.Runtime.Core.Health;
 using _Project.Runtime.Infrastructure.Factories;
+using _Project.Runtime.Infrastructure.Installers.GameObject;
 using Zenject;
 
 namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
@@ -11,9 +14,9 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
         
         public override void InstallBindings()
         {
-
             Container.BindInterfacesTo<SceneInstaller>().FromInstance(this).AsSingle().NonLazy();
-
+            Container.BindInterfacesAndSelfTo<ActorFactory>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<ActorUpdater>().AsSingle().NonLazy();
             BindEnemySpawners();
             
             Container.Bind<Bed[]>().FromMethod(_ => FindObjectsOfType<Bed>()).AsSingle();
@@ -32,6 +35,24 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
             Container.Bind<List<ISpawner>>().FromInstance(list).AsSingle();
             var enemiesProviders = spawners.Select(spawner => spawner as IEnemiesProvider).ToList();
             Container.Bind<List<IEnemiesProvider>>().FromInstance(enemiesProviders).AsSingle();
+        }
+    }
+
+    public class ActorUpdater : ITickable
+    {
+        private readonly IActorRepository _actorRepository;
+
+        public ActorUpdater(IActorRepository actorRepository)
+        {
+            _actorRepository = actorRepository;
+        }
+
+        public void Tick()
+        {
+            foreach (IActor actor in _actorRepository.Actors.ToArray())
+            {
+                actor.Tick();
+            }
         }
     }
 }

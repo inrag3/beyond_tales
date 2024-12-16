@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using _Project.Runtime.Core.Enemies;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Factories.UI;
 using ObservableCollections;
@@ -15,12 +16,15 @@ namespace _Project.Runtime.Meta.Health
         private readonly IIndicatorHandler _indicatorHandler;
         private readonly IHealthViewFactory _healthViewFactory;
         private readonly Canvas _canvas;
+        private IHealthPresenterFactory _presenterFactory;
 
         public EnemiesHealthPresenter(List<IEnemiesProvider> enemiesProviders,
             IIndicatorHandler indicatorHandler,
             IHealthViewFactory healthViewFactory,
+            IHealthPresenterFactory presenterFactory,
             Canvas canvas)
         {
+            _presenterFactory = presenterFactory;
             _canvas = canvas;
             _healthViewFactory = healthViewFactory;
             _indicatorHandler = indicatorHandler;
@@ -58,7 +62,8 @@ namespace _Project.Runtime.Meta.Health
 
         private void Register(Enemy enemy)
         {
-            IView view = _healthViewFactory.Create(_canvas.transform);
+            HealthView view = _healthViewFactory.Create(_canvas.transform);
+            _presenterFactory.Create(view, enemy.Health);
             _indicatorHandler.Register(enemy.Point, view);
         }
 
