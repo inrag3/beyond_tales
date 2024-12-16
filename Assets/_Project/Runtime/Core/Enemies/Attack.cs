@@ -23,16 +23,18 @@ namespace _Project.Runtime.Core.Enemies
         private void Update() => 
             _currentCooldown = Mathf.Max(_currentCooldown - Time.deltaTime, 0f);
 
-        public void Execute(IDamageable damageable)
+        public void Execute(ITarget target)
         {
             if (InCooldown)
                 throw new Exception("Attempt to attack in cooldown!");
             
             _animer.PlayAttack(() =>
             {
-                damageable.TakeDamage(2f);
+                if (Vector3.SqrMagnitude(target.Transform.position - transform.position) <= Mathf.Pow(Distance, 2f))
+                    target.TakeDamage(_damage);
             });
             _currentCooldown = _cooldown;
         }
     }
+    
 }

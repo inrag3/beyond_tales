@@ -3,6 +3,7 @@ using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.Infrastructure.Factories;
 using UnityEngine;
+using UnityEngine.AI;
 using static UnityEngine.Mathf;
 using Zenject;
 
@@ -19,7 +20,7 @@ namespace _Project.Runtime.Core.Enemies
         private EnemyAnimer _animer;
 
         private IHerbalistProvider _provider;
-
+        
         [Inject]
         private void Construct(
             IHerbalistProvider provider, 

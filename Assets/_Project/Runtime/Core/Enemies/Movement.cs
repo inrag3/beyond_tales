@@ -22,12 +22,14 @@ namespace _Project.Runtime.Core.Enemies
             _animer = animer;
             _agent = agent;
         }
-        private void Update() => 
+        private void Update()
+        {
+            _animer.PlayMove(_agent.velocity.magnitude);
             _currentCooldown = Max(_currentCooldown - deltaTime, 0f);
+        }
 
         public void Move(Vector3 at)
         {
-            _animer.PlayMove(_agent.velocity.magnitude);
             if (_agent.destination == at || InCooldown)
                 return;
             
