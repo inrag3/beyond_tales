@@ -24,7 +24,6 @@ namespace _Project.Runtime.Core
         public void Initialize()
         {
             Resume();
-            Pause();
         }
     }
 }

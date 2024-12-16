@@ -1,12 +1,13 @@
 using System;
 using _Project.Runtime.Core.Enemies;
+using _Project.Runtime.Core.PauseHandler;
 using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
 namespace _Project.Runtime.Core.Herbalist
 {
-    public class Attacker : ITickable, IInitializable, IDisposable
+    public class Attacker : ITickable, IInitializable, IDisposable, IPauseHandler
     {
         private readonly LayerMask _layerMask = 1 << 7;
         private readonly IInputService _inputService;
@@ -15,6 +16,7 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly Detector _detector;
         private readonly Mover _mover;
         private Enemy _target;
+        private bool _isPause;
 
         public Attacker(
             IInputService inputService, 
@@ -38,7 +40,7 @@ namespace _Project.Runtime.Core.Herbalist
         private void OnAttacked()
         {
             if (_target != null)
-                _target.TakeDamage(10);
+                _target.TakeDamage(25);
         }
         public void Dispose()
         {
@@ -46,7 +48,7 @@ namespace _Project.Runtime.Core.Herbalist
         }
         public void Tick()
         {
-            if (!_inputService.IsAttackButtonPressed)
+            if (_isPause || !_inputService.IsAttackButtonPressed)
                 return;
 
             _animer.PlayAttack();
@@ -61,6 +63,16 @@ namespace _Project.Runtime.Core.Herbalist
             {
                 _mover.Resume();
             });
+        }
+
+        public void Pause()
+        {
+            _isPause = true;
+        }
+
+        public void Resume()
+        {
+            _isPause = false;
         }
     }
 }

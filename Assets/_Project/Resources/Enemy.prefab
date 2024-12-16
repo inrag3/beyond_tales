@@ -266,8 +266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Distance>k__BackingField: 2
-  _damage: 5
-  _cooldown: 3
+  _damage: 2
+  _cooldown: 2
   _currentCooldown: 0
 --- !u!1 &310680031608897767
 GameObject:
