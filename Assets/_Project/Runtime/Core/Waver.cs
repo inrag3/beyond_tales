@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
+using UnityEngine;
 using Zenject;
 
 namespace _Project.Runtime.Core
 {
-    public class Waver : IPauseHandler, IInitializable
+    public class Waver : IPauseHandler, ITickable
     {
         private readonly List<ISpawner> _spawners;
         public Waver(List<ISpawner> spawners)
@@ -21,9 +22,14 @@ namespace _Project.Runtime.Core
         {
             _spawners.ForEach(x => x.Begin());
         }
-        public void Initialize()
+
+        public void Tick()
         {
+            if (!Input.GetKeyDown(KeyCode.B))
+                return;
+            
             Resume();
+            Pause();
         }
     }
 }
