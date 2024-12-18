@@ -10,10 +10,9 @@ namespace _Project.Runtime.Config.Herbalist
         [field: SerializeField] public int Speed { get; private set; }
 
         [field: Header("Grenade")]
-        [field: SerializeField]
-        public float GrenadeFrontForce { get; private set; }
+        [field: SerializeField] public float GrenadeFrontForce { get; private set; }
 
-        [field: SerializeField] public float GrenadeUpForce { get; private set; }
+        [field: SerializeField] public float GrenadeMaxDistance { get; private set; }
         [field: SerializeField] public float GrenadeThrowsTimeout { get; private set; }
         [field: SerializeField] public float GrenadeRecoveryTimeout { get; private set; }
         [field: SerializeField] public float GrenadeExplosionTimeout { get; private set; }

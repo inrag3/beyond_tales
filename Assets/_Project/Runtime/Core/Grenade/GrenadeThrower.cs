@@ -78,9 +78,36 @@ namespace _Project.Runtime.Core.Herbalist
             Rigidbody rigidbody = grenade.GetComponent<Rigidbody>();
 
             Vector3 direction = _inputService.Mouse - _herbalistProvider.Herbalist.Transform.position;
-            direction.Normalize(); 
-            Vector3 forceToAdd = direction * _grenadeConfig.GrenadeFrontForce +
-                                 prefab.transform.up * _grenadeConfig.GrenadeUpForce;
+            var distance = direction.magnitude;
+            direction.Normalize();
+            Vector3 forceToAdd;
+            distance = Math.Min(distance, _grenadeConfig.GrenadeMaxDistance);
+            
+            //минутка фазики за 9й класс
+            // В нашем случае Прикладывание силы - импульс
+            //Считается по формуле U = m*v .m - масса, а v - скорость движения, но мы ее не знаем => v(гор) = U(гор)/m
+            //движение по горизонтали считается равномерным, с скоростью v(гор), считается по формуле S=v(гор)*t  => t = S/v(гор)
+            //в нашем случае S = distance. Мы нашли время, которое граната должна провести в полете, чтобы упасть ровно на курсор,
+            //нужно узнать с какой силой (импульс) запустить гранату вверх, чтобы падение произошло через t секунд
+            
+            //Равноускоренное движение считается по формуле S = s0 + v*t + (a*t^2)/2
+            //S - конечный путь, у нас - 0, потому что окажется на полу. 
+            //s0 - начальное положение, высота по y
+            //a = g, t уже знаем, нужно найти v
+            // v(верт) = -(g * t / 2) - y0 / t;
+            // и досчитываем импульс по первой формуле
+            
+            var y0 = grenade.transform.position.y;
+            var g = Physics.gravity.y;
+            var u1 = _grenadeConfig.GrenadeFrontForce;
+            var m = grenade.GetComponent<Rigidbody>().mass;
+            var t = (distance * m) / u1;
+            var v2 = -(g * t / 2) - y0 / t;
+            var u2 = m * v2;
+
+            forceToAdd = direction * _grenadeConfig.GrenadeFrontForce +
+                         prefab.transform.up * u2;
+
             rigidbody.AddForce(forceToAdd, ForceMode.Impulse);
 
             grenade.Hit += GrenadeContactCallback;

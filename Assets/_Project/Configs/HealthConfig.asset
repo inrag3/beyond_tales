@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxValue>k__BackingField: 100
   <Speed>k__BackingField: 5
-  <GrenadeFrontForce>k__BackingField: 20
+  <GrenadeMaxDistance>k__BackingField: 8
   <GrenadeUpForce>k__BackingField: 0
   <GrenadeThrowsTimeout>k__BackingField: 0.5
   <GrenadeRecoveryTimeout>k__BackingField: 4
