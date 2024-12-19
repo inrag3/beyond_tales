@@ -128,7 +128,7 @@ namespace _Project.Runtime.Core.Herbalist
             var explosion = _instantiator.InstantiatePrefabForComponent<GrenadeExplosion>(prefab);
             explosion.transform.parent = grenade.transform.parent;
             explosion.transform.position = grenade.transform.position;
-
+            explosion.transform.rotation = grenade.transform.rotation;
             explosion.Timer.TimeEnded += () =>
             {
                 _explosions.Remove(explosion);
