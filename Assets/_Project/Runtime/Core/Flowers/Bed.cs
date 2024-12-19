@@ -22,7 +22,20 @@ public class Bed : Interactable
         IsAccessible = false;
         flower.transform.SetParent(transform);
         flower.transform.localPosition = Vector3.zero;
-        flower.Plant();
+        if (flower.Data.ItemEnum == _requiredFlowerType)
+        {
+            flower.Plant();
+        }
+        else
+        {
+            flower.Interacted += OnInteracted;
+        }
         OnBedCompleted?.Invoke();
+    }
+
+    private void OnInteracted(Flower flower)
+    {
+        flower.Interacted -= OnInteracted;
+        IsAccessible = true;
     }
 }
