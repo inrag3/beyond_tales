@@ -41,4 +41,13 @@ namespace _Project.Runtime.Core.Interactables.Processors
             _planter.Plant(bed);
         }
     }
+
+    public class DoorProcessor
+    {
+
+        public void Process(Door door)
+        {
+            
+        }
+    }
 }
