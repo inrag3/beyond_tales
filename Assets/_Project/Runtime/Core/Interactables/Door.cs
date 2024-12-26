@@ -14,6 +14,7 @@ namespace _Project.Runtime.Core.Interactables
         [SerializeField] private TimelineAsset _openDoorAnimation;
         [SerializeField] private TimelineAsset _closeDoorAnimation;
         [SerializeField] private NavMeshObstacle _navMeshObstacle;
+        [SerializeField] private bool _singleUse;
         [field: SerializeField] public bool IsOpen { get; private set; } = false;
 
         private void OnEnable()
@@ -54,7 +55,11 @@ namespace _Project.Runtime.Core.Interactables
 
         private void OnStopPlayAnimation(PlayableDirector director)
         {
-            IsAccessible = true;
+            if (!_singleUse)
+            {
+                IsAccessible = true;
+            }
+
             if (IsOpen)
             {
                 _navMeshObstacle.carving = false;
