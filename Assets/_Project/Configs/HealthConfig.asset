@@ -15,8 +15,9 @@ MonoBehaviour:
   <MaxValue>k__BackingField: 100
   <Speed>k__BackingField: 5
   <GrenadeFrontForce>k__BackingField: 20
-  <GrenadeUpForce>k__BackingField: 0
+  <GrenadeMaxDistance>k__BackingField: 8
   <GrenadeThrowsTimeout>k__BackingField: 0.5
   <GrenadeRecoveryTimeout>k__BackingField: 4
   <GrenadeExplosionTimeout>k__BackingField: 1.5
-  <GrenadeMaxCount>k__BackingField: 3
+  <GrenadeTransformWorldRadius>k__BackingField: 3
+  <Radius>k__BackingField: 0

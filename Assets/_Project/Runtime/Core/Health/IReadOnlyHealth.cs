@@ -4,6 +4,6 @@ namespace _Project.Runtime.Core.Health
 {
     public interface IReadOnlyHealth
     {
-        public ReadOnlyReactiveProperty<int> Value { get; }
+        public ReadOnlyReactiveProperty<float> Value { get; }
     }
 }

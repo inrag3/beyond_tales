@@ -1,4 +1,5 @@
 using System;
+using _Project.Runtime.InventorySystem;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "new Item", menuName = "Item")]
@@ -42,10 +43,4 @@ public class ItemData : ScriptableObject, IEquatable<ItemData>
     {
         return _itemEnum.GetHashCode();
     }
-}
-
-public enum ItemEnum
-{
-    Grenade,
-    Flower
 }

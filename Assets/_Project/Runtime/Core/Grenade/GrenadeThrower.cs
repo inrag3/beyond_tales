@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using _Project.Runtime.Config;
 using _Project.Runtime.Infrastructure;
 using _Project.Runtime.Infrastructure.Factories;
+using _Project.Runtime.InventorySystem;
 using UnityEngine;
 using Zenject;
 
@@ -66,7 +67,7 @@ namespace _Project.Runtime.Core.Herbalist
             if (!(_inputService.IsGrenadeButtonPressed && _readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0))
                 return;
             _readyToThrow = false;
-            _inventory.RemoveItem(ItemEnum.Grenade,1);
+            _inventory.RemoveItem(ItemEnum.Grenade, 1);
 
             GameObject prefab = _assetManager.Get(GrenadePath);
             var grenade = _instantiator.InstantiatePrefabForComponent<Grenade>(prefab);
@@ -76,12 +77,41 @@ namespace _Project.Runtime.Core.Herbalist
 
             Rigidbody rigidbody = grenade.GetComponent<Rigidbody>();
 
-            Vector3 forceToAdd = _herbalistProvider.Herbalist.Transform.forward * _grenadeConfig.GrenadeFrontForce +
-                                 prefab.transform.up * _grenadeConfig.GrenadeUpForce;
+            Vector3 direction = _inputService.Mouse - _herbalistProvider.Herbalist.Transform.position;
+            var distance = direction.magnitude;
+            direction.Normalize();
+            Vector3 forceToAdd;
+            distance = Math.Min(distance, _grenadeConfig.GrenadeMaxDistance);
+            
+            //минутка фазики за 9й класс
+            // В нашем случае Прикладывание силы - импульс
+            //Считается по формуле U = m*v .m - масса, а v - скорость движения, но мы ее не знаем => v(гор) = U(гор)/m
+            //движение по горизонтали считается равномерным, с скоростью v(гор), считается по формуле S=v(гор)*t  => t = S/v(гор)
+            //в нашем случае S = distance. Мы нашли время, которое граната должна провести в полете, чтобы упасть ровно на курсор,
+            //нужно узнать с какой силой (импульс) запустить гранату вверх, чтобы падение произошло через t секунд
+            
+            //Равноускоренное движение считается по формуле S = s0 + v*t + (a*t^2)/2
+            //S - конечный путь, у нас - 0, потому что окажется на полу. 
+            //s0 - начальное положение, высота по y
+            //a = g, t уже знаем, нужно найти v
+            // v(верт) = -(g * t / 2) - y0 / t;
+            // и досчитываем импульс по первой формуле
+            
+            var y0 = grenade.transform.position.y;
+            var g = Physics.gravity.y;
+            var u1 = _grenadeConfig.GrenadeFrontForce;
+            var m = grenade.GetComponent<Rigidbody>().mass;
+            var t = (distance * m) / u1;
+            var v2 = -(g * t / 2) - y0 / t;
+            var u2 = m * v2;
+
+            forceToAdd = direction * _grenadeConfig.GrenadeFrontForce +
+                         prefab.transform.up * u2;
+
             rigidbody.AddForce(forceToAdd, ForceMode.Impulse);
 
             grenade.Hit += GrenadeContactCallback;
-            
+
             _throwCollDownTimer.Start(_grenadeConfig.GrenadeThrowsTimeout);
 
 
@@ -89,42 +119,55 @@ namespace _Project.Runtime.Core.Herbalist
             {
                 _isRecoveringGrenades = true;
                 _grenadeRecoveryTimer.Start(_grenadeConfig.GrenadeRecoveryTimeout);
-
             }
-
         }
 
         private void GrenadeContactCallback(Grenade grenade)
         {
-
             GameObject prefab = _assetManager.Get(ExplosionPath);
             var explosion = _instantiator.InstantiatePrefabForComponent<GrenadeExplosion>(prefab);
             explosion.transform.parent = grenade.transform.parent;
             explosion.transform.position = grenade.transform.position;
-
+            explosion.transform.rotation = grenade.transform.rotation;
             explosion.Timer.TimeEnded += () =>
             {
                 _explosions.Remove(explosion);
                 GrenadesUpdated?.Invoke(new ReadOnlyCollection<GrenadeExplosion>(_explosions));
+                UpdateSecondWorldOverlap(explosion.transform.position, (a) => a.TriggerWorldChangeBack());
                 explosion.SelfDestroy();
             };
-            
+
             explosion.Timer.Start(_grenadeConfig.GrenadeExplosionTimeout);
 
             _explosions.Add(explosion);
+
+            UpdateSecondWorldOverlap(grenade.transform.position, (a) => a.TriggerWorldChange());
+
             GrenadesUpdated?.Invoke(new ReadOnlyCollection<GrenadeExplosion>(_explosions));
+        }
+
+        private void UpdateSecondWorldOverlap(Vector3 position, Action<SecondWorldExChangingTrigger> callback)
+        {
+            Collider[] hitColliders =
+                Physics.OverlapSphere(position, _grenadeConfig.GrenadeTransformWorldRadius);
+
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.TryGetComponent<SecondWorldExChangingTrigger>(out SecondWorldExChangingTrigger trigger))
+                {
+                    callback.Invoke(trigger);
+                }
+            }
         }
 
         private void ResetThrow()
         {
-            Debug.Log("Reset throw");
             _readyToThrow = true;
         }
 
         private void RecoverGrenade()
         {
-
-            _inventory.AddItem(ItemEnum.Grenade,1);
+            _inventory.AddItem(ItemEnum.Grenade, 1);
             if (_inventory.Items[ItemEnum.Grenade] < _itemContainer.ItemData[ItemEnum.Grenade].MaxStackSize)
             {
                 _grenadeRecoveryTimer.Start(_grenadeConfig.GrenadeRecoveryTimeout);
@@ -133,8 +176,6 @@ namespace _Project.Runtime.Core.Herbalist
             {
                 _isRecoveringGrenades = false;
             }
-
-            
         }
 
         public void Dispose()

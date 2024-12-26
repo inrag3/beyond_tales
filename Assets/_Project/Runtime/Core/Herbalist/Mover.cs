@@ -1,20 +1,23 @@
 ﻿using System;
 using _Project.Runtime.Config.Herbalist;
+using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
 using UnityEngine;
 using Zenject;
 
 namespace _Project.Runtime.Core.Herbalist
 {
-    public sealed class Mover : ITickable
+    public sealed class Mover : ITickable, IPauseHandler
     {
         private readonly int _speed;
         private readonly IInputService _inputService;
         private readonly IHerbalistProvider _provider;
-        private readonly Animer _animer;
+        private readonly HerbalistAnimer _animer;
+        private bool _isPaused = false;
+
         public Mover(
             ISpeedConfig config,
-            Animer animer,
+            HerbalistAnimer animer,
             IHerbalistProvider herbalistProvider,
             IInputService inputService
         )
@@ -26,6 +29,9 @@ namespace _Project.Runtime.Core.Herbalist
         }
         public void Tick()
         {
+            if (_isPaused)
+                return;
+            
             float moveHorizontal = _inputService.Horizontal;
             float moveVertical = _inputService.Vertical;
 
@@ -39,11 +45,28 @@ namespace _Project.Runtime.Core.Herbalist
             if (!(movement.magnitude > 0))
                 return;
 
+
+            if (_inputService.IsRollButtonPressed)
+            {
+                _animer.PlayRoll();
+            }
+            
+            
             Transform transform = _provider.Herbalist.Transform;
             transform.position += movement * (_speed * Time.deltaTime);
 
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+        }
+
+        public void Pause()
+        {
+            _isPaused = true;
+        }
+
+        public void Resume()
+        {
+            _isPaused = false;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using _Project.Runtime.Core.Health;
+using _Project.Runtime.Core.Interactables;
+using _Project.Runtime.Core.PauseHandler;
 using R3;
 using UnityEngine;
 using Zenject;
@@ -7,19 +9,26 @@ using Zenject;
 namespace _Project.Runtime.Core.Herbalist
 {
     [RequireComponent(typeof(Rigidbody), typeof(Animator))]
-    public class Herbalist : MonoBehaviour, IHerbalist
+    public class Herbalist : MonoBehaviour, IHerbalist, IPauseHandler
     {
         private readonly CompositeDisposable _disposables = new();
         private Rigidbody _rigidbody;
-        private Animer _animer;
         private Mover _mover;
+        private Attacker _attacker;
+        private HerbalistAnimer _animer;
 
         [Inject]
-        private void Construct(IHealth health, Animer animer)
+        private void Construct(IHealth health, IScanner<Interactable> scanner, Mover mover, Attacker attacker, HerbalistAnimer animer)
         {
-            Health = health;
             _animer = animer;
+            _attacker = attacker;
+            _mover = mover;
+            //TODO убрать 
+            Scanner = scanner;
+            Health = health;
         }
+
+        public IScanner<Interactable> Scanner { get; private set; }
 
         public IHealth Health { get; private set; }
 
@@ -36,16 +45,18 @@ namespace _Project.Runtime.Core.Herbalist
             _disposables.Add(subscription);
         }
 
-        private void OnHealthChanged(int value)
+        private void OnHealthChanged(float value)
         {
             if (value > 0)
                 return;
-
-            _animer.PlayDeath();
+            
             _rigidbody.isKinematic = true;
+            _animer.PlayDeath();
+            _mover.Pause();
+            _attacker.Pause();
         }
 
-        public void TakeDamage(int value)
+        public void TakeDamage(float value)
         {
             Health.Decrease(value);
         }
@@ -53,6 +64,16 @@ namespace _Project.Runtime.Core.Herbalist
         private void OnDestroy()
         {
             _disposables.Dispose();
+        }
+
+        public void Pause()
+        {
+            
+        }
+
+        public void Resume()
+        {
+            
         }
     }
 }

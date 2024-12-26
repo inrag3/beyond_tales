@@ -29,7 +29,7 @@ public class Grenade : MonoBehaviour
         _rb.isKinematic = true;
 
         // make sure projectile moves with target
-        transform.SetParent(collision.transform);
+        //transform.SetParent(collision.transform);
         Hit?.Invoke(this);
         
         if(!IsPreventDestroy)
