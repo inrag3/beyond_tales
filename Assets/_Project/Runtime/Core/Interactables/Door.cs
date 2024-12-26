@@ -34,7 +34,6 @@ namespace _Project.Runtime.Core.Interactables
             }
 
             visitor.Accept(this);
-            SwitchState();
         }
 
         public void SwitchState()

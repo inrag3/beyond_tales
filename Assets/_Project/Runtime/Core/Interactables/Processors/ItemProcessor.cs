@@ -47,7 +47,7 @@ namespace _Project.Runtime.Core.Interactables.Processors
 
         public void Process(Door door)
         {
-            
+            door.SwitchState();
         }
     }
 }
