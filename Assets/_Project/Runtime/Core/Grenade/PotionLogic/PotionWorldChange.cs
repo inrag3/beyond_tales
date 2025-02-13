@@ -1,0 +1,62 @@
+﻿using System;
+using _Project.Runtime.Config;
+using _Project.Runtime.Infrastructure;
+using UnityEngine;
+using Zenject;
+
+namespace _Project.Runtime.Core.Herbalist
+{
+    public class PotionWorldChange : PotionBaseLogicProvider
+    {
+        private const string GRENADE_PATH = "Granade";
+        private const string EXPOSION_PATH = "ExplosionCenter";
+        private readonly Action<GrenadeExplosion> _removeExplosionFromList;
+        private readonly Action<GrenadeExplosion> _addExplosionToList;
+
+        public PotionWorldChange(
+            IGrenadeConfig grenadeConfig,
+            IAssetManager assetManager,
+            IInstantiator instantiator,
+            Vector3 mouse,
+            Vector3 throwerPosition,
+            Action<GrenadeExplosion> removeExplosionFromList,
+            Action<GrenadeExplosion> addExplosionToLis
+        ) : base(grenadeConfig, assetManager, instantiator, mouse, throwerPosition)
+        {
+            _removeExplosionFromList = removeExplosionFromList;
+            _addExplosionToList = addExplosionToLis;
+        }
+
+        protected override string GrenadePath => GRENADE_PATH;
+        protected override string ExplosionPath => EXPOSION_PATH;
+
+
+        protected override void OnExplosionFinished(Grenade grenade, GrenadeExplosion explosion)
+        {
+            UpdateSecondWorldOverlap(explosion.transform.position, (a) => a.TriggerWorldChangeBack());
+
+            _removeExplosionFromList.Invoke(explosion);
+        }
+
+        protected override void OnGrenadeContact(Grenade grenade, GrenadeExplosion explosion)
+        {
+            UpdateSecondWorldOverlap(explosion.transform.position, (a) => a.TriggerWorldChange());
+
+            _addExplosionToList.Invoke(explosion);
+        }
+
+        private void UpdateSecondWorldOverlap(Vector3 position, Action<SecondWorldExChangingTrigger> callback)
+        {
+            Collider[] hitColliders =
+                Physics.OverlapSphere(position, _grenadeConfig.GrenadeTransformWorldRadius);
+
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.TryGetComponent(out SecondWorldExChangingTrigger trigger))
+                {
+                    callback.Invoke(trigger);
+                }
+            }
+        }
+    }
+}
