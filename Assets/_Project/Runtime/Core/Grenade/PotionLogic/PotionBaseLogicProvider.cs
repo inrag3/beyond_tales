@@ -32,7 +32,7 @@ namespace _Project.Runtime.Core.Herbalist
             _throwerPosition = throwerPosition;
         }
 
-        public void MakeAction()
+        public virtual void MakeAction()
         {
             ThrowGrenade();
         }

@@ -18,6 +18,7 @@ namespace _Project.Runtime.Config.Herbalist
         [field: SerializeField] public float GrenadeExplosionTimeout { get; private set; }
 
         [field: SerializeField] public float GrenadeTransformWorldRadius { get; private set; }
+        [field: SerializeField] public float PotionHealPoints { get; private set; }
 
 
         [field: Header("Picker")]

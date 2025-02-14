@@ -10,6 +10,9 @@ namespace _Project.Runtime.Core.Herbalist
     {
         private const string GRENADE_PATH = "Granade";
         private const string EXPOSION_PATH = "ExplosionCenter";
+        protected override string GrenadePath => GRENADE_PATH;
+        protected override string ExplosionPath => EXPOSION_PATH;
+        
         private readonly Action<GrenadeExplosion> _removeExplosionFromList;
         private readonly Action<GrenadeExplosion> _addExplosionToList;
 
@@ -27,8 +30,7 @@ namespace _Project.Runtime.Core.Herbalist
             _addExplosionToList = addExplosionToLis;
         }
 
-        protected override string GrenadePath => GRENADE_PATH;
-        protected override string ExplosionPath => EXPOSION_PATH;
+        
 
 
         protected override void OnExplosionFinished(Grenade grenade, GrenadeExplosion explosion)

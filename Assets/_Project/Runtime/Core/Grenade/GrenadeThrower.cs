@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using _Project.Runtime.Config;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.InventorySystem;
@@ -22,8 +24,9 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly IPlayerInventory _inventory;
         private readonly IItemContainer _itemContainer;
         private readonly IPotionApplierFactory _potionApplierFactory;
-        
-        
+        private readonly IReadOnlyList<Action> _potionsApplyFunctions;
+        private int _currentPotionIntex = 0;
+
 
         public GrenadeThrower(
             IHerbalistProvider herbalistProvider,
@@ -44,6 +47,20 @@ namespace _Project.Runtime.Core.Herbalist
             _potionApplierFactory = potionApplierFactory;
             _throwCoolDownTimer = throwCoolDownTimer;
             _grenadeRecoveryTimer = grenadeRecoveryTimer;
+
+            _potionsApplyFunctions = new ReadOnlyCollection<Action>(new List<Action>()
+            {
+                () =>
+                {
+                    _potionApplierFactory.ApplyWorldChange(_inputService.Mouse,
+                        _herbalistProvider.Herbalist.Transform.position);
+                },
+                () =>
+                {
+                    _potionApplierFactory.ApplyHealing(_inputService.Mouse,
+                        _herbalistProvider.Herbalist.Transform.position);
+                }
+            });
         }
 
         public void Initialize()
@@ -54,7 +71,29 @@ namespace _Project.Runtime.Core.Herbalist
 
         public void Tick()
         {
-            if (!(_inputService.IsGrenadeButtonPressed && _readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0))
+            if (_inputService.IsPotionNextButtonPressed)
+                MoveNextPotion();
+            if (_inputService.IsPotionPreviousButtonPressed)
+                MovePreviousPotion();
+            if (_inputService.IsPotionApplyButtonPressed)
+                TryCallPotion();
+        }
+
+        private void MovePreviousPotion()
+        {
+            _currentPotionIntex =
+                (_currentPotionIntex - 1 + _potionsApplyFunctions.Count) % _potionsApplyFunctions.Count;
+        }
+
+        private void MoveNextPotion()
+        {
+            _currentPotionIntex++;
+            _currentPotionIntex %= _potionsApplyFunctions.Count;
+        }
+
+        private void TryCallPotion()
+        {
+            if (!(_readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0))
                 return;
             _readyToThrow = false;
             _inventory.RemoveItem(ItemEnum.Grenade, 1);
@@ -73,10 +112,8 @@ namespace _Project.Runtime.Core.Herbalist
 
         private void ThrowGrenade()
         {
-            _potionApplierFactory.ApplyWorldChange(_inputService.Mouse,_herbalistProvider.Herbalist.Transform.position);
+            _potionsApplyFunctions[_currentPotionIntex].Invoke();
         }
-
-        
 
 
         private void ResetThrow()
