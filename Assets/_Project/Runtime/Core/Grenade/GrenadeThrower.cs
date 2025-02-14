@@ -59,6 +59,11 @@ namespace _Project.Runtime.Core.Herbalist
                 {
                     _potionApplierFactory.ApplyHealing(_inputService.Mouse,
                         _herbalistProvider.Herbalist.Transform.position);
+                },
+                () =>
+                {
+                    _potionApplierFactory.ApplyExplosion(_inputService.Mouse,
+                        _herbalistProvider.Herbalist.Transform.position);
                 }
             });
         }

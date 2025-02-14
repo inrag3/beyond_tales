@@ -40,7 +40,7 @@ namespace _Project.Runtime.Core.Herbalist
             _removeExplosionFromList.Invoke(explosion);
         }
 
-        protected override void OnGrenadeContact(Grenade grenade, GrenadeExplosion explosion)
+        protected override void OnExplosionStart(Grenade grenade, GrenadeExplosion explosion)
         {
             UpdateSecondWorldOverlap(explosion.transform.position, (a) => a.TriggerWorldChange());
 

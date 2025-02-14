@@ -60,14 +60,14 @@ namespace _Project.Runtime.Core.Herbalist
             };
 
             explosion.Timer.Start(_grenadeConfig.GrenadeExplosionTimeout);
-            OnGrenadeContact(grenade, explosion);
+            OnExplosionStart(grenade, explosion);
         }
 
         protected virtual void OnExplosionFinished(Grenade grenade, GrenadeExplosion explosion)
         {
         }
 
-        protected virtual void OnGrenadeContact(Grenade grenade, GrenadeExplosion explosion)
+        protected virtual void OnExplosionStart(Grenade grenade, GrenadeExplosion explosion)
         {
         }
 

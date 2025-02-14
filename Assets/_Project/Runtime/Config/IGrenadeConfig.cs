@@ -8,6 +8,8 @@
         public float GrenadeRecoveryTimeout { get; }
         public float GrenadeExplosionTimeout { get; }
         public float GrenadeTransformWorldRadius { get; }
+        public float PotionExplosionRadius { get; }
+        public float PotionExplosionDamage { get; }
         
         public float PotionHealPoints { get; }
     }

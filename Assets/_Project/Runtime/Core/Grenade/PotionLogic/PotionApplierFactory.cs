@@ -55,6 +55,18 @@ namespace _Project.Runtime.Core.Herbalist
                 worldPosition);
             grende.MakeAction();
         }
+
+        public void ApplyExplosion(Vector3 mousePosition, Vector3 worldPosition)
+        {
+            var grende = new ExplosionPotion(
+                _grenadeConfig,
+                _assetManager,
+                _instantiator,
+                mousePosition,
+                worldPosition);
+            grende.MakeAction();
+        }
+        
         
     }
     
@@ -62,6 +74,7 @@ namespace _Project.Runtime.Core.Herbalist
     {
         public void ApplyWorldChange(Vector3 mousePosition, Vector3 worldPosition);
         public void ApplyHealing(Vector3 mousePosition, Vector3 worldPosition);
+        public void ApplyExplosion(Vector3 mousePosition, Vector3 worldPosition);
     }
     
     
