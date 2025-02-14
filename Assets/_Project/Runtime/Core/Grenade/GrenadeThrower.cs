@@ -8,7 +8,7 @@ using Zenject;
 
 namespace _Project.Runtime.Core.Herbalist
 {
-    public class GrenadeThrower : IInitializable, ITickable, IDisposable
+    public class GrenadeThrower : IInitializable, ITickable, IDisposable, IPotionSelector
 
     {
         private bool _isRecoveringGrenades = false;
@@ -25,6 +25,8 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly IItemContainer _itemContainer;
         private readonly IPotionApplierFactory _potionApplierFactory;
         private readonly IReadOnlyList<Action> _potionsApplyFunctions;
+        private readonly IReadOnlyList<string> _potionsNames;
+        public event Action<string> SelectedPotionUpdated;
         private int _currentPotionIntex = 0;
 
 
@@ -66,6 +68,15 @@ namespace _Project.Runtime.Core.Herbalist
                         _herbalistProvider.Herbalist.Transform.position);
                 }
             });
+            _potionsNames = new ReadOnlyCollection<string>(new List<string>()
+            {
+                "Мир", "Здоровье", "Бдыщ"
+            });
+        }
+
+        public string GetCurrentPotionName()
+        {
+            return _potionsNames[_currentPotionIntex];
         }
 
         public void Initialize()
@@ -88,12 +99,14 @@ namespace _Project.Runtime.Core.Herbalist
         {
             _currentPotionIntex =
                 (_currentPotionIntex - 1 + _potionsApplyFunctions.Count) % _potionsApplyFunctions.Count;
+            SelectedPotionUpdated?.Invoke(_potionsNames[_currentPotionIntex]);
         }
 
         private void MoveNextPotion()
         {
             _currentPotionIntex++;
             _currentPotionIntex %= _potionsApplyFunctions.Count;
+            SelectedPotionUpdated?.Invoke(_potionsNames[_currentPotionIntex]);
         }
 
         private void TryCallPotion()
@@ -144,5 +157,11 @@ namespace _Project.Runtime.Core.Herbalist
             _throwCoolDownTimer.TimeEnded -= ResetThrow;
             _grenadeRecoveryTimer.TimeEnded -= RecoverGrenade;
         }
+    }
+
+    public interface IPotionSelector
+    {
+        public event Action<string> SelectedPotionUpdated;
+        public string GetCurrentPotionName();
     }
 }
