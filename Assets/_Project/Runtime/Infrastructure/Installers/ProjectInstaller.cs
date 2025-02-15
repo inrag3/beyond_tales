@@ -42,6 +42,7 @@ namespace _Project.Runtime.Infrastructure.Installers
         {
             Container.BindInterfacesAndSelfTo<StandaloneInputService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PotionsExplosionProvider>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PoisonProvider>().AsSingle().NonLazy();
             
             Container.Bind<ICoroutinePerformer>().FromInstance(_coroutinePerformer).AsSingle().NonLazy();
         }
