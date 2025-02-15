@@ -1,6 +1,7 @@
 using System.Collections;
 using _Project.Runtime.Core.Enemies;
 using _Project.Runtime.Infrastructure.Installers.GameObject;
+using ElectricServiceCompany;
 using ObservableCollections;
 using UnityEngine;
 using Zenject;
@@ -29,9 +30,15 @@ namespace _Project.Runtime.Infrastructure.Factories
         {
             _coroutine = StartCoroutine(Spawn());
         }
-        public void Stop() => 
-            StopCoroutine(_coroutine);
-        
+
+        public void Stop()
+        {
+            if (!_coroutine.IsNullOrDestroyed())
+            {
+                StopCoroutine(_coroutine);
+            }
+        }
+
         private IEnumerator Spawn()
         {
             while (true)
