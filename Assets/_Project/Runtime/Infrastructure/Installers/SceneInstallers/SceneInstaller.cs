@@ -3,6 +3,7 @@ using System.Linq;
 using _Project.Runtime.AI.Core;
 using _Project.Runtime.Core;
 using _Project.Runtime.Core.Health;
+using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Installers.GameObject;
 using Zenject;
@@ -20,6 +21,7 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
             BindEnemySpawners();
             
             Container.Bind<Bed[]>().FromMethod(_ => FindObjectsOfType<Bed>()).AsSingle();
+            Container.Bind<Door[]>().FromMethod(_ => FindObjectsOfType<Door>()).AsSingle();
             Container.BindInterfacesAndSelfTo<Waver>().AsSingle().NonLazy();
         }
 
