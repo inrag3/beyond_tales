@@ -14,13 +14,13 @@ public class AnotherDimension : MonoBehaviour
 
     private readonly Vector4[] _grenadesPositions = new Vector4[15];
     private int _grenadeCount;
-    private IGrenadeProvider _provider;
+    private IPotionExplosionProvider _provider;
     private static readonly int NumberGrenade = Shader.PropertyToID("_NumberGrenade");
     private static readonly int GrenadesPositions = Shader.PropertyToID("_GrenadesPositions");
     private static readonly int Dist = Shader.PropertyToID("_Dist");
 
     [Inject]
-    private void Construct(IGrenadeProvider provider)
+    private void Construct(IPotionExplosionProvider provider)
     {
         _provider = provider;
     }

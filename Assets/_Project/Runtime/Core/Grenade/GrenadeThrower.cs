@@ -2,20 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using _Project.Runtime.Config;
-using _Project.Runtime.Infrastructure;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.InventorySystem;
-using UnityEngine;
 using Zenject;
 
 namespace _Project.Runtime.Core.Herbalist
 {
-    public class GrenadeThrower : IInitializable, ITickable, IDisposable, IGrenadeProvider
+    public class GrenadeThrower : IInitializable, ITickable, IDisposable, IPotionSelector
 
     {
-        private const string GrenadePath = "Granade";
-        private const string ExplosionPath = "ExplosionCenter";
-
         private bool _isRecoveringGrenades = false;
         private bool _readyToThrow = true;
 
@@ -23,96 +18,112 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly IHerbalistProvider _herbalistProvider;
         private readonly IInputService _inputService;
 
-        private readonly IAssetManager _assetManager;
-        private readonly IInstantiator _instantiator;
         private readonly IGrenadeConfig _grenadeConfig;
-        private readonly Timer _throwCollDownTimer;
+        private readonly Timer _throwCoolDownTimer;
         private readonly Timer _grenadeRecoveryTimer;
-        private readonly List<GrenadeExplosion> _explosions = new();
         private readonly IPlayerInventory _inventory;
         private readonly IItemContainer _itemContainer;
-        public event Action<IReadOnlyList<GrenadeExplosion>> GrenadesUpdated;
+        private readonly IPotionApplierFactory _potionApplierFactory;
+        private readonly IReadOnlyList<Action> _potionsApplyFunctions;
+        private readonly IReadOnlyList<string> _potionsNames;
+        public event Action<string> SelectedPotionUpdated;
+        private int _currentPotionIntex = 0;
+
 
         public GrenadeThrower(
             IHerbalistProvider herbalistProvider,
             IInputService inputService,
-            IInstantiator instantiator,
-            IAssetManager assetManager,
             IGrenadeConfig grenadeConfig,
             IPlayerInventory inventory,
             IItemContainer itemContainer,
-            Timer throwCollDownTimer,
+            IPotionApplierFactory potionApplierFactory,
+            Timer throwCoolDownTimer,
             Timer grenadeRecoveryTimer
         )
         {
             _herbalistProvider = herbalistProvider;
             _inputService = inputService;
-            _instantiator = instantiator;
-            _assetManager = assetManager;
             _grenadeConfig = grenadeConfig;
             _inventory = inventory;
             _itemContainer = itemContainer;
-            _throwCollDownTimer = throwCollDownTimer;
+            _potionApplierFactory = potionApplierFactory;
+            _throwCoolDownTimer = throwCoolDownTimer;
             _grenadeRecoveryTimer = grenadeRecoveryTimer;
+
+            _potionsApplyFunctions = new ReadOnlyCollection<Action>(new List<Action>()
+            {
+                () =>
+                {
+                    _potionApplierFactory.ApplyWorldChange(_inputService.Mouse,
+                        _herbalistProvider.Herbalist.Transform.position);
+                },
+                () =>
+                {
+                    _potionApplierFactory.ApplyHealing(_inputService.Mouse,
+                        _herbalistProvider.Herbalist.Transform.position);
+                },
+                () =>
+                {
+                    _potionApplierFactory.ApplyExplosion(_inputService.Mouse,
+                        _herbalistProvider.Herbalist.Transform.position);
+                },
+                () =>
+                {
+                    _potionApplierFactory.ApplyPoison(_inputService.Mouse,
+                        _herbalistProvider.Herbalist.Transform.position);
+                }
+            });
+            _potionsNames = new ReadOnlyCollection<string>(new List<string>()
+            {
+                "Мир", "Подорожник", "Бдыщ", "Яд"
+            });
+        }
+
+        public string GetCurrentPotionName()
+        {
+            return _potionsNames[_currentPotionIntex];
         }
 
         public void Initialize()
         {
-            _throwCollDownTimer.TimeEnded += ResetThrow;
+            _throwCoolDownTimer.TimeEnded += ResetThrow;
             _grenadeRecoveryTimer.TimeEnded += RecoverGrenade;
         }
 
         public void Tick()
         {
-            if (!(_inputService.IsGrenadeButtonPressed && _readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0))
+            if (_inputService.IsPotionNextButtonPressed)
+                MoveNextPotion();
+            if (_inputService.IsPotionPreviousButtonPressed)
+                MovePreviousPotion();
+            if (_inputService.IsPotionApplyButtonPressed)
+                TryCallPotion();
+        }
+
+        private void MovePreviousPotion()
+        {
+            _currentPotionIntex =
+                (_currentPotionIntex - 1 + _potionsApplyFunctions.Count) % _potionsApplyFunctions.Count;
+            SelectedPotionUpdated?.Invoke(_potionsNames[_currentPotionIntex]);
+        }
+
+        private void MoveNextPotion()
+        {
+            _currentPotionIntex++;
+            _currentPotionIntex %= _potionsApplyFunctions.Count;
+            SelectedPotionUpdated?.Invoke(_potionsNames[_currentPotionIntex]);
+        }
+
+        private void TryCallPotion()
+        {
+            if (!(_readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0))
                 return;
             _readyToThrow = false;
             _inventory.RemoveItem(ItemEnum.Grenade, 1);
 
-            GameObject prefab = _assetManager.Get(GrenadePath);
-            var grenade = _instantiator.InstantiatePrefabForComponent<Grenade>(prefab);
-            grenade.transform.position = _herbalistProvider.Herbalist.Transform.position;
-            grenade.transform.position += Vector3.up;
-            grenade.transform.parent = null;
+            ThrowGrenade();
 
-            Rigidbody rigidbody = grenade.GetComponent<Rigidbody>();
-
-            Vector3 direction = _inputService.Mouse - _herbalistProvider.Herbalist.Transform.position;
-            var distance = direction.magnitude;
-            direction.Normalize();
-            Vector3 forceToAdd;
-            distance = Math.Min(distance, _grenadeConfig.GrenadeMaxDistance);
-            
-            //минутка фазики за 9й класс
-            // В нашем случае Прикладывание силы - импульс
-            //Считается по формуле U = m*v .m - масса, а v - скорость движения, но мы ее не знаем => v(гор) = U(гор)/m
-            //движение по горизонтали считается равномерным, с скоростью v(гор), считается по формуле S=v(гор)*t  => t = S/v(гор)
-            //в нашем случае S = distance. Мы нашли время, которое граната должна провести в полете, чтобы упасть ровно на курсор,
-            //нужно узнать с какой силой (импульс) запустить гранату вверх, чтобы падение произошло через t секунд
-            
-            //Равноускоренное движение считается по формуле S = s0 + v*t + (a*t^2)/2
-            //S - конечный путь, у нас - 0, потому что окажется на полу. 
-            //s0 - начальное положение, высота по y
-            //a = g, t уже знаем, нужно найти v
-            // v(верт) = -(g * t / 2) - y0 / t;
-            // и досчитываем импульс по первой формуле
-            
-            var y0 = grenade.transform.position.y;
-            var g = Physics.gravity.y;
-            var u1 = _grenadeConfig.GrenadeFrontForce;
-            var m = grenade.GetComponent<Rigidbody>().mass;
-            var t = (distance * m) / u1;
-            var v2 = -(g * t / 2) - y0 / t;
-            var u2 = m * v2;
-
-            forceToAdd = direction * _grenadeConfig.GrenadeFrontForce +
-                         prefab.transform.up * u2;
-
-            rigidbody.AddForce(forceToAdd, ForceMode.Impulse);
-
-            grenade.Hit += GrenadeContactCallback;
-
-            _throwCollDownTimer.Start(_grenadeConfig.GrenadeThrowsTimeout);
+            _throwCoolDownTimer.Start(_grenadeConfig.GrenadeThrowsTimeout);
 
 
             if (!_isRecoveringGrenades)
@@ -122,43 +133,11 @@ namespace _Project.Runtime.Core.Herbalist
             }
         }
 
-        private void GrenadeContactCallback(Grenade grenade)
+        private void ThrowGrenade()
         {
-            GameObject prefab = _assetManager.Get(ExplosionPath);
-            var explosion = _instantiator.InstantiatePrefabForComponent<GrenadeExplosion>(prefab);
-            explosion.transform.parent = grenade.transform.parent;
-            explosion.transform.position = grenade.transform.position;
-            explosion.transform.rotation = grenade.transform.rotation;
-            explosion.Timer.TimeEnded += () =>
-            {
-                _explosions.Remove(explosion);
-                GrenadesUpdated?.Invoke(new ReadOnlyCollection<GrenadeExplosion>(_explosions));
-                UpdateSecondWorldOverlap(explosion.transform.position, (a) => a.TriggerWorldChangeBack());
-                explosion.SelfDestroy();
-            };
-
-            explosion.Timer.Start(_grenadeConfig.GrenadeExplosionTimeout);
-
-            _explosions.Add(explosion);
-
-            UpdateSecondWorldOverlap(grenade.transform.position, (a) => a.TriggerWorldChange());
-
-            GrenadesUpdated?.Invoke(new ReadOnlyCollection<GrenadeExplosion>(_explosions));
+            _potionsApplyFunctions[_currentPotionIntex].Invoke();
         }
 
-        private void UpdateSecondWorldOverlap(Vector3 position, Action<SecondWorldExChangingTrigger> callback)
-        {
-            Collider[] hitColliders =
-                Physics.OverlapSphere(position, _grenadeConfig.GrenadeTransformWorldRadius);
-
-            foreach (var hitCollider in hitColliders)
-            {
-                if (hitCollider.TryGetComponent<SecondWorldExChangingTrigger>(out SecondWorldExChangingTrigger trigger))
-                {
-                    callback.Invoke(trigger);
-                }
-            }
-        }
 
         private void ResetThrow()
         {
@@ -180,13 +159,14 @@ namespace _Project.Runtime.Core.Herbalist
 
         public void Dispose()
         {
-            _throwCollDownTimer.TimeEnded -= ResetThrow;
+            _throwCoolDownTimer.TimeEnded -= ResetThrow;
             _grenadeRecoveryTimer.TimeEnded -= RecoverGrenade;
         }
     }
 
-    public interface IGrenadeProvider
+    public interface IPotionSelector
     {
-        public event Action<IReadOnlyList<GrenadeExplosion>> GrenadesUpdated;
+        public event Action<string> SelectedPotionUpdated;
+        public string GetCurrentPotionName();
     }
 }

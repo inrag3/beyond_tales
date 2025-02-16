@@ -41,6 +41,8 @@ namespace _Project.Runtime.Infrastructure.Installers
         private void BindServices()
         {
             Container.BindInterfacesAndSelfTo<StandaloneInputService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PotionsExplosionProvider>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PoisonProvider>().AsSingle().NonLazy();
             
             Container.Bind<ICoroutinePerformer>().FromInstance(_coroutinePerformer).AsSingle().NonLazy();
         }
@@ -56,6 +58,7 @@ namespace _Project.Runtime.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<FlowerFactory>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<HintViewFactory>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<EnemyFactory>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PotionApplierFactory>().AsSingle().NonLazy();
         }
     }
 }
