@@ -10,6 +10,9 @@
         public float GrenadeTransformWorldRadius { get; }
         public float PotionExplosionRadius { get; }
         public float PotionExplosionDamage { get; }
+        public float PotionPoisonDamage { get; }
+        public float PotionPoisonTimeDelay { get; }
+        public int PotionPoisonTimesCount { get; }
         
         public float PotionHealPoints { get; }
     }

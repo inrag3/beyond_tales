@@ -14,6 +14,7 @@ namespace _Project.Runtime.Core.Herbalist
         protected readonly IInstantiator _instantiator;
         protected readonly IPotionExplosionProvider _potionsExplosionProvider;
         protected readonly IHealth _health;
+        protected readonly IPoisoningProvider _poisoningProvider;
 
 
         public PotionApplierFactory(
@@ -21,7 +22,8 @@ namespace _Project.Runtime.Core.Herbalist
             IAssetManager assetManager,
             IInstantiator instantiator,
             IPotionExplosionProvider iPotionExplosionProvider,
-            IHealth health
+            IHealth health,
+            IPoisoningProvider poisoningProvider
             )
         {
             _grenadeConfig = grenadeConfig;
@@ -29,6 +31,7 @@ namespace _Project.Runtime.Core.Herbalist
             _instantiator = instantiator;
             _potionsExplosionProvider = iPotionExplosionProvider;
             _health = health;
+            _poisoningProvider = poisoningProvider;
         }
 
         public void ApplyWorldChange(Vector3 mousePosition, Vector3 worldPosition)
@@ -66,6 +69,19 @@ namespace _Project.Runtime.Core.Herbalist
                 worldPosition);
             grende.MakeAction();
         }
+
+        public void ApplyPoison(Vector3 mousePosition, Vector3 worldPosition)
+        {
+            var grende = new PoisonPotion(
+                _grenadeConfig,
+                _assetManager,
+                _instantiator,
+                mousePosition,
+                worldPosition,
+                _poisoningProvider.StartPoisoning
+                );
+            grende.MakeAction();
+        }
         
         
     }
@@ -75,6 +91,7 @@ namespace _Project.Runtime.Core.Herbalist
         public void ApplyWorldChange(Vector3 mousePosition, Vector3 worldPosition);
         public void ApplyHealing(Vector3 mousePosition, Vector3 worldPosition);
         public void ApplyExplosion(Vector3 mousePosition, Vector3 worldPosition);
+        public void ApplyPoison(Vector3 mousePosition, Vector3 worldPosition);
     }
     
     

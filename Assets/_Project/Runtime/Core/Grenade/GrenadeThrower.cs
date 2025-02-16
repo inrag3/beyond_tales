@@ -66,11 +66,16 @@ namespace _Project.Runtime.Core.Herbalist
                 {
                     _potionApplierFactory.ApplyExplosion(_inputService.Mouse,
                         _herbalistProvider.Herbalist.Transform.position);
+                },
+                () =>
+                {
+                    _potionApplierFactory.ApplyPoison(_inputService.Mouse,
+                        _herbalistProvider.Herbalist.Transform.position);
                 }
             });
             _potionsNames = new ReadOnlyCollection<string>(new List<string>()
             {
-                "Мир", "Здоровье", "Бдыщ"
+                "Мир", "Подорожник", "Бдыщ", "Яд"
             });
         }
 
