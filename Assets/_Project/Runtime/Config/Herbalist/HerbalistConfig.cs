@@ -10,15 +10,27 @@ namespace _Project.Runtime.Config.Herbalist
         [field: SerializeField] public int Speed { get; private set; }
 
         [field: Header("Grenade")]
-        [field: SerializeField]
-        public float GrenadeFrontForce { get; private set; }
+        [field: SerializeField] public float GrenadeFrontForce { get; private set; }
 
-        [field: SerializeField] public float GrenadeUpForce { get; private set; }
+        [field: SerializeField] public float GrenadeMaxDistance { get; private set; }
         [field: SerializeField] public float GrenadeThrowsTimeout { get; private set; }
         [field: SerializeField] public float GrenadeRecoveryTimeout { get; private set; }
         [field: SerializeField] public float GrenadeExplosionTimeout { get; private set; }
 
+        [field: SerializeField] public float GrenadeTransformWorldRadius { get; private set; }
+        [field: Header("Healing potion")]
+        [field: SerializeField] public float PotionHealPoints { get; private set; }
+        [field: Header("Explotion potion")]
+
+        [field: SerializeField] public float PotionExplosionRadius { get; private set; }
+        [field: SerializeField] public float PotionExplosionDamage { get; private set; }
+        [field: Header("Poison potion")]
+        [field: SerializeField] public float PotionPoisonDamage { get; private set; }
+        [field: SerializeField] public float PotionPoisonTimeDelay { get; private set; }
+        [field: SerializeField] public int PotionPoisonTimesCount { get; private set; }
+
         [field: Header("Picker")]
-        [field: SerializeField] public float Radius { get; private set; }
+        [field: SerializeField]
+        public float Radius { get; private set; }
     }
 }

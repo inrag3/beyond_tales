@@ -5,6 +5,7 @@ namespace _Project.Runtime.InventorySystem
 		Grenade,
 		RedFlower,
 		BlueFlower,
-		YellowFlower
+		YellowFlower,
+		Apple
 	}
 }

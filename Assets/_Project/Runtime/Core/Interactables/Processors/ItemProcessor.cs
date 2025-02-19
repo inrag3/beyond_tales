@@ -1,4 +1,5 @@
 using _Project.Runtime.Core.Herbalist;
+using _Project.Runtime.Core.Interactables.Items;
 using _Project.Runtime.InventorySystem;
 
 namespace _Project.Runtime.Core.Interactables.Processors
@@ -38,6 +39,15 @@ namespace _Project.Runtime.Core.Interactables.Processors
                 return;
             _inventory.RemoveItem(requiredFlowerType, 1);
             _planter.Plant(bed);
+        }
+    }
+
+    public class DoorProcessor
+    {
+
+        public void Process(Door door)
+        {
+            door.SwitchState();
         }
     }
 }

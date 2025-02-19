@@ -1,5 +1,6 @@
 using System.Collections;
-using _Project.Runtime.Core.PauseHandler;
+using _Project.Runtime.Core.Enemies;
+using _Project.Runtime.Infrastructure.Installers.GameObject;
 using ObservableCollections;
 using UnityEngine;
 using Zenject;
@@ -14,11 +15,13 @@ namespace _Project.Runtime.Infrastructure.Factories
         private IEnemyFactory _factory;
         private Coroutine _coroutine;
         private WaitForSeconds _waitForSeconds;
+        private ActorFactory _actorFactory;
         public IObservableCollection<Enemy> Enemies => _enemies;
 
         [Inject]
-        private void Construct(IEnemyFactory factory)
+        private void Construct(IEnemyFactory factory, ActorFactory actorFactory)
         {
+            _actorFactory = actorFactory;
             _factory = factory;
         }
         
@@ -34,6 +37,7 @@ namespace _Project.Runtime.Infrastructure.Factories
             while (true)
             { 
                 Enemy enemy = _factory.Create(transform.position);
+                _actorFactory.Create(enemy);
                 enemy.Died += OnDied; 
                 _enemies.Add(enemy);
                 _waitForSeconds = new WaitForSeconds(_cooldown);

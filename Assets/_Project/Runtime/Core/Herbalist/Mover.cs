@@ -12,10 +12,12 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly int _speed;
         private readonly IInputService _inputService;
         private readonly IHerbalistProvider _provider;
-        private readonly Animer _animer;
+        private readonly HerbalistAnimer _animer;
+        private bool _isPaused = false;
+
         public Mover(
             ISpeedConfig config,
-            Animer animer,
+            HerbalistAnimer animer,
             IHerbalistProvider herbalistProvider,
             IInputService inputService
         )
@@ -27,6 +29,9 @@ namespace _Project.Runtime.Core.Herbalist
         }
         public void Tick()
         {
+            if (_isPaused)
+                return;
+            
             float moveHorizontal = _inputService.Horizontal;
             float moveVertical = _inputService.Vertical;
 
@@ -40,6 +45,13 @@ namespace _Project.Runtime.Core.Herbalist
             if (!(movement.magnitude > 0))
                 return;
 
+
+            if (_inputService.IsRollButtonPressed)
+            {
+                _animer.PlayRoll();
+            }
+            
+            
             Transform transform = _provider.Herbalist.Transform;
             transform.position += movement * (_speed * Time.deltaTime);
 
@@ -49,12 +61,12 @@ namespace _Project.Runtime.Core.Herbalist
 
         public void Pause()
         {
-            throw new NotImplementedException();
+            _isPaused = true;
         }
 
         public void Resume()
         {
-            throw new NotImplementedException();
+            _isPaused = false;
         }
     }
 }

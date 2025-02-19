@@ -1,4 +1,4 @@
-using _Project.Runtime.Core.Interactables;
+using _Project.Runtime.Core.Interactables.Items;
 using _Project.Runtime.Core.Interactables.Processors;
 
 public class Flower : Item

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _Project.Runtime.DialogueSystem;
 using DialogueSystem.Nodes;
 using DialogueSystem.Nodes.Checks;
 using ElectricServiceCompany;

@@ -13,15 +13,19 @@ namespace _Project.Runtime.Core.Herbalist
     {
         private readonly CompositeDisposable _disposables = new();
         private Rigidbody _rigidbody;
-        private Animer _animer;
         private Mover _mover;
+        private Attacker _attacker;
+        private HerbalistAnimer _animer;
 
         [Inject]
-        private void Construct(IHealth health, Animer animer, IScanner<Interactable> scanner)
+        private void Construct(IHealth health, IScanner<Interactable> scanner, Mover mover, Attacker attacker, HerbalistAnimer animer)
         {
+            _animer = animer;
+            _attacker = attacker;
+            _mover = mover;
+            //TODO убрать 
             Scanner = scanner;
             Health = health;
-            _animer = animer;
         }
 
         public IScanner<Interactable> Scanner { get; private set; }
@@ -41,16 +45,18 @@ namespace _Project.Runtime.Core.Herbalist
             _disposables.Add(subscription);
         }
 
-        private void OnHealthChanged(int value)
+        private void OnHealthChanged(float value)
         {
             if (value > 0)
                 return;
-
-            _animer.PlayDeath();
+            
             _rigidbody.isKinematic = true;
+            _animer.PlayDeath();
+            _mover.Pause();
+            _attacker.Pause();
         }
 
-        public void TakeDamage(int value)
+        public void TakeDamage(float value)
         {
             Health.Decrease(value);
         }

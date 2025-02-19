@@ -23,9 +23,9 @@ namespace _Project.Runtime.Infrastructure.Factories.UI
             _assetManager = assetManager;
         }
 
-        public HealthView Create()
+        public HealthView Create(Transform parent)
         {
-            return _instantiator.InstantiatePrefabForComponent<HealthView>(_prefab);
+            return _instantiator.InstantiatePrefabForComponent<HealthView>(_prefab, parent);
         }
     }
 }

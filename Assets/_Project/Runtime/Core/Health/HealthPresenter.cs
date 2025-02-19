@@ -22,7 +22,7 @@ namespace _Project.Runtime.Core.Health
             _subscription = _health.Value.Subscribe(OnHealthChanged);
         }
 
-        private void OnHealthChanged(int value)
+        private void OnHealthChanged(float value)
         {
             _view.SetHealth(value);
         }
