@@ -26,8 +26,18 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly IPotionApplierFactory _potionApplierFactory;
         private readonly IReadOnlyList<Action> _potionsApplyFunctions;
         private readonly IReadOnlyList<string> _potionsNames;
-        public event Action<string> SelectedPotionUpdated;
         private int _currentPotionIntex = 0;
+        private PotionIngredients _potionIngredients;
+        private readonly List<PotionIngredients> _potionPrices;
+        
+        public event Action<string> SelectedPotionUpdated;
+        
+        public PotionIngredients CurrentIngredientsCount => new(_potionIngredients);
+        public PotionIngredients CurrentPotionAmount => new(_potionPrices[_currentPotionIntex]);
+        
+        public event Action<PotionIngredients> CurrentIngredientCountChanged;
+        public event Action<PotionIngredients> SelectedPotionAmountChanged;
+        
 
 
         public GrenadeThrower(
@@ -77,6 +87,15 @@ namespace _Project.Runtime.Core.Herbalist
             {
                 "Мир", "Подорожник", "Бдыщ", "Яд"
             });
+            _potionIngredients = new PotionIngredients(10,10,10);
+            _potionPrices = new List<PotionIngredients>()
+            {
+                new(2, 2, 0),
+                new(0, 5, 0),
+                new(6, 0, 2),
+                new(1, 0, 5),
+            };
+
         }
 
         public string GetCurrentPotionName()
@@ -105,6 +124,7 @@ namespace _Project.Runtime.Core.Herbalist
             _currentPotionIntex =
                 (_currentPotionIntex - 1 + _potionsApplyFunctions.Count) % _potionsApplyFunctions.Count;
             SelectedPotionUpdated?.Invoke(_potionsNames[_currentPotionIntex]);
+            SelectedPotionAmountChanged?.Invoke(CurrentPotionAmount);
         }
 
         private void MoveNextPotion()
@@ -112,6 +132,7 @@ namespace _Project.Runtime.Core.Herbalist
             _currentPotionIntex++;
             _currentPotionIntex %= _potionsApplyFunctions.Count;
             SelectedPotionUpdated?.Invoke(_potionsNames[_currentPotionIntex]);
+            SelectedPotionAmountChanged?.Invoke(CurrentPotionAmount);
         }
 
         private void TryCallPotion()
@@ -119,6 +140,13 @@ namespace _Project.Runtime.Core.Herbalist
             if (!(_readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0))
                 return;
             _readyToThrow = false;
+            if (!CurrentIngredientsCount.IsNotLess(CurrentPotionAmount))
+            {
+                return;
+            }
+            _potionIngredients = CurrentIngredientsCount - CurrentPotionAmount;
+            CurrentIngredientCountChanged?.Invoke(CurrentIngredientsCount);
+            
             _inventory.RemoveItem(ItemEnum.Grenade, 1);
 
             ThrowGrenade();
@@ -168,5 +196,50 @@ namespace _Project.Runtime.Core.Herbalist
     {
         public event Action<string> SelectedPotionUpdated;
         public string GetCurrentPotionName();
+        
+        //получить текущие значения 1 раз, при инициалзиации интерфейса
+        //текущий баланс интредиентов
+        public PotionIngredients CurrentIngredientsCount { get; }
+        //текущая стоимость выбранного зелья
+        public PotionIngredients CurrentPotionAmount{ get; }
+        
+        //подписаться на обновления
+        //изменился текущий баланс
+        public event Action<PotionIngredients> CurrentIngredientCountChanged;
+        
+        //выбранное зелье изменилось и его баланс тоже
+        public event Action<PotionIngredients> SelectedPotionAmountChanged;
+    }
+    
+    //dto для хранения и передачи инфы об ингредиентах зелья
+    public class PotionIngredients
+    {
+        public int Red;
+        public int Green;
+        public int Blue;
+
+        public PotionIngredients(int r, int g, int b)
+        {
+            Red = r;
+            Green = g;
+            Blue = b;
+        }
+
+        public PotionIngredients(PotionIngredients p)
+        {
+            Red = p.Red;
+            Green = p.Green;
+            Blue = p.Blue;
+        }
+
+        public static PotionIngredients operator -(PotionIngredients o1, PotionIngredients o2)
+        {
+            return new PotionIngredients(o1.Red-o2.Red, o1.Green-o2.Green,o1.Blue-o2.Blue);
+        }
+
+        public bool IsNotLess(PotionIngredients o2)
+        {
+            return Red >= o2.Red && Green >= o2.Green && Blue >= o2.Blue;
+        }
     }
 }
