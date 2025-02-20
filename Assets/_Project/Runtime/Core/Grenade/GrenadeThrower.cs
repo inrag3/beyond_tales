@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using _Project.Runtime.Config;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.InventorySystem;
+using UnityEngine;
 using Zenject;
 
 namespace _Project.Runtime.Core.Herbalist
@@ -98,6 +99,13 @@ namespace _Project.Runtime.Core.Herbalist
 
         }
 
+        public void AddIngredient(PotionIngredients ingredient)
+        {
+            _potionIngredients += ingredient;
+            CurrentIngredientCountChanged?.Invoke(CurrentIngredientsCount);
+
+        }
+
         public string GetCurrentPotionName()
         {
             return _potionsNames[_currentPotionIntex];
@@ -107,6 +115,10 @@ namespace _Project.Runtime.Core.Herbalist
         {
             _throwCoolDownTimer.TimeEnded += ResetThrow;
             _grenadeRecoveryTimer.TimeEnded += RecoverGrenade;
+            CurrentIngredientCountChanged += ingredients =>
+            {
+                Debug.Log($"CurrentIngredientCount: r={ingredients.Red} g={ingredients.Green} b={ingredients.Blue}");
+            };
         }
 
         public void Tick()
@@ -144,7 +156,7 @@ namespace _Project.Runtime.Core.Herbalist
             {
                 return;
             }
-            _potionIngredients = CurrentIngredientsCount - CurrentPotionAmount;
+            _potionIngredients -= CurrentPotionAmount;
             CurrentIngredientCountChanged?.Invoke(CurrentIngredientsCount);
             
             _inventory.RemoveItem(ItemEnum.Grenade, 1);
@@ -209,6 +221,8 @@ namespace _Project.Runtime.Core.Herbalist
         
         //выбранное зелье изменилось и его баланс тоже
         public event Action<PotionIngredients> SelectedPotionAmountChanged;
+
+        public void AddIngredient(PotionIngredients ingredient);
     }
     
     //dto для хранения и передачи инфы об ингредиентах зелья
@@ -235,6 +249,10 @@ namespace _Project.Runtime.Core.Herbalist
         public static PotionIngredients operator -(PotionIngredients o1, PotionIngredients o2)
         {
             return new PotionIngredients(o1.Red-o2.Red, o1.Green-o2.Green,o1.Blue-o2.Blue);
+        }
+        public static PotionIngredients operator +(PotionIngredients o1, PotionIngredients o2)
+        {
+            return new PotionIngredients(o1.Red+o2.Red, o1.Green+o2.Green,o1.Blue+o2.Blue);
         }
 
         public bool IsNotLess(PotionIngredients o2)
