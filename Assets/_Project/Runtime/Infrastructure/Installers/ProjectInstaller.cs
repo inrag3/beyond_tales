@@ -2,6 +2,7 @@
 using _Project.Runtime.Core;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Herbalist;
+using _Project.Runtime.Core.Herbalist.GlobalWorldChange;
 using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Factories.UI;
@@ -43,7 +44,8 @@ namespace _Project.Runtime.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<StandaloneInputService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PotionsExplosionProvider>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PoisonProvider>().AsSingle().NonLazy();
-            
+            Container.BindInterfacesAndSelfTo<GlobalWorldChangeProvider>().AsSingle().NonLazy();
+
             Container.Bind<ICoroutinePerformer>().FromInstance(_coroutinePerformer).AsSingle().NonLazy();
         }
 

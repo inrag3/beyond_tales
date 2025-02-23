@@ -29,13 +29,17 @@ namespace _Project.Runtime.Core.Herbalist
         
         public void Initialize()
         {
-            _camera = UnityEngine.Camera.main;
+            //_camera = UnityEngine.Camera.main;
         }
         public void Tick()
         {
+            if (!_camera)
+            {
+                _camera = UnityEngine.Camera.main;
+            }
+            
             var plane = new Plane(Vector3.up, Vector3.zero); // Y = 0, плоскость игрового поля
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-
             if (!plane.Raycast(ray, out float enter))
                 return;
             Mouse = ray.GetPoint(enter);

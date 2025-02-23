@@ -5,6 +5,8 @@ namespace _Project.Runtime.Core.Herbalist
 {
     public class GrenadeExplosion : MonoBehaviour
     {
+        public float Radius { get; set; } = 2;
+        
         public Timer Timer { get; private set; }
 
         [Inject]

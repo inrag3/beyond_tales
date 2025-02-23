@@ -1,6 +1,9 @@
 using _Project.Runtime.Core.Herbalist;
+using _Project.Runtime.Core.Herbalist.GlobalWorldChange;
 using _Project.Runtime.Core.Interactables.Items;
 using _Project.Runtime.InventorySystem;
+using UnityEngine;
+using Zenject;
 
 namespace _Project.Runtime.Core.Interactables.Processors
 {
@@ -48,6 +51,35 @@ namespace _Project.Runtime.Core.Interactables.Processors
         public void Process(Door door)
         {
             door.SwitchState();
+        }
+    }
+
+    public class GlobalWorldChangeProcessor
+    {
+        private readonly IGlobalWorldChangeProvider _provider;
+        public GlobalWorldChangeProcessor(IGlobalWorldChangeProvider provider)
+        {
+            _provider = provider;
+        }
+        
+        
+        public void Process(GlobalWorldChangeTrigger trigger)
+        {
+            if (_provider.Activate(trigger.transform.position, trigger.Radius))
+            {
+                Debug.Log("World change triggered");
+            }
+            else
+            {
+                Debug.Log("World change cant be triggered");
+            }
+        }
+        
+        public void Process(GlobalWorldChangeBackTrigger trigger)
+        {
+            _provider.Deactivate();
+            Debug.Log("World change back triggered");
+
         }
     }
 }
