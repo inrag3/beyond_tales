@@ -51,7 +51,6 @@ public class CurrentPotionShow : MonoBehaviour
     {
         _potionSelector = potionSelector;
         _potionSelector.SelectedPotionUpdated += SetText;
-        SetText(_potionSelector.GetCurrentPotionName());
 
         SetCurrentIngredients(_potionSelector.CurrentIngredientsCount);
         SetCurrentPotionCost(_potionSelector.CurrentPotionAmount);
@@ -63,6 +62,8 @@ public class CurrentPotionShow : MonoBehaviour
         {
             _iconDict.Add(icon.Name, icon.icon);
         }
+        SetText(_potionSelector.GetCurrentPotionName());
+
     }
 
     private void SetText(string text)
