@@ -135,6 +135,28 @@ namespace _Project.Runtime.Core.Herbalist
                 TryCallPotion();
         }
 
+        public string GetPreviousPotionName()
+        {
+            var ind = _currentPotionIntex;
+            _currentPotionIntex =
+                (_currentPotionIntex - 1 + _potionsApplyFunctions.Count) % _potionsApplyFunctions.Count;
+            var name = _potionsNames[_currentPotionIntex];
+            _currentPotionIntex = ind;
+
+            return name;
+        }
+
+        public string GetNextPotionName()
+        {
+            var ind = _currentPotionIntex;
+            _currentPotionIntex++;
+            _currentPotionIntex %= _potionsApplyFunctions.Count;
+            var name = _potionsNames[_currentPotionIntex];
+            _currentPotionIntex = ind;
+
+            return name;
+        }
+
         private void MovePreviousPotion()
         {
             _currentPotionIntex =
@@ -212,6 +234,10 @@ namespace _Project.Runtime.Core.Herbalist
     {
         public event Action<string> SelectedPotionUpdated;
         public string GetCurrentPotionName();
+
+        public string GetPreviousPotionName();
+
+        public string GetNextPotionName();
         
         //получить текущие значения 1 раз, при инициалзиации интерфейса
         //текущий баланс интредиентов
