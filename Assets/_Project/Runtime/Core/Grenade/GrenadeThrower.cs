@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using _Project.Runtime.Config;
+using _Project.Runtime.Core.Herbalist.GlobalWorldChange;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.InventorySystem;
 using UnityEngine;
@@ -30,6 +31,7 @@ namespace _Project.Runtime.Core.Herbalist
         private int _currentPotionIntex = 0;
         private PotionIngredients _potionIngredients;
         private readonly List<PotionIngredients> _potionPrices;
+        private readonly IGlobalWorldChangeProvider _globalWorldChangeProvider;
         
         public event Action<string> SelectedPotionUpdated;
         
@@ -48,6 +50,7 @@ namespace _Project.Runtime.Core.Herbalist
             IPlayerInventory inventory,
             IItemContainer itemContainer,
             IPotionApplierFactory potionApplierFactory,
+            IGlobalWorldChangeProvider globalWorldChangeProvider,
             Timer throwCoolDownTimer,
             Timer grenadeRecoveryTimer
         )
@@ -58,6 +61,7 @@ namespace _Project.Runtime.Core.Herbalist
             _inventory = inventory;
             _itemContainer = itemContainer;
             _potionApplierFactory = potionApplierFactory;
+            _globalWorldChangeProvider = globalWorldChangeProvider;
             _throwCoolDownTimer = throwCoolDownTimer;
             _grenadeRecoveryTimer = grenadeRecoveryTimer;
 
@@ -149,7 +153,7 @@ namespace _Project.Runtime.Core.Herbalist
 
         private void TryCallPotion()
         {
-            if (!(_readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0))
+            if (!(_readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0) || _globalWorldChangeProvider.IsActive)
                 return;
             _readyToThrow = false;
             if (!CurrentIngredientsCount.IsNotLess(CurrentPotionAmount))

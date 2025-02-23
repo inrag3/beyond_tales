@@ -43,7 +43,7 @@ namespace _Project.Runtime.Core.Herbalist
         protected override void OnExplosionStart(Grenade grenade, GrenadeExplosion explosion)
         {
             UpdateSecondWorldOverlap(explosion.transform.position, (a) => a.TriggerWorldChange());
-
+            explosion.Radius = _grenadeConfig.GrenadeTransformWorldRadius;
             _addExplosionToList.Invoke(explosion);
         }
 

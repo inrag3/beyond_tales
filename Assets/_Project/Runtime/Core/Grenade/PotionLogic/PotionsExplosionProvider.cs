@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using ModestTree;
 
 namespace _Project.Runtime.Core.Herbalist
 {
@@ -8,6 +9,7 @@ namespace _Project.Runtime.Core.Herbalist
     {
         private readonly List<GrenadeExplosion> _explosions = new();
 
+        public bool IsAnyExplosionsActive => !_explosions.IsEmpty();
         public event Action<IReadOnlyList<GrenadeExplosion>> GrenadesUpdated;
         
         public void RemoveExplosionFromListAndUpdateTrigger(GrenadeExplosion explosion)
@@ -30,5 +32,7 @@ namespace _Project.Runtime.Core.Herbalist
         public void AddExplosionToListAndUpdateTrigger(GrenadeExplosion explosion);
 
         public void RemoveExplosionFromListAndUpdateTrigger(GrenadeExplosion explosion);
+        
+        public bool IsAnyExplosionsActive { get; }
     }
 }
