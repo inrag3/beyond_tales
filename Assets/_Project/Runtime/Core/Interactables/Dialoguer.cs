@@ -9,17 +9,19 @@ using Zenject;
 public class Dialoguer : IInitializable, IDisposable
 {
     private readonly List<DialogueTrigger> _triggers;
+    private readonly List<DialogueInteractionTrigger> _interactionTriggers;
     private readonly DialogueManager _dialogueManager;
     private readonly IPauseHandler _pauseHandler;
 
     public Dialoguer(
-        List<DialogueTrigger> triggers,
+        List<DialogueTrigger> triggers,List<DialogueInteractionTrigger> interactionTriggers,
         DialogueManager dialogueManager,
         IPauseHandler pauseHandler)
     {
         _pauseHandler = pauseHandler;
         _dialogueManager = dialogueManager;
         _triggers = triggers;
+        _interactionTriggers = interactionTriggers;
     }
 
     public void Initialize()
@@ -30,6 +32,11 @@ public class Dialoguer : IInitializable, IDisposable
         {
             trigger.Entered += OnEntered;
         }
+
+        foreach (var interactionTrigger in _interactionTriggers)
+        {
+            interactionTrigger.Interacted += OnEntered;
+        }
     }
 
     public void Dispose()
@@ -37,6 +44,11 @@ public class Dialoguer : IInitializable, IDisposable
         foreach (var trigger in _triggers)
         {
             trigger.Entered -= OnEntered;
+        }
+        
+        foreach (var interactionTrigger in _interactionTriggers)
+        {
+            interactionTrigger.Interacted -= OnEntered;
         }
 
         _dialogueManager.Ended -= OnDialogueEnded;

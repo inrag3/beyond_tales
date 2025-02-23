@@ -16,6 +16,7 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
             Container.BindInterfacesAndSelfTo<Dialoguer>().AsSingle().NonLazy();
             Container.Bind<DialogueManager>().FromInstance(_dialogueManager).AsSingle();
             Container.Bind<List<DialogueTrigger>>().FromMethod(_ => FindObjectsOfType<DialogueTrigger>().ToList()).AsSingle();
+            Container.Bind<List<DialogueInteractionTrigger>>().FromMethod(_ => FindObjectsOfType<DialogueInteractionTrigger>().ToList()).AsSingle();
         }
     }
 }

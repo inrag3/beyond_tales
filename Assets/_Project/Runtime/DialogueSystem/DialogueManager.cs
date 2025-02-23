@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Runtime.DialogueSystem;
+using _Project.Runtime.Infrastructure.Factories;
 using DialogueSystem.Nodes;
 using DialogueSystem.Nodes.Checks;
 using ElectricServiceCompany;
@@ -87,10 +88,11 @@ namespace DialogueSystem
         public event Action Ended;
 
         private IPlayerInventory _playerInventory;
-        
+
+        private IFlowerFactory _flowerFactory;
         
         [Inject]
-        public void Construct(IPlayerInventory playerInventory)
+        public void Construct(IPlayerInventory playerInventory, IFlowerFactory flowerFactory)
         {
             dialogueHider = GetComponent<CanvasGroup>();
             Debug.Log(dialogueHider.IsNullOrDestroyed());
@@ -100,6 +102,7 @@ namespace DialogueSystem
             actors.Add(playerActor);
 
             _playerInventory = playerInventory;
+            _flowerFactory = flowerFactory;
         }
 
         void Start()
@@ -164,6 +167,12 @@ namespace DialogueSystem
                     break;
                 case RemoveItemsNode node:
                     yield return StartCoroutine(ProcessRemoveItemsNode(node));
+                    break;
+                case PlantFlowerForBedNode node:
+                    yield return StartCoroutine(ProcessPlantFlowerForBedNode(node));
+                    break;
+                case SetAccessibleNode node:
+                    yield return StartCoroutine(ProcessSetAccessibleNode(node));
                     break;
             }
         }
@@ -244,6 +253,21 @@ namespace DialogueSystem
         protected IEnumerator ProcessRemoveItemsNode(RemoveItemsNode node)
         {
             _playerInventory.RemoveItems(node.itemsToRemove);
+            nextNode = node.GetNextNode();
+            yield break;
+        }
+
+        protected IEnumerator ProcessPlantFlowerForBedNode(PlantFlowerForBedNode node)
+        {
+            var flower = _flowerFactory.Create(node.FlowerType);
+            node.Bed.Plant(flower);
+            nextNode = node.GetNextNode();
+            yield break;
+        }
+
+        protected IEnumerator ProcessSetAccessibleNode(SetAccessibleNode node)
+        {
+            node.Interactable.IsAccessible = node.IsAccessible;
             nextNode = node.GetNextNode();
             yield break;
         }
