@@ -25,6 +25,7 @@ namespace _Project.Runtime.Infrastructure.Installers.GameObject
             Container.Bind<ItemProcessor>().AsSingle();
             Container.Bind<BedProcessor>().AsSingle();
             Container.Bind<DoorProcessor>().AsSingle();
+            Container.Bind<GlobalWorldChangeProcessor>().AsSingle();
             Container.BindInterfacesAndSelfTo<Detector>().AsSingle().NonLazy();
         }
     }
