@@ -13,50 +13,77 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly IInputService _inputService;
         private readonly IHerbalistProvider _provider;
         private readonly HerbalistAnimer _animer;
-        private bool _isPaused = false;
-
+        private CharacterController _controller;
+        
+        private const float GRAVITY = -9.81f;
+        private Vector3 _velocity;
+        private bool _isPaused;
+        
         public Mover(
             ISpeedConfig config,
             HerbalistAnimer animer,
             IHerbalistProvider herbalistProvider,
+            CharacterController controller,
             IInputService inputService
         )
         {
+            _controller = controller;
             _provider = herbalistProvider;
             _inputService = inputService;
             _animer = animer;
             _speed = config.Speed;
         }
+        
         public void Tick()
         {
             if (_isPaused)
                 return;
             
+            Transform transform = _provider.Herbalist.Transform;
+            
             float moveHorizontal = _inputService.Horizontal;
             float moveVertical = _inputService.Vertical;
 
-            var movement = new Vector3(moveHorizontal, 0f, moveVertical);
+            Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical);
             movement = Quaternion.Euler(0, 45, 0) * movement;
             movement.Normalize();
 
-            movement.Normalize();
-            float value = Math.Clamp(movement.magnitude, 0, 1);
+            float value = Mathf.Clamp(movement.magnitude, 0, 1);
             _animer.PlayMove(value);
-            if (!(movement.magnitude > 0))
-                return;
 
+            // Применение гравитации
+            if (_controller.isGrounded && _velocity.y < 0)
+                _velocity.y = -2f; // Небольшой толчок вниз для надежного приземления
 
-            if (_inputService.IsRollButtonPressed)
+            _velocity.y += GRAVITY * Time.deltaTime;
+
+            if (_inputService.IsRollButtonPressed && movement.magnitude > 0)
             {
-                _animer.PlayRoll();
+                _animer.PlayRoll(OnRollCompleted);
+                
+                _controller.Move(movement * (8 * Time.deltaTime)); // Ускоренное перекатывание
+                _controller.height = 0.9f;
+                _controller.center = new Vector3(_controller.center.x, 0.55f, _controller.center.z);
             }
-            
-            
-            Transform transform = _provider.Herbalist.Transform;
-            transform.position += movement * (_speed * Time.deltaTime);
+            else
+            {
+                _controller.Move(movement * (_speed * Time.deltaTime)); // Обычное движение
+            }
 
+            _controller.Move(_velocity * Time.deltaTime); // Применяем гравитацию
+
+            // Поворот персонажа в направлении движения
+            if (!(movement.magnitude > 0)) 
+                return;
+            
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+        }
+
+        private void OnRollCompleted()
+        {
+            _controller.height = 1.8f;
+            _controller.center = new Vector3(_controller.center.x, 1f, _controller.center.z);
         }
 
         public void Pause()

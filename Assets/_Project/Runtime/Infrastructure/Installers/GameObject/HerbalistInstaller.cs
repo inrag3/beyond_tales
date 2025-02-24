@@ -10,9 +10,12 @@ namespace _Project.Runtime.Infrastructure.Installers.GameObject
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private Scanner<Interactable> _scanner;
+        [SerializeField] private CharacterController _controller;
+        
         
         public override void InstallBindings()
         {
+            
             Container.Bind<Transform>().FromInstance(transform).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<Scanner<Interactable>>().FromInstance(_scanner).AsSingle().NonLazy();
             Container.Bind<Planter>().AsSingle();
@@ -27,6 +30,8 @@ namespace _Project.Runtime.Infrastructure.Installers.GameObject
             Container.Bind<DoorProcessor>().AsSingle();
             Container.Bind<GlobalWorldChangeProcessor>().AsSingle();
             Container.BindInterfacesAndSelfTo<Detector>().AsSingle().NonLazy();
+
+            Container.Bind<CharacterController>().FromInstance(_controller).AsSingle().NonLazy();
         }
     }
 }
