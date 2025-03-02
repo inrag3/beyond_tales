@@ -17,6 +17,7 @@ namespace _Project.Runtime.Infrastructure.Installers.GameObject
         {
             
             Container.Bind<Transform>().FromInstance(transform).AsSingle().NonLazy();
+            Container.Bind<PlayerData>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<Scanner<Interactable>>().FromInstance(_scanner).AsSingle().NonLazy();
             Container.Bind<Planter>().AsSingle();
             Container.Bind<Animator>().FromInstance(_animator).AsSingle();

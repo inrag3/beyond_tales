@@ -1,7 +1,9 @@
-﻿namespace _Project.Runtime.QuestSystem
+﻿using UnityEngine;
+
+namespace _Project.Runtime.QuestSystem
 {
-    public class BaseQuestAction
+    public abstract class BaseQuestAction : MonoBehaviour
     {
-        
+        public abstract void Activate();
     }
 }

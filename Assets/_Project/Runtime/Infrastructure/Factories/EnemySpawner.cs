@@ -1,6 +1,7 @@
 using System.Collections;
 using _Project.Runtime.Core.Enemies;
 using _Project.Runtime.Infrastructure.Installers.GameObject;
+using _Project.Runtime.QuestSystem;
 using ElectricServiceCompany;
 using ObservableCollections;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace _Project.Runtime.Infrastructure.Factories
     public class EnemySpawner : MonoBehaviour, ISpawner, IEnemiesProvider
     {
         [SerializeField] private float _cooldown;
+        [SerializeField] private int _enemySpawnCount = -1;
+        [SerializeField] private BaseQuestAction[] _questActionsToActivateAfterAllEnemiesDied;
 
         private readonly ObservableHashSet<Enemy> _enemies = new();
         private IEnemyFactory _factory;
@@ -18,6 +21,9 @@ namespace _Project.Runtime.Infrastructure.Factories
         private WaitForSeconds _waitForSeconds;
         private ActorFactory _actorFactory;
         public IObservableCollection<Enemy> Enemies => _enemies;
+
+        private int _spawnedEnemies = 0;
+        private int _diedEnemies = 0;
 
         [Inject]
         private void Construct(IEnemyFactory factory, ActorFactory actorFactory)
@@ -41,12 +47,13 @@ namespace _Project.Runtime.Infrastructure.Factories
 
         private IEnumerator Spawn()
         {
-            while (true)
+            while (_enemySpawnCount == -1 || _spawnedEnemies < _enemySpawnCount)
             { 
                 Enemy enemy = _factory.Create(transform.position);
                 _actorFactory.Create(enemy);
                 enemy.Died += OnDied; 
                 _enemies.Add(enemy);
+                _spawnedEnemies++;
                 _waitForSeconds = new WaitForSeconds(_cooldown);
                 yield return _waitForSeconds;
             }
@@ -57,6 +64,16 @@ namespace _Project.Runtime.Infrastructure.Factories
             enemy.Died -= OnDied;
             _enemies.Remove(enemy);
             enemy.Destroy();
+
+            _diedEnemies++;
+
+            if (_enemySpawnCount != -1 && _diedEnemies == _enemySpawnCount)
+            {
+                foreach (var quest in _questActionsToActivateAfterAllEnemiesDied)
+                {
+                    quest.Activate();
+                }
+            }
         }
     }
 }

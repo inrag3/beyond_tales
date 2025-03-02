@@ -8,6 +8,8 @@ namespace _Project.Runtime.Core.Herbalist
     {
         public IHealth Health { get; }
         public IScanner<Interactable> Scanner { get; }
+
+        public PlayerData PlayerData { get; }
     }
 
     public interface ITarget : ITransformable, IDamageable

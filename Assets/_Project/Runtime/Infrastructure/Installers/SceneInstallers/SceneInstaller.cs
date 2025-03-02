@@ -6,6 +6,7 @@ using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Installers.GameObject;
+using _Project.Runtime.QuestSystem;
 using Zenject;
 
 namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
@@ -37,6 +38,12 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
             Container.Bind<List<ISpawner>>().FromInstance(list).AsSingle();
             var enemiesProviders = spawners.Select(spawner => spawner as IEnemiesProvider).ToList();
             Container.Bind<List<IEnemiesProvider>>().FromInstance(enemiesProviders).AsSingle();
+        }
+
+        private void BindQuestActions()
+        {
+            var storyMarks = FindObjectsOfType<AddStoryMarksQuestAction>();
+            Container.Bind<AddStoryMarksQuestAction[]>().FromInstance(storyMarks).AsSingle();
         }
     }
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.DialogueSystem;
 using _Project.Runtime.Infrastructure.Factories;
 using DialogueSystem.Nodes;
@@ -90,9 +91,11 @@ namespace DialogueSystem
         private IPlayerInventory _playerInventory;
 
         private IFlowerFactory _flowerFactory;
+
+        private IHerbalistProvider _herbalistProvider;
         
         [Inject]
-        public void Construct(IPlayerInventory playerInventory, IFlowerFactory flowerFactory)
+        public void Construct(IPlayerInventory playerInventory, IFlowerFactory flowerFactory, IHerbalistProvider herbalistProvider)
         {
             dialogueHider = GetComponent<CanvasGroup>();
             Debug.Log(dialogueHider.IsNullOrDestroyed());
@@ -103,6 +106,7 @@ namespace DialogueSystem
 
             _playerInventory = playerInventory;
             _flowerFactory = flowerFactory;
+            _herbalistProvider = herbalistProvider;
         }
 
         void Start()
@@ -174,6 +178,9 @@ namespace DialogueSystem
                 case SetAccessibleNode node:
                     yield return StartCoroutine(ProcessSetAccessibleNode(node));
                     break;
+                case ActivateQuestActionsNode node:
+                    yield return StartCoroutine(ProcessActivateQuestActionsNode(node));
+                    break;
             }
         }
 
@@ -243,9 +250,8 @@ namespace DialogueSystem
 
         protected IEnumerator ProcessStoryMarksNode(StoryMarksNode node)
         {
-            //Todo Решить нужны ли нам storyMarks и если да то, добавить для них где-то хранилище
-            /*PlayerData.instance.AddStoryMarks(node.MarksToAdd);
-            PlayerData.instance.RemoveStoryMarks(node.MarksToRemove);*/
+            _herbalistProvider.Herbalist.PlayerData.AddStoryMarks(node.MarksToAdd);
+            _herbalistProvider.Herbalist.PlayerData.RemoveStoryMarks(node.MarksToRemove);
             nextNode = node.GetNextNode();
             yield break;
         }
@@ -279,10 +285,10 @@ namespace DialogueSystem
             //Todo Решить нужны ли нам storyMarks и если да то, добавить для них где-то хранилище
             switch (node)
             {
-                /*case StoryMarksCheckNode marksNode:
-                    flag = !PlayerData.instance.HasAtLeastOneMark(marksNode.ForbiddenMarks) &&
-                           PlayerData.instance.HasStoryMarks(marksNode.RequiredMarks);
-                    break;*/
+                case StoryMarksCheckNode marksNode:
+                    flag = !_herbalistProvider.Herbalist.PlayerData.HasAtLeastOneMark(marksNode.ForbiddenMarks) &&
+                           _herbalistProvider.Herbalist.PlayerData.HasStoryMarks(marksNode.RequiredMarks);
+                    break;
                 case InventoryCheckNode checkNode:
                     flag = _playerInventory.HasItems(checkNode.requiredItems);
                     break;
@@ -290,9 +296,27 @@ namespace DialogueSystem
                     flag = _playerInventory.CanAddItems(addNode.itemsToAdd,
                         addNode.AddIfPossible);
                     break;
+                case HealthCheck healthCheckNode:
+                    flag = _herbalistProvider.Herbalist.Health.Value.CurrentValue < healthCheckNode.Threshold;
+                    if (!healthCheckNode.NeedLower)
+                    {
+                        flag = !flag;
+                    }
+                    break;
             }
 
             nextNode = node.GetNextNodeByCheck(flag);
+            yield break;
+        }
+
+        protected IEnumerator ProcessActivateQuestActionsNode(ActivateQuestActionsNode node)
+        {
+            foreach (var questAction in node.QuestActions)
+            {
+                questAction.Activate();
+            }
+            
+            nextNode = node.GetNextNode();
             yield break;
         }
 

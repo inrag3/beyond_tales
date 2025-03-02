@@ -16,9 +16,11 @@ namespace _Project.Runtime.Core.Herbalist
         private Mover _mover;
         private Attacker _attacker;
         private HerbalistAnimer _animer;
+        private PlayerData _playerData;
 
         [Inject]
-        private void Construct(IHealth health, IScanner<Interactable> scanner, Mover mover, Attacker attacker, HerbalistAnimer animer)
+        private void Construct(IHealth health, IScanner<Interactable> scanner, Mover mover, 
+            Attacker attacker, HerbalistAnimer animer, PlayerData playerData)
         {
             _animer = animer;
             _attacker = attacker;
@@ -26,6 +28,7 @@ namespace _Project.Runtime.Core.Herbalist
             //TODO убрать 
             Scanner = scanner;
             Health = health;
+            _playerData = playerData;
         }
 
         public IScanner<Interactable> Scanner { get; private set; }
@@ -33,6 +36,8 @@ namespace _Project.Runtime.Core.Herbalist
         public IHealth Health { get; private set; }
 
         public Transform Transform => transform;
+
+        public PlayerData PlayerData => _playerData;
 
         private void Awake()
         {
