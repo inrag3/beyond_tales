@@ -7,6 +7,7 @@ using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Installers.GameObject;
 using _Project.Runtime.QuestSystem;
+using _Project.Runtime.SearchSystem;
 using Zenject;
 
 namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
@@ -24,6 +25,8 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
             Container.Bind<Bed[]>().FromMethod(_ => FindObjectsOfType<Bed>()).AsSingle();
             Container.Bind<Door[]>().FromMethod(_ => FindObjectsOfType<Door>()).AsSingle();
             Container.BindInterfacesAndSelfTo<Waver>().AsSingle().NonLazy();
+            
+            BindSearchIndices();
         }
 
         public void Initialize()
@@ -44,6 +47,12 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
         {
             var storyMarks = FindObjectsOfType<AddStoryMarksQuestAction>();
             Container.Bind<AddStoryMarksQuestAction[]>().FromInstance(storyMarks).AsSingle();
+        }
+
+        private void BindSearchIndices()
+        {
+            var indices = FindObjectsOfType<SearchIndex>();
+            Container.Bind<SearchIndex[]>().FromInstance(indices).AsSingle();
         }
     }
 

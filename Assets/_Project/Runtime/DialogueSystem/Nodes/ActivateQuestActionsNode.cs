@@ -7,5 +7,7 @@ namespace DialogueSystem.Nodes
     public class ActivateQuestActionsNode : DialogueBaseNode
     {
         [SerializeField] public BaseQuestAction[] QuestActions;
+
+        [SerializeField] public string Index;
     }
 }

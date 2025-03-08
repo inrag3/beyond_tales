@@ -5,6 +5,8 @@ using System.Linq;
 using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.DialogueSystem;
 using _Project.Runtime.Infrastructure.Factories;
+using _Project.Runtime.QuestSystem;
+using _Project.Runtime.SearchSystem;
 using DialogueSystem.Nodes;
 using DialogueSystem.Nodes.Checks;
 using ElectricServiceCompany;
@@ -93,9 +95,12 @@ namespace DialogueSystem
         private IFlowerFactory _flowerFactory;
 
         private IHerbalistProvider _herbalistProvider;
+
+        private SearchSystem _searchSystem;
         
         [Inject]
-        public void Construct(IPlayerInventory playerInventory, IFlowerFactory flowerFactory, IHerbalistProvider herbalistProvider)
+        public void Construct(IPlayerInventory playerInventory, IFlowerFactory flowerFactory, 
+            IHerbalistProvider herbalistProvider, SearchSystem searchSystem)
         {
             dialogueHider = GetComponent<CanvasGroup>();
             Debug.Log(dialogueHider.IsNullOrDestroyed());
@@ -107,6 +112,7 @@ namespace DialogueSystem
             _playerInventory = playerInventory;
             _flowerFactory = flowerFactory;
             _herbalistProvider = herbalistProvider;
+            _searchSystem = searchSystem;
         }
 
         void Start()
@@ -311,6 +317,19 @@ namespace DialogueSystem
 
         protected IEnumerator ProcessActivateQuestActionsNode(ActivateQuestActionsNode node)
         {
+            if (!string.IsNullOrEmpty(node.Index))
+            {
+                var index = _searchSystem.GetIndex(node.Index);
+
+                foreach (var element in index.IndexedComponents)
+                {
+                    if (element is BaseQuestAction action)
+                    {
+                        action.Activate();
+                    }
+                }
+            }
+
             foreach (var questAction in node.QuestActions)
             {
                 questAction.Activate();

@@ -37,6 +37,8 @@ namespace _Project.Runtime.Infrastructure.Installers
             
             
             Container.BindInterfacesAndSelfTo<PauseHandler>().AsSingle().NonLazy();
+
+            Container.Bind<SearchSystem.SearchSystem>().AsSingle().NonLazy();
         }
 
         private void BindServices()
