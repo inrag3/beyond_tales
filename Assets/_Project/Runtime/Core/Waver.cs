@@ -15,12 +15,12 @@ namespace _Project.Runtime.Core
         }
         public void Pause()
         {
-            _spawners.ForEach(x => x.Stop());
+            //_spawners.ForEach(x => x.Stop());
         }
 
         public void Resume()
         {
-            _spawners.ForEach(x => x.Begin());
+            //_spawners.ForEach(x => x.Begin());
         }
 
         public void Tick()
