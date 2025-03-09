@@ -41,7 +41,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6d3ca473cef5c4e4d9b399f9db316e67,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.2588191
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6d3ca473cef5c4e4d9b399f9db316e67,
         type: 3}
@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6d3ca473cef5c4e4d9b399f9db316e67,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.9659258
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6d3ca473cef5c4e4d9b399f9db316e67,
         type: 3}
@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6d3ca473cef5c4e4d9b399f9db316e67,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6d3ca473cef5c4e4d9b399f9db316e67,
         type: 3}
@@ -112,6 +112,7 @@ MonoBehaviour:
   <Data>k__BackingField:
     <ItemEnum>k__BackingField: 1
     <Value>k__BackingField: 1
+  flowerType: 1
 --- !u!136 &7783146906154569747
 CapsuleCollider:
   m_ObjectHideFlags: 0
