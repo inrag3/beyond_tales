@@ -267,6 +267,16 @@ namespace DialogueSystem
 
         protected IEnumerator ProcessSetAccessibleNode(SetAccessibleNode node)
         {
+            var go = node.Interactable.gameObject;
+            var bed = go.GetComponent<Bed>();
+            if (bed != null)
+            {
+                if (!bed.IsCompleted)
+                {
+                    nextNode = node.GetNextNode();
+                    yield break;
+                }
+            }
             node.Interactable.IsAccessible = node.IsAccessible;
             nextNode = node.GetNextNode();
             yield break;

@@ -112,6 +112,7 @@ MonoBehaviour:
   <Data>k__BackingField:
     <ItemEnum>k__BackingField: 3
     <Value>k__BackingField: 1
+  flowerType: 3
 --- !u!136 &6015236812590245493
 CapsuleCollider:
   m_ObjectHideFlags: 0
