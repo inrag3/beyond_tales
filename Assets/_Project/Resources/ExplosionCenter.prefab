@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6649903082621372294}
   - component: {fileID: 5514377535571767325}
   - component: {fileID: -7501609584566681253}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ExplosionCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
