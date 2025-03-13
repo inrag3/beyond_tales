@@ -177,11 +177,12 @@ namespace _Project.Runtime.Core.Herbalist
         {
             if (!(_readyToThrow && _inventory.Items[ItemEnum.Grenade] > 0) || _globalWorldChangeProvider.IsActive)
                 return;
-            _readyToThrow = false;
             if (!CurrentIngredientsCount.IsNotLess(CurrentPotionAmount))
             {
                 return;
             }
+            _readyToThrow = false;
+
             _potionIngredients -= CurrentPotionAmount;
             CurrentIngredientCountChanged?.Invoke(CurrentIngredientsCount);
             
