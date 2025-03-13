@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using _Project.Runtime.Config;
 using _Project.Runtime.Core.Herbalist.GlobalWorldChange;
 using _Project.Runtime.Infrastructure.Factories;
-using _Project.Runtime.InventorySystem;
 using UnityEngine;
 using Zenject;
 
