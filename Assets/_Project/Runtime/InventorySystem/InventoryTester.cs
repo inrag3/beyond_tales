@@ -17,13 +17,6 @@ public class InventoryTester : ITickable
 
     public void Tick()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            _playerInventory.AddItem(ItemEnum.Grenade);
-        }
-        else if (Input.GetKeyDown(KeyCode.O))
-        {
-            _playerInventory.RemoveItems(new ItemQuantityPair[]{ new(){itemType = ItemEnum.Grenade,quantity = 1 }});
-        }
+       
     }
 }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e14ddccf9c94c4392ed6cfdedf12d3, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  _itemEnum: 4
+  _itemEnum: 3
   _maxStackSize: 5
   _startQuantity: 0
