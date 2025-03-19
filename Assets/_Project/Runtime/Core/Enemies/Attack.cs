@@ -5,7 +5,7 @@ using Zenject;
 
 namespace _Project.Runtime.Core.Enemies
 {
-    public class Attack : MonoBehaviour
+    public class Attack : MonoBehaviour, IAttacker
     {
         [field: SerializeField] public float Distance { get; private set; } = 1.5f;
         [SerializeField] private float _damage;
@@ -36,5 +36,11 @@ namespace _Project.Runtime.Core.Enemies
             _currentCooldown = _cooldown;
         }
     }
-    
+
+    public interface IAttacker
+    {
+        public void Execute(ITarget target);
+        public float Distance { get; }
+        public bool InCooldown { get; }
+    }
 }

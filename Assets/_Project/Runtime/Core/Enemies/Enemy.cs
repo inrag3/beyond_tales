@@ -2,6 +2,7 @@
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.Infrastructure.Factories;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.Mathf;
@@ -15,7 +16,7 @@ namespace _Project.Runtime.Core.Enemies
         [field: SerializeField] public Point Point { get; private set; }
         
         private Movement _movement;
-        private Attack _attack;
+        private IAttacker _attack;
 
         private EnemyAnimer _animer;
 
@@ -73,6 +74,7 @@ namespace _Project.Runtime.Core.Enemies
         {
             _collider.enabled = false;
             _animer.PlayDeath();
+            transform.DOScale(Vector3.zero, 0.15f);
             Died?.Invoke(this);
         }
 
