@@ -1,5 +1,5 @@
+using _Project.Runtime.Core.Grenades.GlobalWorldChange;
 using _Project.Runtime.Core.Herbalist;
-using _Project.Runtime.Core.Herbalist.GlobalWorldChange;
 using _Project.Runtime.Core.Interactables.Items;
 using _Project.Runtime.InventorySystem;
 using UnityEngine;

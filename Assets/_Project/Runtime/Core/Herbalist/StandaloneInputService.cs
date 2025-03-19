@@ -22,11 +22,10 @@ namespace _Project.Runtime.Core.Herbalist
         public bool IsDialogButtonPressed => Input.GetKeyDown(KeyCode.Tab);
         public bool IsAttackButtonPressed => Input.GetMouseButtonDown(0);
         public bool IsInteractButtonPressed => Input.GetKeyDown(KeyCode.E);
-        
-        
+        public bool IsEquipButtonPressed => Input.GetKeyDown(KeyCode.I);
         
         public Vector3 Mouse { get; private set; }
-        
+
         public void Initialize()
         {
             //_camera = UnityEngine.Camera.main;
