@@ -7,7 +7,7 @@ namespace _Project.Runtime.Infrastructure.Factories
 {
     public class EnemyFactory : IEnemyFactory, IInitializable
     {
-        private const string EnemyPath = "Enemy";
+        private const string EnemyPath = "Birch";
 
         private readonly IAssetManager _assetManager;
         private readonly IInstantiator _instantiator;
@@ -21,7 +21,7 @@ namespace _Project.Runtime.Infrastructure.Factories
 
         public Enemy Create(Vector3 at)
         {
-            return _instantiator.InstantiatePrefabForComponent<Enemy>(_prefab, at, Quaternion.identity, null);
+            return _instantiator.InstantiatePrefabForComponent<Birch>(_prefab, at, Quaternion.identity, null);
         }
 
         public void Initialize()
