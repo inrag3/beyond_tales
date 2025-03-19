@@ -11,11 +11,11 @@ namespace _Project.Runtime.Infrastructure.Installers.GameObject
         [SerializeField] private Animator _animator;
         [SerializeField] private Scanner<Interactable> _scanner;
         [SerializeField] private CharacterController _controller;
-        
+        [SerializeField] private Transform _hand;
+        [SerializeField] private Transform _back;
         
         public override void InstallBindings()
         {
-            
             Container.Bind<Transform>().FromInstance(transform).AsSingle().NonLazy();
             Container.Bind<PlayerData>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<Scanner<Interactable>>().FromInstance(_scanner).AsSingle().NonLazy();
@@ -24,15 +24,24 @@ namespace _Project.Runtime.Infrastructure.Installers.GameObject
             Container.Bind<HerbalistAnimer>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<Attacker>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<Mover>().AsSingle();
+           
+            Container.BindInterfacesAndSelfTo<Equipper>().AsSingle().WithArguments(_hand, _back).NonLazy();
+            
             Container.BindInterfacesTo<Processor>().AsSingle().NonLazy();
             Container.BindInterfacesTo<Interactor>().AsSingle().NonLazy();
+            
+           
             Container.Bind<ItemProcessor>().AsSingle();
             Container.Bind<BedProcessor>().AsSingle();
             Container.Bind<DoorProcessor>().AsSingle();
+            
+           
+            
             Container.Bind<GlobalWorldChangeProcessor>().AsSingle();
             Container.BindInterfacesAndSelfTo<Detector>().AsSingle().NonLazy();
-
+            
             Container.Bind<CharacterController>().FromInstance(_controller).AsSingle().NonLazy();
         }
+
     }
 }

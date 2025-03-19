@@ -1,4 +1,5 @@
-using _Project.Runtime.Core.Herbalist.GlobalWorldChange;
+using _Project.Runtime.Core.Grenades.GlobalWorldChange;
+using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.Core.Interactables.Items;
 
 namespace _Project.Runtime.Core.Interactables.Processors
@@ -9,9 +10,17 @@ namespace _Project.Runtime.Core.Interactables.Processors
         private readonly BedProcessor _bedProcessor;
         private readonly DoorProcessor _doorProcessor;
         private readonly GlobalWorldChangeProcessor _globalWorldChangeProcessor;
+        private readonly Equipper _equipper;
 
-        public Processor(ItemProcessor itemProcessor, BedProcessor bedProcessor, DoorProcessor doorProcessor, GlobalWorldChangeProcessor globalWorldChangeProcessor)
+        public Processor(
+            ItemProcessor itemProcessor,
+            BedProcessor bedProcessor,
+            DoorProcessor doorProcessor,
+            GlobalWorldChangeProcessor globalWorldChangeProcessor,
+            Equipper equipper
+        )
         {
+            _equipper = equipper;
             _bedProcessor = bedProcessor;
             _itemProcessor = itemProcessor;
             _doorProcessor = doorProcessor;
@@ -41,6 +50,11 @@ namespace _Project.Runtime.Core.Interactables.Processors
         public void Accept(GlobalWorldChangeBackTrigger trigger)
         {
             _globalWorldChangeProcessor.Process(trigger);
+        }
+
+        public void Accept(Weapon weapon)
+        {
+            _equipper.Equip(weapon);
         }
     }
 }

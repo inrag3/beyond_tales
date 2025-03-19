@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using _Project.Runtime.Core;
+using _Project.Runtime.Core.Grenades;
+using _Project.Runtime.Core.Grenades.GlobalWorldChange;
+using _Project.Runtime.Core.Grenades.PotionLogic;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Herbalist;
-using _Project.Runtime.Core.Herbalist.GlobalWorldChange;
 using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Factories.UI;

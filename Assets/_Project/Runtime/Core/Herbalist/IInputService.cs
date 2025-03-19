@@ -17,5 +17,6 @@ namespace _Project.Runtime.Core.Herbalist
 
         public bool IsAttackButtonPressed { get; }
         public Vector3 Mouse { get; }
+        public bool IsEquipButtonPressed { get; }
     }
 }

@@ -11,7 +11,4 @@ namespace _Project.Runtime.Core.Interactables
         public abstract void Interact(IInteractableVisitor visitor);
         public Transform Transform => transform;
     }
-    
-    
-    
 }
