@@ -18,7 +18,7 @@ namespace _Project.Runtime.Core.Herbalist
             drawer.Register(this);
         }
 
-        public Enemy Target { get; private set; }
+        public Creature Target { get; private set; }
 
         public void Initialize()
         {
@@ -37,7 +37,7 @@ namespace _Project.Runtime.Core.Herbalist
                 
 
             Collider collider = info.collider;
-            if (!collider.TryGetComponent(out Enemy enemy))
+            if (!collider.TryGetComponent(out Creature enemy))
                 return;
             Target = enemy;
         }

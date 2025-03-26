@@ -9,13 +9,12 @@ namespace _Project.Runtime.Core.Herbalist
 {
     public class Attacker : ITickable, IInitializable, IDisposable, IPauseHandler
     {
-        private readonly LayerMask _layerMask = 1 << 7;
         private readonly IInputService _inputService;
         private readonly HerbalistAnimer _animer;
         private readonly Transform _transform;
         private readonly Detector _detector;
         private readonly Mover _mover;
-        private Enemy _target;
+        private Creature _target;
         private bool _isPause;
 
         public Attacker(
