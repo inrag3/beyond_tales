@@ -45,6 +45,14 @@ namespace _Project.Runtime.Infrastructure.Factories
             }
         }
 
+        public void Reset()
+        {
+            Stop();
+            _spawnedEnemies = 0;
+            _enemies.Clear();
+            _diedEnemies = 0;
+        }
+
         private IEnumerator Spawn()
         {
             while (_enemySpawnCount == -1 || _spawnedEnemies < _enemySpawnCount)

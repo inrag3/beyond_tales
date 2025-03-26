@@ -4,5 +4,6 @@ namespace _Project.Runtime.Infrastructure.Factories
     {
         public void Begin();
         public void Stop();
+        public void Reset();
     }
 }

@@ -10,6 +10,7 @@ namespace _Project.Runtime.QuestSystem
         {
             foreach (var spawner in _spawners)
             {
+                spawner.Reset();
                 spawner.Begin();
             }
         }
