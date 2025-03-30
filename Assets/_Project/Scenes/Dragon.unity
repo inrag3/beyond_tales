@@ -892,6 +892,7 @@ MonoBehaviour:
   _enemySpawnCount: 1
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 109069828}
+  - {fileID: 1803919096}
 --- !u!114 &109069828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -914,12 +915,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109069826}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -51.75, y: 0, z: -164.4}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.0499992, y: 0, z: -6.699997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1476849032}
+  m_Father: {fileID: 1803919095}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &109594532
 MonoBehaviour:
@@ -3954,7 +3955,7 @@ MonoBehaviour:
   m_Name: Story Marks Check
   m_EditorClassIdentifier: 
   graph: {fileID: 2080738545}
-  position: {x: 296, y: -56}
+  position: {x: 248, y: -72}
   ports:
     keys:
     - pass
@@ -3966,7 +3967,10 @@ MonoBehaviour:
       _node: {fileID: 460762581}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: input
+        node: {fileID: 1583821208}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -3977,7 +3981,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: 1205475464}
+        node: {fileID: 1006262464}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -4011,7 +4015,8 @@ MonoBehaviour:
   output: {fileID: 0}
   pass: {fileID: 0}
   fail: {fileID: 0}
-  RequiredMarks: []
+  RequiredMarks:
+  - FirstDragonPunch
   ForbiddenMarks: []
 --- !u!1 &468766062
 GameObject:
@@ -4118,6 +4123,70 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468766062}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &474919847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 474919848}
+  - component: {fileID: 474919850}
+  - component: {fileID: 474919849}
+  m_Layer: 0
+  m_Name: waveSpawner2
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &474919848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474919847}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.0499992, y: 0, z: -6.699997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1803919095}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &474919849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474919847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5d6e960f954dc6a71e3547b4853bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _storyMarks:
+  - SecondDragonSpawner
+--- !u!114 &474919850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474919847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a30f9f22ec74e379085051ea35d1a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldown: 1
+  _enemySpawnCount: 1
+  _questActionsToActivateAfterAllEnemiesDied:
+  - {fileID: 474919849}
+  - {fileID: 1803919096}
 --- !u!1 &496490750
 GameObject:
   m_ObjectHideFlags: 0
@@ -5266,6 +5335,7 @@ GameObject:
   - component: {fileID: 693941544}
   - component: {fileID: 693941543}
   - component: {fileID: 693941542}
+  - component: {fileID: 693941546}
   m_Layer: 7
   m_Name: DragonAss
   m_TagString: Untagged
@@ -5300,6 +5370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4a7220f68e4ae3ba63f6ad2423ac1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dialogue: {fileID: 2012018963}
+  _onHit: {fileID: 693941546}
 --- !u!136 &693941543
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5373,6 +5445,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693941540}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &693941546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693941540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5d6e960f954dc6a71e3547b4853bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _storyMarks:
+  - FirstDragonPunch
 --- !u!1 &720277879
 GameObject:
   m_ObjectHideFlags: 0
@@ -6617,6 +6703,70 @@ MonoBehaviour:
   initializableActors:
   - name: "\u0420\u0430\u0441\u0441\u043A\u0430\u0437\u0447\u0438\u043A"
     avatar: {fileID: 21300006, guid: 079f5a8d00f74c84181be0a872b4c39d, type: 3}
+--- !u!1 &894467513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 894467514}
+  - component: {fileID: 894467516}
+  - component: {fileID: 894467515}
+  m_Layer: 0
+  m_Name: waveSpawner1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &894467514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894467513}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.0499992, y: 0, z: -6.699997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1803919095}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &894467515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894467513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5d6e960f954dc6a71e3547b4853bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _storyMarks:
+  - FirstDragonSpawner
+--- !u!114 &894467516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894467513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a30f9f22ec74e379085051ea35d1a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldown: 1
+  _enemySpawnCount: 1
+  _questActionsToActivateAfterAllEnemiesDied:
+  - {fileID: 894467515}
+  - {fileID: 1803919096}
 --- !u!1 &897456018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1086224761313166, guid: fa66820763744ef46b5a9cfb5ef88187,
@@ -7053,6 +7203,82 @@ MonoBehaviour:
   _colliders:
   - {fileID: 936687939}
   _makeActive: 1
+--- !u!114 &937262927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18c030b918f38648acc2c38c38ef954, type: 3}
+  m_Name: Story Marks Check
+  m_EditorClassIdentifier: 
+  graph: {fileID: 2080738545}
+  position: {x: 1352, y: -296}
+  ports:
+    keys:
+    - pass
+    - fail
+    - input
+    - output
+    values:
+    - _fieldName: pass
+      _node: {fileID: 937262927}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1896452111}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: fail
+      _node: {fileID: 937262927}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1445449226}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 937262927}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 1760063198}
+        reroutePoints: []
+      - fieldName: pass
+        node: {fileID: 1583821208}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 937262927}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  pass: {fileID: 0}
+  fail: {fileID: 0}
+  RequiredMarks:
+  - SecondDragonPunch
+  ForbiddenMarks: []
 --- !u!114 &968338977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7496,6 +7722,80 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002855462}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1006262464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18c030b918f38648acc2c38c38ef954, type: 3}
+  m_Name: Story Marks Check
+  m_EditorClassIdentifier: 
+  graph: {fileID: 2080738545}
+  position: {x: 552, y: 8}
+  ports:
+    keys:
+    - pass
+    - fail
+    - input
+    - output
+    values:
+    - _fieldName: pass
+      _node: {fileID: 1006262464}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 2123708286}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: fail
+      _node: {fileID: 1006262464}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1205475464}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 1006262464}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: fail
+        node: {fileID: 460762581}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1006262464}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  pass: {fileID: 0}
+  fail: {fileID: 0}
+  RequiredMarks:
+  - FirstDragonSpawner11
+  - FirstDragonSpawner12
+  ForbiddenMarks: []
 --- !u!1 &1012600817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6541341381714399375, guid: a05168b5569a6bc48bdcee6077c50eb1,
@@ -8351,7 +8651,7 @@ MonoBehaviour:
   m_Name: Message
   m_EditorClassIdentifier: 
   graph: {fileID: 2080738545}
-  position: {x: 584, y: -56}
+  position: {x: 1112, y: 408}
   ports:
     keys:
     - input
@@ -8363,7 +8663,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: fail
-        node: {fileID: 460762581}
+        node: {fileID: 1006262464}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -10351,7 +10651,7 @@ GameObject:
   - component: {fileID: 1432576868}
   - component: {fileID: 1432576869}
   m_Layer: 0
-  m_Name: waveSpawner1 (2)
+  m_Name: waveSpawner2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -10373,6 +10673,7 @@ MonoBehaviour:
   _enemySpawnCount: 2
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 1432576869}
+  - {fileID: 1803919096}
 --- !u!114 &1432576869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10386,7 +10687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _storyMarks:
-  - FirstDragonSpawner
+  - SecondDragonSpawner
 --- !u!4 &1432576870
 Transform:
   m_ObjectHideFlags: 0
@@ -10395,13 +10696,57 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432576867}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -51.75, y: 0, z: -152.24}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.0499992, y: 0, z: 5.4599915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1476849032}
+  m_Father: {fileID: 1803919095}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1445449226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1daf7a29fb4094547a6c6f2efb6130d5, type: 3}
+  m_Name: Message
+  m_EditorClassIdentifier: 
+  graph: {fileID: 2080738545}
+  position: {x: 1656, y: -216}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 1445449226}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: fail
+        node: {fileID: 937262927}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1445449226}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  ActorName: "\u0414\u0440\u0430\u043A\u043E\u043D"
+  message: "\u0423 \u0445\u0430 \u0445\u0430 \u0445\u0430 \u0445\u0430"
 --- !u!1 &1446018315
 GameObject:
   m_ObjectHideFlags: 0
@@ -10704,7 +11049,7 @@ MonoBehaviour:
   m_Name: Story Marks
   m_EditorClassIdentifier: 
   graph: {fileID: 2080738545}
-  position: {x: 808, y: -72}
+  position: {x: 1352, y: 424}
   ports:
     keys:
     - input
@@ -10893,8 +11238,6 @@ Transform:
   - {fileID: 1306535501}
   - {fileID: 1330364062}
   - {fileID: 1649727042}
-  - {fileID: 109069829}
-  - {fileID: 1432576870}
   - {fileID: 1370115513}
   - {fileID: 2129621577}
   - {fileID: 1585271849}
@@ -11375,7 +11718,7 @@ MonoBehaviour:
   m_Name: Activate Quest Actions
   m_EditorClassIdentifier: 
   graph: {fileID: 2080738545}
-  position: {x: 1032, y: -56}
+  position: {x: 1672, y: 200}
   ports:
     keys:
     - input
@@ -11388,6 +11731,9 @@ MonoBehaviour:
       connections:
       - fieldName: output
         node: {fileID: 1466875874}
+        reroutePoints: []
+      - fieldName: output
+        node: {fileID: 2123708286}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -11796,6 +12142,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578711732}
   m_CullTransparentMesh: 1
+--- !u!114 &1583821208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18c030b918f38648acc2c38c38ef954, type: 3}
+  m_Name: Story Marks Check
+  m_EditorClassIdentifier: 
+  graph: {fileID: 2080738545}
+  position: {x: 568, y: -280}
+  ports:
+    keys:
+    - pass
+    - fail
+    - input
+    - output
+    values:
+    - _fieldName: pass
+      _node: {fileID: 1583821208}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 937262927}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: fail
+      _node: {fileID: 1583821208}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1822221339}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 1583821208}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: pass
+        node: {fileID: 460762581}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1583821208}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  pass: {fileID: 0}
+  fail: {fileID: 0}
+  RequiredMarks:
+  - SecondDragonDialog
+  ForbiddenMarks: []
 --- !u!1 &1585271848
 GameObject:
   m_ObjectHideFlags: 0
@@ -13298,7 +13717,7 @@ MonoBehaviour:
   m_Name: Message
   m_EditorClassIdentifier: 
   graph: {fileID: 2080738545}
-  position: {x: 472, y: -248}
+  position: {x: 1048, y: -152}
   ports:
     keys:
     - input
@@ -13308,7 +13727,10 @@ MonoBehaviour:
       _node: {fileID: 1760063198}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: output
+        node: {fileID: 1822221339}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -13317,7 +13739,10 @@ MonoBehaviour:
       _node: {fileID: 1760063198}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: input
+        node: {fileID: 937262927}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -13325,7 +13750,9 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   ActorName: "\u0414\u0440\u0430\u043A\u043E\u043D"
-  message: "\u0414\u0438\u0430\u043B\u043E\u0433"
+  message: "\u041E \u043D\u0435\u0435\u0435\u0435\u0442, \u0442\u044B \u0440\u0430\u043D\u0438\u043B
+    \u043C\u0435\u043D\u044F. \u041D\u043E \u0432\u0442\u043E\u0440\u043E\u0433\u043E
+    \u0448\u0430\u043D\u0441\u0430 \u044F \u0442\u0435\u0431\u0435 \u043D\u0435 \u0434\u0430\u043C"
 --- !u!1 &1771225572
 GameObject:
   m_ObjectHideFlags: 0
@@ -13568,6 +13995,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a20a6d83a856f48a962a9c1ab1fab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1803919094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1803919095}
+  - component: {fileID: 1803919096}
+  m_Layer: 7
+  m_Name: spawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1803919095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803919094}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 109069829}
+  - {fileID: 894467514}
+  - {fileID: 474919848}
+  - {fileID: 1432576870}
+  m_Father: {fileID: 2095616250}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1803919096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803919094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7e501d1f394813b05706ee493af0c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCounter: 2
+  _dialogue: {fileID: 2012018963}
+  secondWait: 2
 --- !u!114 &1806060685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13837,6 +14315,54 @@ MonoBehaviour:
   initializableActors:
   - name: "\u0420\u0430\u0441\u0441\u043A\u0430\u0437\u0447\u0438\u043A"
     avatar: {fileID: 21300006, guid: 079f5a8d00f74c84181be0a872b4c39d, type: 3}
+--- !u!114 &1822221339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f893ec799644d414e98897c0e45c97c5, type: 3}
+  m_Name: Story Marks
+  m_EditorClassIdentifier: 
+  graph: {fileID: 2080738545}
+  position: {x: 824, y: -152}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 1822221339}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: fail
+        node: {fileID: 1583821208}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1822221339}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1760063198}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  MarksToAdd:
+  - SecondDragonDialog
+  MarksToRemove: []
 --- !u!1 &1822817975
 GameObject:
   m_ObjectHideFlags: 0
@@ -14218,6 +14744,50 @@ MonoBehaviour:
   _enemySpawnCount: 2
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 1886618174}
+--- !u!114 &1896452111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1daf7a29fb4094547a6c6f2efb6130d5, type: 3}
+  m_Name: Message
+  m_EditorClassIdentifier: 
+  graph: {fileID: 2080738545}
+  position: {x: 1656, y: -472}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 1896452111}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: pass
+        node: {fileID: 937262927}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1896452111}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  ActorName: "\u0414\u0440\u0430\u043A\u043E\u043D"
+  message: "\u0422\u044B \u043F\u043E\u0431\u0435\u0434\u0438\u043B \u043C\u0435\u043D\u044F!"
 --- !u!114 &1898061486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15867,6 +16437,13 @@ MonoBehaviour:
   - {fileID: 1608587460}
   - {fileID: 460762581}
   - {fileID: 1760063198}
+  - {fileID: 1006262464}
+  - {fileID: 2123708286}
+  - {fileID: 1583821208}
+  - {fileID: 937262927}
+  - {fileID: 1822221339}
+  - {fileID: 1445449226}
+  - {fileID: 1896452111}
 --- !u!1 &2081923050
 GameObject:
   m_ObjectHideFlags: 0
@@ -16120,6 +16697,7 @@ Transform:
   - {fileID: 325518576}
   - {fileID: 1671489368}
   - {fileID: 531694162}
+  - {fileID: 1803919095}
   m_Father: {fileID: 1476849032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2095616251
@@ -16177,6 +16755,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9c6d7b045e47179c8db9ec7c3a8d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2123708286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f893ec799644d414e98897c0e45c97c5, type: 3}
+  m_Name: Story Marks
+  m_EditorClassIdentifier: 
+  graph: {fileID: 2080738545}
+  position: {x: 1352, y: 56}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 2123708286}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: pass
+        node: {fileID: 1006262464}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 2123708286}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1502352472}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  MarksToAdd: []
+  MarksToRemove:
+  - FirstDragonSpawner11
+  - FirstDragonSpawner12
 --- !u!1001 &2124408270
 PrefabInstance:
   m_ObjectHideFlags: 0
