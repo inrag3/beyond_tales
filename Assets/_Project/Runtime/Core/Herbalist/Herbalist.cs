@@ -12,6 +12,7 @@ namespace _Project.Runtime.Core.Herbalist
     public class Herbalist : MonoBehaviour, IHerbalist, IPauseHandler
     {
         private readonly CompositeDisposable _disposables = new();
+        private PauseHandlersRegister _pauseHandlersRegister;
         private Rigidbody _rigidbody;
         private Mover _mover;
         private Attacker _attacker;
@@ -20,7 +21,7 @@ namespace _Project.Runtime.Core.Herbalist
 
         [Inject]
         private void Construct(IHealth health, IScanner<Interactable> scanner, Mover mover, 
-            Attacker attacker, HerbalistAnimer animer, PlayerData playerData)
+            Attacker attacker, HerbalistAnimer animer, PlayerData playerData, PauseHandlersRegister pauseHandlersRegister)
         {
             _animer = animer;
             _attacker = attacker;
@@ -29,6 +30,8 @@ namespace _Project.Runtime.Core.Herbalist
             Scanner = scanner;
             Health = health;
             _playerData = playerData;
+            _pauseHandlersRegister = pauseHandlersRegister;
+            _pauseHandlersRegister.RegisterPauseHandler(this);
         }
 
         public IScanner<Interactable> Scanner { get; private set; }
@@ -73,12 +76,12 @@ namespace _Project.Runtime.Core.Herbalist
 
         public void Pause()
         {
-            
+            _animer.Pause();
         }
 
         public void Resume()
         {
-            
+            _animer.Resume();
         }
     }
 }

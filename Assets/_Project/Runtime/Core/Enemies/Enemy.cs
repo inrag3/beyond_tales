@@ -1,4 +1,5 @@
 ﻿using System;
+using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
 using DG.Tweening;
 using UnityEngine;
@@ -7,7 +8,7 @@ using Zenject;
 
 namespace _Project.Runtime.Core.Enemies
 {
-    public class Enemy : Creature
+    public class Enemy : Creature, IPauseHandler
     {
         [SerializeField] private Collider _collider;
         [field: SerializeField] public Point Point { get; private set; }
@@ -16,6 +17,7 @@ namespace _Project.Runtime.Core.Enemies
         private IAttacker _attack;
 
         private EnemyAnimer _animer;
+        private PauseHandlersRegister _pauseHandlersRegister;
         public event Action<Enemy> Died;
         
         private IHerbalistProvider _provider;
@@ -25,12 +27,14 @@ namespace _Project.Runtime.Core.Enemies
             IHerbalistProvider provider, 
             EnemyAnimer animer, 
             Movement movement, 
-            Attack attack)
+            Attack attack, PauseHandlersRegister pauseHandlersRegister)
         {
             _provider = provider;
             _animer = animer;
             _movement = movement;
             _attack = attack;
+            _pauseHandlersRegister = pauseHandlersRegister;
+            _pauseHandlersRegister.RegisterPauseHandler(this);
         }
         public bool CloseEnoughToAttack => 
             Vector3.SqrMagnitude(transform.position - _provider.Herbalist.Transform.position) <= Pow(_attack.Distance, 2f);
@@ -79,6 +83,18 @@ namespace _Project.Runtime.Core.Enemies
         public void Destroy()
         {
             
+        }
+
+        public void Pause()
+        {
+            _movement.Pause();
+            _animer.Pause();
+        }
+
+        public void Resume()
+        {
+            _movement.Resume();
+            _animer.Resume();
         }
     }
 }

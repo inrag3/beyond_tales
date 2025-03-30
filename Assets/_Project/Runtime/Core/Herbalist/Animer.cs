@@ -37,7 +37,17 @@ namespace _Project.Runtime.Core.Herbalist
         {
              Animator.SetBool(Attack, true);
         }
-        
+
+        public void Pause()
+        {
+            Animator.speed = 0;
+        }
+
+        public void Resume()
+        {
+            Animator.speed = 1;
+        }
+
         public void PlayAttack(Action onComplete)
         {
             _onAttackComplete = onComplete;

@@ -14,6 +14,7 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly Transform _transform;
         private readonly Detector _detector;
         private readonly Mover _mover;
+        private readonly PauseHandlersRegister _pauseHandlersRegister;
         private Creature _target;
         private bool _isPause;
 
@@ -22,13 +23,16 @@ namespace _Project.Runtime.Core.Herbalist
             HerbalistAnimer animer, 
             Transform transform,
             Detector detector,
-            Mover mover)
+            Mover mover,
+            PauseHandlersRegister pauseHandlersRegister)
         {
             _mover = mover;
             _detector = detector;
             _transform = transform;
             _inputService = inputService;
             _animer = animer;
+            _pauseHandlersRegister = pauseHandlersRegister;
+            _pauseHandlersRegister.RegisterPauseHandler(this);
         }
 
         public void Initialize()

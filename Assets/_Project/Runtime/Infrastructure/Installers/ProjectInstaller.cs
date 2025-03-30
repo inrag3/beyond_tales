@@ -22,6 +22,7 @@ namespace _Project.Runtime.Infrastructure.Installers
         {
             Container.BindInterfacesAndSelfTo<SceneManager>().AsSingle().NonLazy();
             Container.Bind<GizmosDrawer>().FromInstance(_gizmosDrawer).AsSingle().NonLazy();
+            Container.Bind<PauseHandlersRegister>().FromInstance(new PauseHandlersRegister()).AsSingle().NonLazy();
             
            
             BindAssetManager();

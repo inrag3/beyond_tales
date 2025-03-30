@@ -4,6 +4,7 @@ using _Project.Runtime.AI.Core;
 using _Project.Runtime.Core;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Interactables;
+using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Installers.GameObject;
 using _Project.Runtime.QuestSystem;

@@ -13,18 +13,20 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly IInputService _inputService;
         private readonly IHerbalistProvider _provider;
         private readonly HerbalistAnimer _animer;
+        private readonly PauseHandlersRegister _pauseHandlersRegister;
         private CharacterController _controller;
         
         private const float GRAVITY = -9.81f;
         private Vector3 _velocity;
         private bool _isPaused;
-        
+
         public Mover(
             ISpeedConfig config,
             HerbalistAnimer animer,
             IHerbalistProvider herbalistProvider,
             CharacterController controller,
-            IInputService inputService
+            IInputService inputService,
+            PauseHandlersRegister pauseHandlersRegister
         )
         {
             _controller = controller;
@@ -32,7 +34,10 @@ namespace _Project.Runtime.Core.Herbalist
             _inputService = inputService;
             _animer = animer;
             _speed = config.Speed;
+            _pauseHandlersRegister = pauseHandlersRegister;
+            _pauseHandlersRegister.RegisterPauseHandler(this);
         }
+        
         
         public void Tick()
         {
@@ -88,6 +93,7 @@ namespace _Project.Runtime.Core.Herbalist
 
         public void Pause()
         {
+            //Debug.Log($"Pause mover!");
             _isPaused = true;
         }
 
