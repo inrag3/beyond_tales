@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _Project.Runtime.Core.Herbalist;
+using ElectricServiceCompany;
 using UnityEngine;
 
 namespace _Project.Runtime.Core

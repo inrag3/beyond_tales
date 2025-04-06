@@ -8,10 +8,10 @@ using UnityEngine;
 public class Flower : Item
 {
     [SerializeField] private BaseQuestAction[] _questActionsWhenGet;
-    private ItemEnum flowerType;
-    public ItemEnum FlowerType => flowerType;
+    public ItemEnum FlowerType => Data.ItemEnum;
 
     public bool IsPlanted => transform.parent != null && transform.parent.GetComponent<Bed>() != null;
+    
 
     public override void Interact(IInteractableVisitor visitor)
     {
@@ -19,14 +19,16 @@ public class Flower : Item
         Bed bed = transform.parent != null ? transform.parent.GetComponent<Bed>() : null;
         if (bed != null)
         {
-            if (!bed.IsCorrectFlowerPlanted)
+            /*if (!bed.IsCorrectFlowerPlanted)
             {
                 bed.Unplant();
                 visitor.Accept(this);
                 Destroy(gameObject);
                 return;
             }
-            else { return; }
+            else { return; }*/
+            IsAccessible = false;
+            return;
         }
         IsAccessible = false;
         visitor.Accept(this);
@@ -43,7 +45,7 @@ public class Flower : Item
     }
 
     public void Plant()
-    { 
+    {
         IsAccessible = false;
     }
 }

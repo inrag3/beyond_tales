@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 4239060847121023137, guid: 750004d55d8ceeb48b1a54f29880cd17,
         type: 3}
       propertyPath: <Data>k__BackingField.<ItemEnum>k__BackingField
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4239060847121023137, guid: 750004d55d8ceeb48b1a54f29880cd17,
         type: 3}
@@ -81,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 5814198414285406128, guid: 750004d55d8ceeb48b1a54f29880cd17,
         type: 3}
       propertyPath: m_Name
-      value: Flower Blue
+      value: BlueFlowerCylinder
       objectReference: {fileID: 0}
     - target: {fileID: 5814198414285406128, guid: 750004d55d8ceeb48b1a54f29880cd17,
         type: 3}

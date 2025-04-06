@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Linq;
 using Zenject;
 using _Project.Runtime.Core.Interactables;
+using _Project.Runtime.QuestSystem;
 
 public class BedsObserver : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class BedsObserver : MonoBehaviour
 
     private void OnBedCompleted()
     {
-        if (_beds.All(bed => bed.FlowerPlanted))
+        if (_beds.All(bed => bed.IsCorrectFlowerPlanted))
         {
             OnAllBedsCompleted();
         }
@@ -36,7 +37,10 @@ public class BedsObserver : MonoBehaviour
         var closedDoors = _doors.Where(door => door.IsOpen == false).ToList();
         foreach (var door in closedDoors)
         {
-            door.SwitchState();
+            if (door.TryGetComponent<OpenDoorWhenCompleteFlowerQuest>(out var o))
+            {
+                door.Open();
+            }
         }
     }
 

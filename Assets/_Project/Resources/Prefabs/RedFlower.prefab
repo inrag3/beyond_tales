@@ -110,9 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Data>k__BackingField:
-    <ItemEnum>k__BackingField: 1
+    <ItemEnum>k__BackingField: 0
     <Value>k__BackingField: 1
-  flowerType: 1
+  _questActionsWhenGet: []
 --- !u!136 &7783146906154569747
 CapsuleCollider:
   m_ObjectHideFlags: 0

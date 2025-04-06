@@ -187,6 +187,9 @@ namespace DialogueSystem
                 case ActivateQuestActionsNode node:
                     yield return StartCoroutine(ProcessActivateQuestActionsNode(node));
                     break;
+                case UnplantFlowerNode node:
+                    yield return StartCoroutine(ProcessUnplantFlowerNode(node));
+                    break;
             }
         }
 
@@ -271,6 +274,7 @@ namespace DialogueSystem
 
         protected IEnumerator ProcessPlantFlowerForBedNode(PlantFlowerForBedNode node)
         {
+            Debug.Log($"Create flower node type = {node.FlowerType}");
             var flower = _flowerFactory.Create(node.FlowerType);
             node.Bed.Plant(flower);
             nextNode = node.GetNextNode();
@@ -319,6 +323,12 @@ namespace DialogueSystem
                         flag = !flag;
                     }
                     break;
+                case BedIsPlantedNode bedIsPlantedNode:
+                    flag = bedIsPlantedNode.Bed.FlowerPlanted;
+                    break;
+                case BedIsPlantedCorrectlyNode bedIsPlantedCorrectlyNode:
+                    flag = bedIsPlantedCorrectlyNode.Bed.IsCorrectFlowerPlanted;
+                    break;
             }
 
             nextNode = node.GetNextNodeByCheck(flag);
@@ -344,6 +354,14 @@ namespace DialogueSystem
             {
                 questAction.Activate();
             }
+            
+            nextNode = node.GetNextNode();
+            yield break;
+        }
+
+        protected IEnumerator ProcessUnplantFlowerNode(UnplantFlowerNode node)
+        {
+            node.Bed.Unplant();
             
             nextNode = node.GetNextNode();
             yield break;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _Project.Runtime.Infrastructure.Factories;
+using ElectricServiceCompany;
 using ObservableCollections;
 using UnityEngine;
 using Zenject;
@@ -64,6 +65,22 @@ namespace _Project.Runtime.Core.Herbalist
         public T Get(Predicate<T> predicate)
         {
             Vector3 at = _herbalistProvider.Herbalist.Transform.position;
+
+            List<T> itemsToRemove = new List<T>();
+
+            foreach (var comp in _components)
+            {
+                if (comp.IsNullOrDestroyed())
+                {
+                    itemsToRemove.Add(comp);
+                }
+            }
+
+            foreach (var comp in itemsToRemove)
+            {
+                _components.Remove(comp);
+            }
+
             T closest = _components.Closest(at, predicate);
             return closest;
         }

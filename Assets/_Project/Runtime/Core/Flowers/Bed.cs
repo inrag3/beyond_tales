@@ -3,6 +3,7 @@ using System;
 using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Core.Interactables.Processors;
 using _Project.Runtime.InventorySystem;
+using Zenject;
 
 public class Bed : MonoBehaviour
 {
@@ -26,7 +27,29 @@ public class Bed : MonoBehaviour
     public bool FlowerPlanted => _flowerPlanted;
 
     private Flower _plantedFlower;
-    public bool IsCorrectFlowerPlanted { get; private set; } = false;
+
+    private IPlayerInventory _playerInventory;
+    public bool IsCorrectFlowerPlanted
+    {
+        get
+        {
+            if (!_flowerPlanted)
+            {
+                //Debug.Log($"Flower isnt planted!");
+                return false;
+            }
+
+            //Debug.Log($"flower type = {_plantedFlower.FlowerType} req type = {_requiredFlowerType}");
+            return _plantedFlower.FlowerType == _requiredFlowerType;
+        }
+    }
+    
+    [Inject]
+    public void Construct(IPlayerInventory playerInventory)
+    {
+        _playerInventory = playerInventory;
+    }
+
 
     public void Plant(Flower flower)
     {
@@ -36,10 +59,11 @@ public class Bed : MonoBehaviour
         _plantedFlower = flower;
         flower.transform.SetParent(transform);
         flower.transform.localPosition = Vector3.zero;
+        
+        //Debug.Log($"correct flower = {IsCorrectFlowerPlanted}");
 
         if (flower.FlowerType == _requiredFlowerType)
         {
-            IsCorrectFlowerPlanted = true;
             IsCompleted = true;
             flower.Plant();
             OnBedCompleted?.Invoke();
@@ -47,7 +71,7 @@ public class Bed : MonoBehaviour
         }
         else
         {
-            IsCorrectFlowerPlanted = false;
+            flower.Plant();
             IsAccessible = true;
         }
     }
@@ -58,12 +82,13 @@ public class Bed : MonoBehaviour
 
         if (_plantedFlower != null)
         {
-            _plantedFlower.transform.SetParent(null);
-            _plantedFlower.IsAccessible = true;
+            /*_plantedFlower.transform.SetParent(null);
+            _plantedFlower.IsAccessible = true;*/
+            _playerInventory.AddItem(_plantedFlower.FlowerType);
+            Destroy(_plantedFlower.gameObject);
         }
         _flowerPlanted = false;
         _plantedFlower = null;
-        IsCorrectFlowerPlanted = false;
         IsCompleted = false;
 
         IsAccessible = true;

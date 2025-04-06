@@ -763,6 +763,111 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &62140246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 62140247}
+  - component: {fileID: 62140250}
+  - component: {fileID: 62140249}
+  - component: {fileID: 62140248}
+  m_Layer: 0
+  m_Name: GlowSphereYellow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &62140247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62140246}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.938, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1301650175}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &62140248
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62140246}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &62140249
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62140246}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 039b96893253f4d40b0a1d402b511ca5, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &62140250
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62140246}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &63554966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,10 +903,7 @@ MonoBehaviour:
       _node: {fileID: 63554966}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 1077656826}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -809,7 +911,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   itemsToRemove:
-  - itemType: 3
+  - itemType: 2
     quantity: 1
 --- !u!114 &107434286
 MonoBehaviour:
@@ -857,7 +959,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   Bed: {fileID: 1301650174}
-  FlowerType: 2
+  FlowerType: 1
 --- !u!114 &109594532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,7 +1034,7 @@ MonoBehaviour:
   pass: {fileID: 0}
   fail: {fileID: 0}
   requiredItems:
-  - itemType: 3
+  - itemType: 2
     quantity: 1
 --- !u!114 &109960248
 MonoBehaviour:
@@ -969,10 +1071,7 @@ MonoBehaviour:
       _node: {fileID: 109960248}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 921884847}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -980,7 +1079,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   itemsToRemove:
-  - itemType: 3
+  - itemType: 2
     quantity: 1
 --- !u!1 &119054207
 GameObject:
@@ -1131,7 +1230,7 @@ MonoBehaviour:
   pass: {fileID: 0}
   fail: {fileID: 0}
   requiredItems:
-  - itemType: 2
+  - itemType: 1
     quantity: 1
 --- !u!1 &145116251
 GameObject:
@@ -1463,6 +1562,49 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165488030}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &175205512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d400a1ed5854b60ad6df96f0bdf5fa5, type: 3}
+  m_Name: Unplant Flower
+  m_EditorClassIdentifier: 
+  graph: {fileID: 1544342374}
+  position: {x: 1240, y: -360}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 175205512}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: answerNode
+        node: {fileID: 1635441748}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 175205512}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  Bed: {fileID: 1301650174}
 --- !u!1 &196723156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1842,10 +1984,7 @@ MonoBehaviour:
       _node: {fileID: 203388337}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 921884847}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -1853,7 +1992,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   itemsToRemove:
-  - itemType: 1
+  - itemType: 0
     quantity: 1
 --- !u!1001 &214375942
 PrefabInstance:
@@ -2297,7 +2436,7 @@ MonoBehaviour:
   m_Name: Message
   m_EditorClassIdentifier: 
   graph: {fileID: 1965557530}
-  position: {x: 189.99997, y: 289.7}
+  position: {x: -248, y: 280}
   ports:
     keys:
     - input
@@ -2321,7 +2460,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: 1687066246}
+        node: {fileID: 974662120}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -2665,6 +2804,77 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: -1.5, y: 2.25, z: -1.5}
   _smoothSpeed: 0.5
+--- !u!114 &337229993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604d5b5c143049e394ef4f0520ed56f9, type: 3}
+  m_Name: Bed Is Planted Correctly
+  m_EditorClassIdentifier: 
+  graph: {fileID: 1544342374}
+  position: {x: 456, y: -184}
+  ports:
+    keys:
+    - pass
+    - fail
+    - input
+    - output
+    values:
+    - _fieldName: pass
+      _node: {fileID: 337229993}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1362466693}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: fail
+      _node: {fileID: 337229993}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1635441748}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 337229993}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: pass
+        node: {fileID: 1835208798}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 337229993}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  pass: {fileID: 0}
+  fail: {fileID: 0}
+  Bed: {fileID: 1301650174}
 --- !u!1001 &340545225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2748,6 +2958,111 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea1848b6085b1fa43945324a60a6bb94, type: 3}
+--- !u!1 &343571620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343571621}
+  - component: {fileID: 343571624}
+  - component: {fileID: 343571623}
+  - component: {fileID: 343571622}
+  m_Layer: 0
+  m_Name: GlowSphereBlue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &343571621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343571620}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1322978312}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &343571622
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343571620}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &343571623
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343571620}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 140155f4e96bb7e478603bcf11fbc1db, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &343571624
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343571620}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &358320164
 GameObject:
   m_ObjectHideFlags: 0
@@ -3185,10 +3500,7 @@ MonoBehaviour:
       _node: {fileID: 399709940}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 578208707}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -3196,7 +3508,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   itemsToRemove:
-  - itemType: 1
+  - itemType: 0
     quantity: 1
 --- !u!114 &407831534
 MonoBehaviour:
@@ -3223,10 +3535,13 @@ MonoBehaviour:
   - {fileID: 1325934842}
   - {fileID: 1618988527}
   - {fileID: 1970510965}
-  - {fileID: 1077656826}
   - {fileID: 1790474960}
   - {fileID: 1806060685}
   - {fileID: 63554966}
+  - {fileID: 891936442}
+  - {fileID: 1319210277}
+  - {fileID: 1384477221}
+  - {fileID: 1262445698}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3724,7 +4039,7 @@ MonoBehaviour:
   pass: {fileID: 0}
   fail: {fileID: 0}
   requiredItems:
-  - itemType: 2
+  - itemType: 1
     quantity: 1
 --- !u!1 &468766062
 GameObject:
@@ -3907,6 +4222,77 @@ MonoBehaviour:
   startDelay: 0.5
   preEndDelay: 0.5
   endDelay: 1
+--- !u!114 &501168782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604d5b5c143049e394ef4f0520ed56f9, type: 3}
+  m_Name: Bed Is Planted Correctly
+  m_EditorClassIdentifier: 
+  graph: {fileID: 1965557530}
+  position: {x: 328, y: -168}
+  ports:
+    keys:
+    - pass
+    - fail
+    - input
+    - output
+    values:
+    - _fieldName: pass
+      _node: {fileID: 501168782}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1836715344}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: fail
+      _node: {fileID: 501168782}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1579425151}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 501168782}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: pass
+        node: {fileID: 974662120}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 501168782}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  pass: {fileID: 0}
+  fail: {fileID: 0}
+  Bed: {fileID: 1322978311}
 --- !u!1 &509439966
 GameObject:
   m_ObjectHideFlags: 0
@@ -4242,7 +4628,7 @@ MonoBehaviour:
   m_Name: Message
   m_EditorClassIdentifier: 
   graph: {fileID: 1544342374}
-  position: {x: 213.99997, y: 322.5}
+  position: {x: -120, y: 312}
   ports:
     keys:
     - input
@@ -4266,7 +4652,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: 821047581}
+        node: {fileID: 1835208798}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -4458,56 +4844,6 @@ MonoBehaviour:
   _index: Door2
   _indexedComponents:
   - {fileID: 578121159}
---- !u!114 &578208707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07900368b2634d5f9c761e1f320af51d, type: 3}
-  m_Name: Set Accessible
-  m_EditorClassIdentifier: 
-  graph: {fileID: 1965557530}
-  position: {x: 2342.9878, y: 317.9279}
-  ports:
-    keys:
-    - input
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: 578208707}
-      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: output
-        node: {fileID: 399709940}
-        reroutePoints: []
-      - fieldName: output
-        node: {fileID: 1905024453}
-        reroutePoints: []
-      - fieldName: output
-        node: {fileID: 839824501}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: 578208707}
-      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  input: {fileID: 0}
-  output: {fileID: 0}
-  Interactable: {fileID: 1322978313}
-  IsAccessible: 0
 --- !u!1 &612493510
 GameObject:
   m_ObjectHideFlags: 0
@@ -5530,8 +5866,8 @@ MonoBehaviour:
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: output
-        node: {fileID: 548121328}
+      - fieldName: fail
+        node: {fileID: 1835208798}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -5551,7 +5887,7 @@ MonoBehaviour:
   pass: {fileID: 0}
   fail: {fileID: 0}
   requiredItems:
-  - itemType: 1
+  - itemType: 0
     quantity: 1
 --- !u!1 &832575517
 GameObject:
@@ -5712,10 +6048,7 @@ MonoBehaviour:
       _node: {fileID: 839824501}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 578208707}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -5723,7 +6056,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   itemsToRemove:
-  - itemType: 3
+  - itemType: 2
     quantity: 1
 --- !u!1 &850383994
 GameObject:
@@ -6114,7 +6447,7 @@ MonoBehaviour:
   pass: {fileID: 0}
   fail: {fileID: 0}
   requiredItems:
-  - itemType: 3
+  - itemType: 2
     quantity: 1
 --- !u!114 &891689962
 MonoBehaviour:
@@ -6129,7 +6462,7 @@ MonoBehaviour:
   m_Name: Initialize Actors
   m_EditorClassIdentifier: 
   graph: {fileID: 1965557530}
-  position: {x: -50.00003, y: 289.7}
+  position: {x: -488, y: 280}
   ports:
     keys:
     - input
@@ -6161,6 +6494,77 @@ MonoBehaviour:
   initializableActors:
   - name: "\u0420\u0430\u0441\u0441\u043A\u0430\u0437\u0447\u0438\u043A"
     avatar: {fileID: 21300006, guid: 079f5a8d00f74c84181be0a872b4c39d, type: 3}
+--- !u!114 &891936442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7760a65292b64057af5b2842a7cb1607, type: 3}
+  m_Name: Bed Is Planted
+  m_EditorClassIdentifier: 
+  graph: {fileID: 407831534}
+  position: {x: -312, y: -472}
+  ports:
+    keys:
+    - pass
+    - fail
+    - input
+    - output
+    values:
+    - _fieldName: pass
+      _node: {fileID: 891936442}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1319210277}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: fail
+      _node: {fileID: 891936442}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1968950478}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 891936442}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 1956657847}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 891936442}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  pass: {fileID: 0}
+  fail: {fileID: 0}
+  Bed: {fileID: 1812151554}
 --- !u!1 &897456018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1086224761313166, guid: fa66820763744ef46b5a9cfb5ef88187,
@@ -6179,56 +6583,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a20a6d83a856f48a962a9c1ab1fab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &921884847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07900368b2634d5f9c761e1f320af51d, type: 3}
-  m_Name: Set Accessible
-  m_EditorClassIdentifier: 
-  graph: {fileID: 1544342374}
-  position: {x: 2366.9878, y: 350.72787}
-  ports:
-    keys:
-    - input
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: 921884847}
-      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: output
-        node: {fileID: 203388337}
-        reroutePoints: []
-      - fieldName: output
-        node: {fileID: 1403092248}
-        reroutePoints: []
-      - fieldName: output
-        node: {fileID: 109960248}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: 921884847}
-      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  input: {fileID: 0}
-  output: {fileID: 0}
-  Interactable: {fileID: 1301650177}
-  IsAccessible: 0
 --- !u!1 &925021023
 GameObject:
   m_ObjectHideFlags: 0
@@ -6597,6 +6951,49 @@ MonoBehaviour:
   _colliders:
   - {fileID: 936687939}
   _makeActive: 1
+--- !u!114 &950812941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d400a1ed5854b60ad6df96f0bdf5fa5, type: 3}
+  m_Name: Unplant Flower
+  m_EditorClassIdentifier: 
+  graph: {fileID: 1965557530}
+  position: {x: 1112, y: -344}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 950812941}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: answerNode
+        node: {fileID: 1579425151}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 950812941}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  Bed: {fileID: 1322978311}
 --- !u!114 &968338977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6721,6 +7118,77 @@ MonoBehaviour:
   answer:
     text: "[\u041F\u043E\u0441\u0430\u0434\u0438\u0442\u044C \u0441\u0438\u043D\u0438\u0439
       \u0446\u0432\u0435\u0442\u043E\u043A]"
+--- !u!114 &974662120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7760a65292b64057af5b2842a7cb1607, type: 3}
+  m_Name: Bed Is Planted
+  m_EditorClassIdentifier: 
+  graph: {fileID: 1965557530}
+  position: {x: 24, y: 40}
+  ports:
+    keys:
+    - pass
+    - fail
+    - input
+    - output
+    values:
+    - _fieldName: pass
+      _node: {fileID: 974662120}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 501168782}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: fail
+      _node: {fileID: 974662120}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1687066246}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 974662120}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 282674367}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 974662120}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  pass: {fileID: 0}
+  fail: {fileID: 0}
+  Bed: {fileID: 1322978311}
 --- !u!1 &976990743
 GameObject:
   m_ObjectHideFlags: 0
@@ -7337,56 +7805,6 @@ MonoBehaviour:
   QuestActions:
   - {fileID: 1491318442}
   Index: 
---- !u!114 &1077656826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07900368b2634d5f9c761e1f320af51d, type: 3}
-  m_Name: Set Accessible
-  m_EditorClassIdentifier: 
-  graph: {fileID: 407831534}
-  position: {x: 1952.9878, y: -139.77213}
-  ports:
-    keys:
-    - input
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: 1077656826}
-      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: output
-        node: {fileID: 1790474960}
-        reroutePoints: []
-      - fieldName: output
-        node: {fileID: 1806060685}
-        reroutePoints: []
-      - fieldName: output
-        node: {fileID: 63554966}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: 1077656826}
-      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  input: {fileID: 0}
-  output: {fileID: 0}
-  Interactable: {fileID: 1812151556}
-  IsAccessible: 0
 --- !u!1 &1095364407
 GameObject:
   m_ObjectHideFlags: 0
@@ -7737,6 +8155,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1157673874}
+    - targetCorrespondingSourceObject: {fileID: 1429842250160378064, guid: 409a0bae16b4e574d8cc49658aa2a6f7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1157673875}
   m_SourcePrefab: {fileID: 100100000, guid: 409a0bae16b4e574d8cc49658aa2a6f7, type: 3}
 --- !u!4 &1157673871 stripped
 Transform:
@@ -7776,6 +8198,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _door: {fileID: 1157673873}
   _open: 1
+--- !u!114 &1157673875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157673872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b0840d2d5440c784f560df59da5caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1169571625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8137,6 +8571,111 @@ MonoBehaviour:
   QuestActions:
   - {fileID: 1315837007}
   Index: 
+--- !u!1 &1216107809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216107810}
+  - component: {fileID: 1216107813}
+  - component: {fileID: 1216107812}
+  - component: {fileID: 1216107811}
+  m_Layer: 0
+  m_Name: GlowSphereRed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1216107810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216107809}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1812151555}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1216107811
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216107809}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1216107812
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216107809}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7bca36fa735603844a8b4e4e3039ef68, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1216107813
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216107809}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1227191462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8211,7 +8750,7 @@ MonoBehaviour:
   pass: {fileID: 0}
   fail: {fileID: 0}
   requiredItems:
-  - itemType: 2
+  - itemType: 1
     quantity: 1
 --- !u!1 &1233705065
 GameObject:
@@ -8392,6 +8931,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261569317}
   m_CullTransparentMesh: 1
+--- !u!114 &1262445698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e284d5a7e4b0cdb48a078af6cee09901, type: 3}
+  m_Name: Cash Answer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 407831534}
+  position: {x: 232, y: -808}
+  ports:
+    keys:
+    - answerNode
+    - input
+    - output
+    values:
+    - _fieldName: answerNode
+      _node: {fileID: 1262445698}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1384477221}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 1262445698}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: fail
+        node: {fileID: 1319210277}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1262445698}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 2052993258}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  answerNode: {fileID: 0}
+  answer:
+    text: "[\u0417\u0430\u0431\u0440\u0430\u0442\u044C \u0446\u0432\u0435\u0442\u043E\u043A]"
 --- !u!1 &1279193798
 GameObject:
   m_ObjectHideFlags: 0
@@ -8684,7 +9284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c88074a27351f408b8607909a620e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requiredFlowerType: 3
+  _requiredFlowerType: 2
 --- !u!4 &1301650175
 Transform:
   m_ObjectHideFlags: 0
@@ -8700,6 +9300,7 @@ Transform:
   m_Children:
   - {fileID: 1190411985}
   - {fileID: 1934445193}
+  - {fileID: 62140247}
   m_Father: {fileID: 1476849032}
   m_LocalEulerAnglesHint: {x: 0, y: -87.95, z: 0}
 --- !u!64 &1301650176
@@ -9047,6 +9648,77 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _door: {fileID: 1315837003}
   _open: 1
+--- !u!114 &1319210277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604d5b5c143049e394ef4f0520ed56f9, type: 3}
+  m_Name: Bed Is Planted Correctly
+  m_EditorClassIdentifier: 
+  graph: {fileID: 407831534}
+  position: {x: -56, y: -664}
+  ports:
+    keys:
+    - pass
+    - fail
+    - input
+    - output
+    values:
+    - _fieldName: pass
+      _node: {fileID: 1319210277}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 2052993258}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: fail
+      _node: {fileID: 1319210277}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1262445698}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 1319210277}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: pass
+        node: {fileID: 891936442}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1319210277}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  pass: {fileID: 0}
+  fail: {fileID: 0}
+  Bed: {fileID: 1812151554}
 --- !u!1 &1322978308
 GameObject:
   m_ObjectHideFlags: 0
@@ -9116,7 +9788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c88074a27351f408b8607909a620e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requiredFlowerType: 2
+  _requiredFlowerType: 1
 --- !u!4 &1322978312
 Transform:
   m_ObjectHideFlags: 0
@@ -9132,6 +9804,7 @@ Transform:
   m_Children:
   - {fileID: 1843255280}
   - {fileID: 214375944}
+  - {fileID: 343571621}
   m_Father: {fileID: 1476849032}
   m_LocalEulerAnglesHint: {x: 0, y: -87.95, z: 0}
 --- !u!114 &1322978313
@@ -9207,7 +9880,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   Bed: {fileID: 1812151554}
-  FlowerType: 1
+  FlowerType: 0
 --- !u!1 &1326121782
 GameObject:
   m_ObjectHideFlags: 0
@@ -9610,6 +10283,12 @@ MonoBehaviour:
       - fieldName: output
         node: {fileID: 979017696}
         reroutePoints: []
+      - fieldName: pass
+        node: {fileID: 337229993}
+        reroutePoints: []
+      - fieldName: output
+        node: {fileID: 1635441748}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -9852,6 +10531,49 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a48c66cea6b296343a9a954ab39c7cdc, type: 3}
+--- !u!114 &1384477221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d400a1ed5854b60ad6df96f0bdf5fa5, type: 3}
+  m_Name: Unplant Flower
+  m_EditorClassIdentifier: 
+  graph: {fileID: 407831534}
+  position: {x: 728, y: -840}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 1384477221}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: answerNode
+        node: {fileID: 1262445698}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1384477221}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  Bed: {fileID: 1812151554}
 --- !u!1 &1389730315
 GameObject:
   m_ObjectHideFlags: 0
@@ -10090,10 +10812,7 @@ MonoBehaviour:
       _node: {fileID: 1403092248}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 921884847}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -10101,7 +10820,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   itemsToRemove:
-  - itemType: 2
+  - itemType: 1
     quantity: 1
 --- !u!1 &1446018315
 GameObject:
@@ -11348,10 +12067,13 @@ MonoBehaviour:
   - {fileID: 1898061486}
   - {fileID: 107434286}
   - {fileID: 1593228885}
-  - {fileID: 921884847}
   - {fileID: 203388337}
   - {fileID: 1403092248}
   - {fileID: 109960248}
+  - {fileID: 1835208798}
+  - {fileID: 337229993}
+  - {fileID: 175205512}
+  - {fileID: 1635441748}
 --- !u!1 &1563024235
 GameObject:
   m_ObjectHideFlags: 0
@@ -11491,6 +12213,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578711732}
   m_CullTransparentMesh: 1
+--- !u!114 &1579425151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e284d5a7e4b0cdb48a078af6cee09901, type: 3}
+  m_Name: Cash Answer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 1965557530}
+  position: {x: 616, y: -312}
+  ports:
+    keys:
+    - answerNode
+    - input
+    - output
+    values:
+    - _fieldName: answerNode
+      _node: {fileID: 1579425151}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 950812941}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 1579425151}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: fail
+        node: {fileID: 501168782}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1579425151}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1836715344}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  answerNode: {fileID: 0}
+  answer:
+    text: "[\u0417\u0430\u0431\u0440\u0430\u0442\u044C \u0446\u0432\u0435\u0442\u043E\u043A]"
 --- !u!1 &1585271848
 GameObject:
   m_ObjectHideFlags: 0
@@ -11600,7 +12383,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   Bed: {fileID: 1301650174}
-  FlowerType: 3
+  FlowerType: 2
 --- !u!1 &1595464983
 GameObject:
   m_ObjectHideFlags: 0
@@ -11820,7 +12603,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   Bed: {fileID: 1812151554}
-  FlowerType: 2
+  FlowerType: 1
 --- !u!1 &1620711412
 GameObject:
   m_ObjectHideFlags: 0
@@ -11973,6 +12756,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd327c760811cd642ae4eef2f53392df, type: 3}
+--- !u!114 &1635441748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e284d5a7e4b0cdb48a078af6cee09901, type: 3}
+  m_Name: Cash Answer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 1544342374}
+  position: {x: 744, y: -328}
+  ports:
+    keys:
+    - answerNode
+    - input
+    - output
+    values:
+    - _fieldName: answerNode
+      _node: {fileID: 1635441748}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 175205512}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 1635441748}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: fail
+        node: {fileID: 337229993}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1635441748}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1362466693}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  answerNode: {fileID: 0}
+  answer:
+    text: "[\u0417\u0430\u0431\u0440\u0430\u0442\u044C \u0446\u0432\u0435\u0442\u043E\u043A]"
 --- !u!1 &1649727041
 GameObject:
   m_ObjectHideFlags: 0
@@ -12372,8 +13216,8 @@ MonoBehaviour:
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: output
-        node: {fileID: 282674367}
+      - fieldName: fail
+        node: {fileID: 974662120}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -12393,7 +13237,7 @@ MonoBehaviour:
   pass: {fileID: 0}
   fail: {fileID: 0}
   requiredItems:
-  - itemType: 1
+  - itemType: 0
     quantity: 1
 --- !u!1 &1691283132
 GameObject:
@@ -12591,7 +13435,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   Bed: {fileID: 1322978311}
-  FlowerType: 3
+  FlowerType: 2
 --- !u!1 &1712366816
 GameObject:
   m_ObjectHideFlags: 0
@@ -13100,10 +13944,7 @@ MonoBehaviour:
       _node: {fileID: 1790474960}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 1077656826}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -13111,7 +13952,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   itemsToRemove:
-  - itemType: 1
+  - itemType: 0
     quantity: 1
 --- !u!1 &1802124932
 GameObject:
@@ -13267,10 +14108,7 @@ MonoBehaviour:
       _node: {fileID: 1806060685}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 1077656826}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -13278,7 +14116,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   itemsToRemove:
-  - itemType: 2
+  - itemType: 1
     quantity: 1
 --- !u!114 &1809280333
 MonoBehaviour:
@@ -13411,7 +14249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c88074a27351f408b8607909a620e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requiredFlowerType: 1
+  _requiredFlowerType: 0
 --- !u!4 &1812151555
 Transform:
   m_ObjectHideFlags: 0
@@ -13427,6 +14265,7 @@ Transform:
   m_Children:
   - {fileID: 1211821521}
   - {fileID: 418137755}
+  - {fileID: 1216107810}
   m_Father: {fileID: 1476849032}
   m_LocalEulerAnglesHint: {x: 0, y: -87.95, z: 0}
 --- !u!114 &1812151556
@@ -13469,7 +14308,7 @@ MonoBehaviour:
   m_Name: Initialize Actors
   m_EditorClassIdentifier: 
   graph: {fileID: 1544342374}
-  position: {x: -26.00003, y: 322.5}
+  position: {x: -360, y: 312}
   ports:
     keys:
     - input
@@ -13665,6 +14504,77 @@ RectTransform:
   m_AnchoredPosition: {x: 165, y: 472}
   m_SizeDelta: {x: 180, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1835208798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7760a65292b64057af5b2842a7cb1607, type: 3}
+  m_Name: Bed Is Planted
+  m_EditorClassIdentifier: 
+  graph: {fileID: 1544342374}
+  position: {x: 200, y: 8}
+  ports:
+    keys:
+    - pass
+    - fail
+    - input
+    - output
+    values:
+    - _fieldName: pass
+      _node: {fileID: 1835208798}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 337229993}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: fail
+      _node: {fileID: 1835208798}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 821047581}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 1835208798}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 548121328}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 1835208798}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  pass: {fileID: 0}
+  fail: {fileID: 0}
+  Bed: {fileID: 1301650174}
 --- !u!114 &1836715344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13706,6 +14616,12 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: output
         node: {fileID: 1809280333}
+        reroutePoints: []
+      - fieldName: pass
+        node: {fileID: 501168782}
+        reroutePoints: []
+      - fieldName: output
+        node: {fileID: 1579425151}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -13928,7 +14844,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   Bed: {fileID: 1301650174}
-  FlowerType: 1
+  FlowerType: 0
 --- !u!1 &1900101880
 GameObject:
   m_ObjectHideFlags: 0
@@ -14072,10 +14988,7 @@ MonoBehaviour:
       _node: {fileID: 1905024453}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 578208707}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -14083,7 +14996,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   itemsToRemove:
-  - itemType: 2
+  - itemType: 1
     quantity: 1
 --- !u!114 &1921065293
 MonoBehaviour:
@@ -14241,7 +15154,7 @@ MonoBehaviour:
   m_Name: Initialize Actors
   m_EditorClassIdentifier: 
   graph: {fileID: 407831534}
-  position: {x: -440, y: -168}
+  position: {x: -808, y: -152}
   ports:
     keys:
     - input
@@ -14423,7 +15336,7 @@ MonoBehaviour:
   m_Name: Message
   m_EditorClassIdentifier: 
   graph: {fileID: 407831534}
-  position: {x: -200, y: -168}
+  position: {x: -568, y: -152}
   ports:
     keys:
     - input
@@ -14447,7 +15360,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: 1968950478}
+        node: {fileID: 891936442}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -14484,10 +15397,13 @@ MonoBehaviour:
   - {fileID: 2038870392}
   - {fileID: 1995271655}
   - {fileID: 1704752868}
-  - {fileID: 578208707}
   - {fileID: 399709940}
   - {fileID: 1905024453}
   - {fileID: 839824501}
+  - {fileID: 974662120}
+  - {fileID: 501168782}
+  - {fileID: 950812941}
+  - {fileID: 1579425151}
 --- !u!1 &1967261546
 GameObject:
   m_ObjectHideFlags: 0
@@ -14643,8 +15559,8 @@ MonoBehaviour:
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: output
-        node: {fileID: 1956657847}
+      - fieldName: fail
+        node: {fileID: 891936442}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -14664,7 +15580,7 @@ MonoBehaviour:
   pass: {fileID: 0}
   fail: {fileID: 0}
   requiredItems:
-  - itemType: 1
+  - itemType: 0
     quantity: 1
 --- !u!114 &1970510965
 MonoBehaviour:
@@ -14712,7 +15628,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   Bed: {fileID: 1812151554}
-  FlowerType: 3
+  FlowerType: 2
 --- !u!1 &1979740581
 GameObject:
   m_ObjectHideFlags: 0
@@ -14862,7 +15778,7 @@ MonoBehaviour:
   pass: {fileID: 0}
   fail: {fileID: 0}
   requiredItems:
-  - itemType: 3
+  - itemType: 2
     quantity: 1
 --- !u!114 &1995271655
 MonoBehaviour:
@@ -14910,7 +15826,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   Bed: {fileID: 1322978311}
-  FlowerType: 2
+  FlowerType: 1
 --- !u!1 &2000758762
 GameObject:
   m_ObjectHideFlags: 0
@@ -15134,7 +16050,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   Bed: {fileID: 1322978311}
-  FlowerType: 1
+  FlowerType: 0
 --- !u!114 &2052993258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15176,6 +16092,12 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: fail
         node: {fileID: 883004587}
+        reroutePoints: []
+      - fieldName: pass
+        node: {fileID: 1319210277}
+        reroutePoints: []
+      - fieldName: output
+        node: {fileID: 1262445698}
         reroutePoints: []
       _direction: 0
       _connectionType: 0

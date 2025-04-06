@@ -43,7 +43,7 @@ namespace _Project.Runtime.Core.Herbalist
         private void OnAttacked()
         {
             if (_target != null)
-                _target.TakeDamage(25);
+                _target.TakeDamage(25000);
         }
         public void Dispose()
         {
