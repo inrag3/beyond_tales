@@ -24,8 +24,6 @@ namespace _Project.Runtime.Core.Grenades
         private readonly IGrenadeConfig _grenadeConfig;
         private readonly Timer _throwCoolDownTimer;
         private readonly Timer _grenadeRecoveryTimer;
-        private readonly IPlayerInventory _inventory;
-        private readonly IItemContainer _itemContainer;
         private readonly IPotionApplierFactory _potionApplierFactory;
         private readonly IReadOnlyList<Action> _potionsApplyFunctions;
         private readonly IReadOnlyList<string> _potionsNames;
@@ -47,8 +45,6 @@ namespace _Project.Runtime.Core.Grenades
             IHerbalistProvider herbalistProvider,
             IInputService inputService,
             IGrenadeConfig grenadeConfig,
-            IPlayerInventory inventory,
-            IItemContainer itemContainer,
             IPotionApplierFactory potionApplierFactory,
             IGlobalWorldChangeProvider globalWorldChangeProvider,
             Timer throwCoolDownTimer,
@@ -58,8 +54,6 @@ namespace _Project.Runtime.Core.Grenades
             _herbalistProvider = herbalistProvider;
             _inputService = inputService;
             _grenadeConfig = grenadeConfig;
-            _inventory = inventory;
-            _itemContainer = itemContainer;
             _potionApplierFactory = potionApplierFactory;
             _globalWorldChangeProvider = globalWorldChangeProvider;
             _throwCoolDownTimer = throwCoolDownTimer;

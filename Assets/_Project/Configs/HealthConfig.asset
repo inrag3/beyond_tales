@@ -27,3 +27,10 @@ MonoBehaviour:
   <PotionPoisonTimeDelay>k__BackingField: 1
   <PotionPoisonTimesCount>k__BackingField: 0
   <Radius>k__BackingField: 0
+  <MaxLootCount>k__BackingField: 3
+  <LootMinDistance>k__BackingField: 0
+  <LootMaxDistance>k__BackingField: 2
+  <LootFrontForce>k__BackingField: 20
+  <LootRedPath>k__BackingField: Prefabs/RedIngredient
+  <LootGreenPath>k__BackingField: Prefabs/GreenIngredient
+  <LootBluePath>k__BackingField: Prefabs/BlueIngredient

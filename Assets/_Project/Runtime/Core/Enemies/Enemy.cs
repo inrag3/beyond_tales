@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using _Project.Runtime.Config;
+using _Project.Runtime.Core.Grenades.Ingredients;
 using _Project.Runtime.Core.PauseHandler;
+using _Project.Runtime.Infrastructure;
 using _Project.Runtime.Infrastructure.Factories;
 using DG.Tweening;
 using UnityEngine;
@@ -12,22 +16,27 @@ namespace _Project.Runtime.Core.Enemies
     {
         [SerializeField] private Collider _collider;
         [field: SerializeField] public Point Point { get; private set; }
-        
+
         private Movement _movement;
         private IAttacker _attack;
 
         private EnemyAnimer _animer;
         private PauseHandlersRegister _pauseHandlersRegister;
         public event Action<Enemy> Died;
-        
+
         private IHerbalistProvider _provider;
-        
+        private List<string> dropPaths = new();
+        private IInstantiator _instantiator;
+        private IAssetManager _assetManager;
+        private ILootConfig _lootConfig;
+
         [Inject]
         private void Construct(
-            IHerbalistProvider provider, 
-            EnemyAnimer animer, 
-            Movement movement, 
-            Attack attack, PauseHandlersRegister pauseHandlersRegister)
+            IHerbalistProvider provider,
+            EnemyAnimer animer,
+            Movement movement,
+            Attack attack, PauseHandlersRegister pauseHandlersRegister, IInstantiator instantiator,
+            IAssetManager assetManager, ILootConfig lootConfig)
         {
             _provider = provider;
             _animer = animer;
@@ -35,26 +44,37 @@ namespace _Project.Runtime.Core.Enemies
             _attack = attack;
             _pauseHandlersRegister = pauseHandlersRegister;
             _pauseHandlersRegister.RegisterPauseHandler(this);
+            _instantiator = instantiator;
+            _assetManager = assetManager;
+            _lootConfig = lootConfig;
+            dropPaths.Add(lootConfig.LootRedPath);
+            dropPaths.Add(lootConfig.LootBluePath);
+            dropPaths.Add(lootConfig.LootGreenPath);
         }
-        public bool CloseEnoughToAttack => 
-            Vector3.SqrMagnitude(transform.position - _provider.Herbalist.Transform.position) <= Pow(_attack.Distance, 2f);
+
+        public bool CloseEnoughToAttack =>
+            Vector3.SqrMagnitude(transform.position - _provider.Herbalist.Transform.position) <=
+            Pow(_attack.Distance, 2f);
+
         public bool InAttackCooldown => _attack.InCooldown;
 
         private void Start()
         {
             _animer.Hitted += OnHitted;
+            Died += SpawnLoot;
         }
 
         private void OnDestroy()
         {
             _animer.Hitted -= OnHitted;
+            Died -= SpawnLoot;
         }
 
         private void OnHitted()
         {
             _movement.Resume();
         }
-        
+
         public override void TakeDamage(float value)
         {
             _animer.PlayHit();
@@ -82,7 +102,6 @@ namespace _Project.Runtime.Core.Enemies
 
         public void Destroy()
         {
-            
         }
 
         public void Pause()
@@ -95,6 +114,41 @@ namespace _Project.Runtime.Core.Enemies
         {
             _movement.Resume();
             _animer.Resume();
+        }
+
+        private void SpawnLoot(Enemy enemy)
+        {
+            Vector3 spawnPosition = enemy.transform.position + Vector3.up * 0.5f; // Положение противника
+            int lootCount = UnityEngine.Random.Range(1, _lootConfig.MaxLootCount);
+            for (int i = 0; i < lootCount; i++)
+            {
+                GameObject prefab = _assetManager.Get(dropPaths[UnityEngine.Random.Range(0, dropPaths.Count)]);
+                var ingredient = _instantiator.InstantiatePrefabForComponent<CollectableIngredient>(prefab);
+
+
+                // Случайное направление: получаем угол в градусах и вычисляем смещение по оси X и Z
+                float angle = UnityEngine.Random.Range(0f, 360f);
+                float distance = 0.5f;
+                Vector3 direction = new Vector3(
+                    Mathf.Cos(angle * Mathf.Deg2Rad),
+                    0f,
+                    Mathf.Sin(angle * Mathf.Deg2Rad)
+                );
+
+                var y0 = spawnPosition.y;
+                var g = Physics.gravity.y;
+                var u1 = _lootConfig.LootFrontForce;
+                var m = ingredient.GetComponent<Rigidbody>().mass;
+                var t = (distance * m) / u1;
+                var v2 = -(g * t / 2) - y0 / t;
+                var u2 = m * v2;
+
+                var forceToAdd = direction * u1 +
+                                 ingredient.transform.up * u2;
+
+                ingredient.GetComponent<Rigidbody>().AddForce(forceToAdd, ForceMode.Impulse);
+                ingredient.transform.parent = null;
+            }
         }
     }
 }
