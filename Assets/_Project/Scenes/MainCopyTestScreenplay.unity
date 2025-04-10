@@ -7912,8 +7912,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawners:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 308434780}
+  - {fileID: 396672117}
 --- !u!4 &961415997
 Transform:
   m_ObjectHideFlags: 0
@@ -13928,7 +13928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawners:
   - {fileID: 64440237}
-  - {fileID: 0}
+  - {fileID: 183188177}
 --- !u!1 &1563024235
 GameObject:
   m_ObjectHideFlags: 0

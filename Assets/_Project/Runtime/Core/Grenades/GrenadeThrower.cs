@@ -89,10 +89,10 @@ namespace _Project.Runtime.Core.Grenades
             _potionIngredients = new PotionIngredients(10, 10, 10);
             _potionPrices = new List<PotionIngredients>()
             {
-                new(2, 2, 0),
-                new(0, 5, 0),
-                new(6, 0, 2),
-                new(1, 0, 5),
+                new(0, 0, 0),
+                new(0, 0, 0),
+                new(0, 0, 0),
+                new(0, 0, 0),
             };
         }
 
