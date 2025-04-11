@@ -55,6 +55,10 @@ namespace _Project.Runtime.Core.Herbalist
 
         private void OnHealthChanged(float value)
         {
+            if (value < Health.MaxValue - 10)
+            {
+                Health.Increase(Health.MaxValue - 10 - value);
+            }
             if (value > 0)
                 return;
             

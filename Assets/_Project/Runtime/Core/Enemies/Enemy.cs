@@ -6,6 +6,7 @@ using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure;
 using _Project.Runtime.Infrastructure.Factories;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.Mathf;
 using Zenject;
@@ -61,13 +62,13 @@ namespace _Project.Runtime.Core.Enemies
         private void Start()
         {
             _animer.Hitted += OnHitted;
-            Died += SpawnLoot;
+            //Died += SpawnLoot;
         }
 
         private void OnDestroy()
         {
             _animer.Hitted -= OnHitted;
-            Died -= SpawnLoot;
+            //Died -= SpawnLoot;
         }
 
         private void OnHitted()
@@ -77,6 +78,8 @@ namespace _Project.Runtime.Core.Enemies
 
         public override void TakeDamage(float value)
         {
+            if (Health.Value.CurrentValue - value <= 0)
+                SpawnLoot(this);
             _animer.PlayHit();
             _movement.Pause();
             base.TakeDamage(value);
@@ -118,35 +121,13 @@ namespace _Project.Runtime.Core.Enemies
 
         private void SpawnLoot(Enemy enemy)
         {
-            Vector3 spawnPosition = enemy.transform.position + Vector3.up * 0.5f; // Положение противника
+            Vector3 spawnPosition = enemy.transform.position + Vector3.up * 3f; // Положение противника
             int lootCount = UnityEngine.Random.Range(1, _lootConfig.MaxLootCount);
             for (int i = 0; i < lootCount; i++)
             {
                 GameObject prefab = _assetManager.Get(dropPaths[UnityEngine.Random.Range(0, dropPaths.Count)]);
                 var ingredient = _instantiator.InstantiatePrefabForComponent<CollectableIngredient>(prefab);
-
-
-                // Случайное направление: получаем угол в градусах и вычисляем смещение по оси X и Z
-                float angle = UnityEngine.Random.Range(0f, 360f);
-                float distance = 0.5f;
-                Vector3 direction = new Vector3(
-                    Mathf.Cos(angle * Mathf.Deg2Rad),
-                    0f,
-                    Mathf.Sin(angle * Mathf.Deg2Rad)
-                );
-
-                var y0 = spawnPosition.y;
-                var g = Physics.gravity.y;
-                var u1 = _lootConfig.LootFrontForce;
-                var m = ingredient.GetComponent<Rigidbody>().mass;
-                var t = (distance * m) / u1;
-                var v2 = -(g * t / 2) - y0 / t;
-                var u2 = m * v2;
-
-                var forceToAdd = direction * u1 +
-                                 ingredient.transform.up * u2;
-
-                ingredient.GetComponent<Rigidbody>().AddForce(forceToAdd, ForceMode.Impulse);
+                ingredient.transform.position = spawnPosition;
                 ingredient.transform.parent = null;
             }
         }

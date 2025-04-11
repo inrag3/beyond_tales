@@ -32,7 +32,7 @@ namespace _Project.Runtime.Core.UI
         
         private void OnPlayPressed()
         {
-            _sceneManager.LoadScene(Scene.Main);
+            _sceneManager.LoadScene(Scene.MainCopyTestScreenplay);
         }
         
         private void OnExitPressed()
