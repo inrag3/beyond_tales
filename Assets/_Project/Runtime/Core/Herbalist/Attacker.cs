@@ -54,8 +54,11 @@ namespace _Project.Runtime.Core.Herbalist
             if (_isPause || !_inputService.IsAttackButtonPressed)
                 return;
 
-            _animer.PlayAttack();
-            
+            if (!_animer.IsAttacking())
+            {
+                _animer.PlayAttack();
+            }
+
             _target = _detector.Target;
             if (_target == null)
                 return;

@@ -11,11 +11,16 @@ namespace _Project.Runtime.Core.Herbalist
         protected static readonly int Attack = Animator.StringToHash("Attack");
         private static readonly int Hit = Animator.StringToHash("Hit");
         private const string Death = "Death";
-     
+
+        private int startAttack = 0;
+        private int endAttack = 0;
+        
         protected Animator Animator;
         private event Action _onAttackComplete;
         public event Action Attacked;
         public event Action Hitted;
+
+        private bool _attackExitConfirmed = true;
 
         [Inject]
         private void Construct(Animator animator)
@@ -33,9 +38,19 @@ namespace _Project.Runtime.Core.Herbalist
             Animator.SetFloat(Running, value);
         }
 
+        private void Update()
+        {
+            
+        }
+
         public void PlayAttack()
         {
-             Animator.SetBool(Attack, true);
+            if (!Animator.GetBool(Attack))
+            {
+                startAttack += 1;
+                //Debug.Log($"start attack count = {startAttack}");
+                Animator.SetBool(Attack, true);
+            }
         }
 
         public void Pause()
@@ -56,15 +71,23 @@ namespace _Project.Runtime.Core.Herbalist
 
         public void PlayHit()
         {
+            
+            //Debug.Log($"Play hit");
             Animator.Play(Hit);
         }
         
         [UsedImplicitly]
-        private void OnPlayedAttack()
+        public void OnPlayedAttack()
         {
-            Animator.SetBool(Attack, false);
-            _onAttackComplete?.Invoke();
-            Attacked?.Invoke();
+            endAttack += 1;
+            //Debug.Log($"end attack count = {endAttack}");
+            if (Animator.GetBool(Attack))
+            {
+                Animator.SetBool(Attack, false);
+                _attackExitConfirmed = false;
+                _onAttackComplete?.Invoke();
+                Attacked?.Invoke();
+            }
         }
         
         [UsedImplicitly]
@@ -72,6 +95,16 @@ namespace _Project.Runtime.Core.Herbalist
         {
             Animator.SetBool(Hit, false);
             Hitted?.Invoke();
+        }
+
+        public bool IsAttacking()
+        {
+            return Animator.GetBool(Attack) || !_attackExitConfirmed;
+        }
+
+        public void ConfirmExitAttackState()
+        {
+            _attackExitConfirmed = true;
         }
     }
 }
