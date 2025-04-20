@@ -23,6 +23,13 @@
       "dependencies": {},
       "hash": "d6effd70f5574369e3415c423ef3e621ea309564"
     },
+    "com.superkerokero.bookmark4unity": {
+      "version": "https://github.com/superkerokero/Bookmark4Unity.git?path=/Assets/Bookmark4Unity",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "bbe23838de2701115044e26da8f6da24402c32b3"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

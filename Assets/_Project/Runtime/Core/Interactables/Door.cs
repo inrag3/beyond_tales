@@ -1,15 +1,16 @@
-using System;
+using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.Core.Interactables.Processors;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Playables;
-using UnityEngine.Serialization;
 using UnityEngine.Timeline;
 
 namespace _Project.Runtime.Core.Interactables
 {
-    public class Door : Interactable
+    public class Door : MonoBehaviour, ITransformable
     {
+        public bool IsAccessible { get; set; } = true;
+        public Transform Transform => transform;
         [SerializeField] private PlayableDirector _playableDirector;
         [SerializeField] private TimelineAsset _openDoorAnimation;
         [SerializeField] private TimelineAsset _closeDoorAnimation;
@@ -29,7 +30,7 @@ namespace _Project.Runtime.Core.Interactables
             _playableDirector.stopped -= OnStopPlayAnimation;
         }
 
-        public override void Interact(IInteractableVisitor visitor)
+        public void Interact(IInteractableVisitor visitor)
         {
             if (!IsAccessible)
             {
