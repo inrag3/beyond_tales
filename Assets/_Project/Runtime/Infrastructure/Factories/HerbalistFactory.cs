@@ -18,10 +18,11 @@ namespace _Project.Runtime.Infrastructure.Factories
 
         public IHerbalist Herbalist { get; private set; }
 
-        public void Create()
+        public void Create(Vector3 position)
         {
             GameObject prefab = _assetManager.Get(HerbalistPath);
             Herbalist = _instantiator.InstantiatePrefabForComponent<Herbalist>(prefab);
+            Herbalist.Transform.position = position;
         }
     }
 
