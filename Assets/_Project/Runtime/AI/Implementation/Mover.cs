@@ -8,13 +8,11 @@ namespace _Project.Runtime.AI.Implementation
     public class Mover : IRule
     {
         private readonly Enemy _enemy;
-        private readonly IHerbalistProvider _provider;
 
-        public bool IsExecutable => !_enemy.InAttackCooldown && !_enemy.CloseEnoughToAttack && _provider.Herbalist.Health.Value.CurrentValue > 0;
+        public bool IsExecutable => _enemy.CanRun();
 
-        public Mover(Enemy enemy, IHerbalistProvider provider)
+        public Mover(Enemy enemy)
         {
-            _provider = provider;
             _enemy = enemy;
         }
 

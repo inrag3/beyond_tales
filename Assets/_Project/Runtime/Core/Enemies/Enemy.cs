@@ -71,6 +71,12 @@ namespace _Project.Runtime.Core.Enemies
             //Died -= SpawnLoot;
         }
 
+        public bool CanAttack() =>
+            CloseEnoughToAttack && !InAttackCooldown && _provider.Herbalist.Health.Value.CurrentValue > 0 && !_animer.isPlayingHit();
+
+        public bool CanRun() => !InAttackCooldown && !CloseEnoughToAttack &&
+                                _provider.Herbalist.Health.Value.CurrentValue > 0 && !_animer.isPlayingHit();
+
         private void OnHitted()
         {
             _movement.Resume();

@@ -35,8 +35,8 @@ namespace _Project.Runtime.Infrastructure.Factories
         
         public void Begin()
         {
-            _coroutine = StartCoroutine(Spawn());
             _enemyTargetCount = _enemySpawnCount;
+            _coroutine = StartCoroutine(Spawn());
         }
 
         public void Stop()

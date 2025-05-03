@@ -17,41 +17,41 @@ namespace _Project.Runtime.Core.Herbalist
         public void PlayRoll(Action onComplete = null)
         {
             OnRollComplete = onComplete;
-            Animator.SetBool(Roll, true);
-            Animator.SetBool(Attack, false);
+            _animator.SetBool(Roll, true);
+            _animator.SetBool(Attack, false);
         }
 
         [UsedImplicitly]
         private void StopRoll()
         {
             OnRollComplete?.Invoke();
-            Animator.SetBool(Roll, false);
+            _animator.SetBool(Roll, false);
         }
 
         public void PlayDisequip(Action onComplete = null)
         {
             OnDisequipComplete = onComplete;
-            Animator.SetBool(Disequip, true);
+            _animator.SetBool(Disequip, true);
         }
 
         [UsedImplicitly]
         private void StopDisequip()
         {
             OnDisequipComplete?.Invoke();
-            Animator.SetBool(Disequip, false);
+            _animator.SetBool(Disequip, false);
         }
         
         public void PlayEquip(Action onComplete = null)
         {
             OnEquipComplete = onComplete;
-            Animator.SetBool(Disequip, true);
+            _animator.SetBool(Disequip, true);
         }
 
         [UsedImplicitly]
         private void StopEquip()
         {
             OnEquipComplete?.Invoke();
-            Animator.SetBool(Disequip, false);
+            _animator.SetBool(Disequip, false);
         }
 
     }
