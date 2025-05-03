@@ -26,6 +26,7 @@ MonoBehaviour:
   <PotionPoisonDamage>k__BackingField: 2
   <PotionPoisonTimeDelay>k__BackingField: 0.5
   <PotionPoisonTimesCount>k__BackingField: 10
+  <HerbalistDamage>k__BackingField: 25
   <Radius>k__BackingField: 0
   <MaxLootCount>k__BackingField: 3
   <LootMinDistance>k__BackingField: 0
