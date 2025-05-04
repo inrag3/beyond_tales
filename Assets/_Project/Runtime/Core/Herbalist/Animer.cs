@@ -9,13 +9,13 @@ namespace _Project.Runtime.Core.Herbalist
     {
         private static readonly int Running = Animator.StringToHash("Running");
         protected static readonly int Attack = Animator.StringToHash("Attack");
-        private static readonly int Hit = Animator.StringToHash("Hit");
+        private static readonly string Hit = "Hit";
         private const string Death = "Death";
 
         private int startAttack = 0;
         private int endAttack = 0;
         
-        protected Animator Animator;
+        protected Animator _animator;
         private event Action _onAttackComplete;
         public event Action Attacked;
         public event Action Hitted;
@@ -25,18 +25,20 @@ namespace _Project.Runtime.Core.Herbalist
         [Inject]
         private void Construct(Animator animator)
         {
-            Animator = animator;
+            _animator = animator;
         }
         
         public void PlayDeath()
         {
-            Animator.Play(Death);
+            _animator.Play(Death);
         }
 
         public void PlayMove(float value)
         {
-            Animator.SetFloat(Running, value);
+            _animator.SetFloat(Running, value);
         }
+
+        public bool isPlayingHit() => _animator.GetCurrentAnimatorStateInfo(0).IsName(Hit);
 
         private void Update()
         {
@@ -45,35 +47,35 @@ namespace _Project.Runtime.Core.Herbalist
 
         public void PlayAttack()
         {
-            if (!Animator.GetBool(Attack))
+            if (!_animator.GetBool(Attack))
             {
                 startAttack += 1;
                 //Debug.Log($"start attack count = {startAttack}");
-                Animator.SetBool(Attack, true);
+                _animator.SetBool(Attack, true);
             }
         }
 
         public void Pause()
         {
-            Animator.speed = 0;
+            _animator.speed = 0;
         }
 
         public void Resume()
         {
-            Animator.speed = 1;
+            _animator.speed = 1;
         }
 
         public void PlayAttack(Action onComplete)
         {
             _onAttackComplete = onComplete;
-            Animator.SetBool(Attack, true);
+            _animator.SetBool(Attack, true);
         }
 
         public void PlayHit()
         {
             
             //Debug.Log($"Play hit");
-            Animator.Play(Hit);
+            _animator.Play(Hit);
         }
         
         [UsedImplicitly]
@@ -81,9 +83,9 @@ namespace _Project.Runtime.Core.Herbalist
         {
             endAttack += 1;
             //Debug.Log($"end attack count = {endAttack}");
-            if (Animator.GetBool(Attack))
+            if (_animator.GetBool(Attack))
             {
-                Animator.SetBool(Attack, false);
+                _animator.SetBool(Attack, false);
                 _attackExitConfirmed = false;
                 _onAttackComplete?.Invoke();
                 Attacked?.Invoke();
@@ -93,13 +95,13 @@ namespace _Project.Runtime.Core.Herbalist
         [UsedImplicitly]
         private void OnPlayedHit()
         {
-            Animator.SetBool(Hit, false);
+            _animator.SetBool(Hit, false);
             Hitted?.Invoke();
         }
 
         public bool IsAttacking()
         {
-            return Animator.GetBool(Attack) || !_attackExitConfirmed;
+            return _animator.GetBool(Attack) || !_attackExitConfirmed;
         }
 
         public void ConfirmExitAttackState()

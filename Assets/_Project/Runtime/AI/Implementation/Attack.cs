@@ -6,15 +6,12 @@ namespace _Project.Runtime.AI.Implementation
 {
     public class Attack : IRule
     {
-        public bool IsExecutable => _enemy.CloseEnoughToAttack
-                                    && !_enemy.InAttackCooldown && _provider.Herbalist.Health.Value.CurrentValue > 0;
+        public bool IsExecutable => _enemy.CanAttack();
 
         private readonly Enemy _enemy;
-        private readonly IHerbalistProvider _provider;
         
-        public Attack(Enemy character, IHerbalistProvider provider)
+        public Attack(Enemy character)
         {
-            _provider = provider;
             _enemy = character;
         }
 

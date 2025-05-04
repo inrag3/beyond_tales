@@ -3,7 +3,7 @@
 namespace _Project.Runtime.Config.Herbalist
 {
     [CreateAssetMenu(fileName = "HealthConfig", menuName = "Configs/HealthConfig", order = 0)]
-    public sealed class HerbalistConfig : ScriptableObject, IHealthConfig, ISpeedConfig, IGrenadeConfig, IPickerConfig, ILootConfig
+    public sealed class HerbalistConfig : ScriptableObject, IHealthConfig, ISpeedConfig, IGrenadeConfig, IPickerConfig, ILootConfig, IAttackConfig
     {
         [field: SerializeField] public int MaxValue { get; private set; }
 
@@ -28,6 +28,9 @@ namespace _Project.Runtime.Config.Herbalist
         [field: SerializeField] public float PotionPoisonDamage { get; private set; }
         [field: SerializeField] public float PotionPoisonTimeDelay { get; private set; }
         [field: SerializeField] public int PotionPoisonTimesCount { get; private set; }
+        
+        [field: Header("HerbalistAttack")]
+        [field: SerializeField] public float HerbalistDamage { get; private set; }
 
         [field: Header("Picker")]
         [field: SerializeField]

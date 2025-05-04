@@ -2,19 +2,20 @@ using System.Collections.Generic;
 using System.Linq;
 using _Project.Runtime.AI.Core;
 using _Project.Runtime.Core;
-using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Interactables;
-using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Installers.GameObject;
 using _Project.Runtime.QuestSystem;
 using _Project.Runtime.SearchSystem;
+using UnityEngine;
 using Zenject;
 
 namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
 {
     public class SceneInstaller : MonoInstaller, IInitializable
     {
+        [SerializeField]
+        private Vector3 herbalistStartPosition;
         
         public override void InstallBindings()
         {
@@ -32,7 +33,7 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
 
         public void Initialize()
         {
-            Container.Resolve<HerbalistFactory>().Create();
+            Container.Resolve<HerbalistFactory>().Create(herbalistStartPosition);
         }
 
         private void BindEnemySpawners()

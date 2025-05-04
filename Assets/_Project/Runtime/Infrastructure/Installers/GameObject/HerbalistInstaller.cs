@@ -1,3 +1,4 @@
+using _Project.Runtime.Core.Grenades;
 using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Core.Interactables.Processors;
@@ -41,6 +42,7 @@ namespace _Project.Runtime.Infrastructure.Installers.GameObject
             Container.BindInterfacesAndSelfTo<Detector>().AsSingle().NonLazy();
             
             Container.Bind<CharacterController>().FromInstance(_controller).AsSingle().NonLazy();
+
         }
 
     }

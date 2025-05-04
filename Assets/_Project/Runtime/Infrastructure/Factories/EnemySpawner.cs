@@ -15,6 +15,7 @@ namespace _Project.Runtime.Infrastructure.Factories
         [SerializeField] private int _enemySpawnCount = -1;
         [SerializeField] private BaseQuestAction[] _questActionsToActivateAfterAllEnemiesDied;
         [SerializeField] private EnemyType _enemyType;
+        private int _enemyTargetCount = 0;
 
         private readonly ObservableHashSet<Enemy> _enemies = new();
         private IEnemyFactory _factory;
@@ -35,6 +36,7 @@ namespace _Project.Runtime.Infrastructure.Factories
         
         public void Begin()
         {
+            _enemyTargetCount = _enemySpawnCount;
             _coroutine = StartCoroutine(Spawn());
         }
 
@@ -49,14 +51,14 @@ namespace _Project.Runtime.Infrastructure.Factories
         public void Reset()
         {
             Stop();
+            _enemyTargetCount = _enemyTargetCount - _spawnedEnemies + _enemySpawnCount;
             _spawnedEnemies = 0;
-            _enemies.Clear();
             _diedEnemies = 0;
         }
 
         private IEnumerator Spawn()
         {
-            while (_enemySpawnCount == -1 || _spawnedEnemies < _enemySpawnCount)
+            while (_enemySpawnCount == -1 || _spawnedEnemies < _enemyTargetCount)
             { 
                 Enemy enemy = _factory.Create(transform.position, _enemyType);
                 _actorFactory.Create(enemy);
@@ -76,7 +78,7 @@ namespace _Project.Runtime.Infrastructure.Factories
 
             _diedEnemies++;
 
-            if (_enemySpawnCount != -1 && _diedEnemies == _enemySpawnCount)
+            if (/*_enemySpawnCount != -1 && _diedEnemies == _enemySpawnCount*/ _enemies.Count == 0 )
             {
                 foreach (var quest in _questActionsToActivateAfterAllEnemiesDied)
                 {

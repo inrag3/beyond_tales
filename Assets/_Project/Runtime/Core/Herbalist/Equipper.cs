@@ -11,14 +11,30 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly HerbalistAnimer _animer;
         private readonly IInputService _inputService;
         private Weapon _currentWeapon;
+        private Attacker _attacker;
 
-        public Equipper(IInputService inputService, HerbalistAnimer animer, Transform hand, Transform back)
+        public Equipper(IInputService inputService, HerbalistAnimer animer, Transform hand, Transform back, Attacker attacker)
         {
             _inputService = inputService;
             _animer = animer;
             _back = back;
             _hand = hand;
+            _attacker = attacker;
+            TryEquipOnStart();
         }
+
+        private void TryEquipOnStart()
+        {
+            if (_hand.childCount != 0)
+            {
+                if (_hand.GetChild(0).TryGetComponent(out Weapon weapon))
+                {
+                    weapon.CheckRigidBody();
+                    Equip(weapon);
+                }
+            }
+        }
+        
 
         public void Tick()
         {
@@ -36,7 +52,7 @@ namespace _Project.Runtime.Core.Herbalist
             }
             
             _currentWeapon = weapon;
-            _currentWeapon.Take(_hand);
+            _currentWeapon.Take(_hand, _attacker);
 
             _currentWeapon.transform.SetParent(_hand);
             _currentWeapon.transform.localPosition = Vector3.zero;

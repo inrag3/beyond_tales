@@ -6,6 +6,7 @@ using _Project.Runtime.Core.Grenades.GlobalWorldChange;
 using _Project.Runtime.Core.Grenades.PotionLogic;
 using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.Infrastructure.Factories;
+using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
@@ -58,7 +59,6 @@ namespace _Project.Runtime.Core.Grenades
             _globalWorldChangeProvider = globalWorldChangeProvider;
             _throwCoolDownTimer = throwCoolDownTimer;
             _grenadeRecoveryTimer = grenadeRecoveryTimer;
-
             _potionsApplyFunctions = new ReadOnlyCollection<Action>(new List<Action>()
             {
                 () =>
@@ -68,8 +68,7 @@ namespace _Project.Runtime.Core.Grenades
                 },
                 () =>
                 {
-                    _potionApplierFactory.ApplyHealing(_inputService.Mouse,
-                        _herbalistProvider.Herbalist.Transform.position);
+                    _potionApplierFactory.ApplyHealing(herbalistProvider);
                 },
                 () =>
                 {
@@ -179,17 +178,19 @@ namespace _Project.Runtime.Core.Grenades
 
             _potionIngredients -= CurrentPotionAmount;
             CurrentIngredientCountChanged?.Invoke(CurrentIngredientsCount);
-            
-            ThrowGrenade();
-
-            _throwCoolDownTimer.Start(_grenadeConfig.GrenadeThrowsTimeout);
-
-
-            if (!_isRecoveringGrenades)
+            _herbalistProvider.Herbalist.Transform.DOLookAt(_inputService.Mouse, 0.2f).OnComplete(() =>
             {
-                _isRecoveringGrenades = true;
-                _grenadeRecoveryTimer.Start(_grenadeConfig.GrenadeRecoveryTimeout);
-            }
+                ThrowGrenade();
+
+                _throwCoolDownTimer.Start(_grenadeConfig.GrenadeThrowsTimeout);
+
+                
+                if (!_isRecoveringGrenades)
+                {
+                    _isRecoveringGrenades = true;
+                    _grenadeRecoveryTimer.Start(_grenadeConfig.GrenadeRecoveryTimeout);
+                }
+            });
         }
 
         private void ThrowGrenade()
