@@ -14,6 +14,7 @@ namespace _Project.Runtime.Infrastructure.Factories
         [SerializeField] private float _cooldown;
         [SerializeField] private int _enemySpawnCount = -1;
         [SerializeField] private BaseQuestAction[] _questActionsToActivateAfterAllEnemiesDied;
+        [SerializeField] private EnemyType _enemyType;
 
         private readonly ObservableHashSet<Enemy> _enemies = new();
         private IEnemyFactory _factory;
@@ -57,7 +58,7 @@ namespace _Project.Runtime.Infrastructure.Factories
         {
             while (_enemySpawnCount == -1 || _spawnedEnemies < _enemySpawnCount)
             { 
-                Enemy enemy = _factory.Create(transform.position);
+                Enemy enemy = _factory.Create(transform.position, _enemyType);
                 _actorFactory.Create(enemy);
                 enemy.Died += OnDied; 
                 _enemies.Add(enemy);
