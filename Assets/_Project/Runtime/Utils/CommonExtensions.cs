@@ -1,4 +1,4 @@
-﻿namespace ElectricServiceCompany
+﻿namespace Extensions
 {
     using System.Collections;
     using System.Collections.Generic;
@@ -8,6 +8,11 @@
     using System;
     public static class CommonExtensions
     {
+        
+        public static Vector2 ToXZ(this Vector3 delta)
+        {
+            return new Vector2(delta.x, delta.z);
+        }
         public static Vector3 ToDirectionXZ(this Vector3 delta)
         {
             delta.y = 0;

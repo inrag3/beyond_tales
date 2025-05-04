@@ -966,6 +966,7 @@ MonoBehaviour:
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 64440236}
   - {fileID: 1512728148}
+  _enemyType: 0
 --- !u!1 &87885719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,6 +2291,7 @@ MonoBehaviour:
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 183188176}
   - {fileID: 1512728148}
+  _enemyType: 0
 --- !u!114 &187615847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2598,6 +2600,7 @@ MonoBehaviour:
   _enemySpawnCount: 2
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 231158625}
+  _enemyType: 0
 --- !u!1001 &238746550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3152,7 +3155,7 @@ MonoBehaviour:
   output: {fileID: 0}
   QuestActions:
   - {fileID: 961415996}
-  - {fileID: 2048181037}
+  - {fileID: 0}
   Index: 
 --- !u!1001 &271648837
 PrefabInstance:
@@ -3871,6 +3874,7 @@ MonoBehaviour:
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 308434779}
   - {fileID: 1185176019}
+  _enemyType: 0
 --- !u!1 &312356799
 GameObject:
   m_ObjectHideFlags: 0
@@ -5318,6 +5322,7 @@ MonoBehaviour:
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 396672116}
   - {fileID: 1185176019}
+  _enemyType: 0
 --- !u!114 &399709940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11143,9 +11148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue: {fileID: 245166566}
-  _onHit:
-  - {fileID: 913536164}
-  - {fileID: 913536169}
+  _onHit: []
 --- !u!136 &913536166
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14968,7 +14971,7 @@ MonoBehaviour:
   output: {fileID: 0}
   QuestActions:
   - {fileID: 1548678392}
-  - {fileID: 2048181037}
+  - {fileID: 0}
   Index: 
 --- !u!114 &1227191462
 MonoBehaviour:
@@ -17522,6 +17525,7 @@ MonoBehaviour:
   - {fileID: 1370115514}
   - {fileID: 1370115516}
   - {fileID: 936687940}
+  _enemyType: 0
 --- !u!114 &1370115516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20098,6 +20102,7 @@ MonoBehaviour:
   _enemySpawnCount: 2
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 1563024239}
+  _enemyType: 0
 --- !u!114 &1563024239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20433,6 +20438,7 @@ MonoBehaviour:
   _enemySpawnCount: 2
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 1585271850}
+  _enemyType: 0
 --- !u!114 &1593228885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21207,6 +21213,7 @@ MonoBehaviour:
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 1649727044}
   - {fileID: 2082663670}
+  _enemyType: 1
 --- !u!1 &1651625561
 GameObject:
   m_ObjectHideFlags: 0
@@ -23998,6 +24005,7 @@ MonoBehaviour:
   _enemySpawnCount: 2
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 1886618174}
+  _enemyType: 0
 --- !u!114 &1894608950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24273,7 +24281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb6f43361624573b6a7c8a222755db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  herbalistStartPosition: {x: -8.5, y: 0, z: 0}
+  herbalistStartPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1905024453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27476,6 +27484,7 @@ MonoBehaviour:
   - {fileID: 2129621579}
   - {fileID: 2129621578}
   - {fileID: 936687940}
+  _enemyType: 0
 --- !u!1 &2129769176
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ using _Project.Runtime.QuestSystem;
 using _Project.Runtime.SearchSystem;
 using DialogueSystem.Nodes;
 using DialogueSystem.Nodes.Checks;
-using ElectricServiceCompany;
+using Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 using XNode;

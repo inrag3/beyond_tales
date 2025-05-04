@@ -20,9 +20,20 @@ namespace _Project.Runtime.Infrastructure.Installers.GameObject
 
         public void Create(Enemy enemy)
         {
+            Actor actor = null;
+            
+            if (enemy is Hut hut)
+            {
+                var hutBehaviourRule = _instantiator.Instantiate<HutBehaviourRule>(new[] { hut });
+                actor = new Actor(hutBehaviourRule);
+                _actors.Add(actor);
+                hut.Died += Dispose;
+                return;
+            }
+
             var mover = _instantiator.Instantiate<Mover>(new []{ enemy });
             var attack = _instantiator.Instantiate<Attack>(new []{ enemy });
-            var actor = new Actor(mover, attack);
+            actor = new Actor(mover, attack);
             _actors.Add(actor);
             enemy.Died += Dispose;
             return;

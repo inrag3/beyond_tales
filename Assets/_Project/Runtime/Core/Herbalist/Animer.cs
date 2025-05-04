@@ -10,6 +10,7 @@ namespace _Project.Runtime.Core.Herbalist
         private static readonly int Running = Animator.StringToHash("Running");
         protected static readonly int Attack = Animator.StringToHash("Attack");
         private static readonly string Hit = "Hit";
+        private static readonly string Idle = "Idle";
         private const string Death = "Death";
 
         private int startAttack = 0;
@@ -77,7 +78,22 @@ namespace _Project.Runtime.Core.Herbalist
             //Debug.Log($"Play hit");
             _animator.Play(Hit);
         }
+
+        public void PlayIdle()
+        {
+            _animator.SetTrigger(Idle);
+        }
         
+        public void SetBool(string flagName, bool flag)
+        {
+            _animator.SetBool(flagName, flag);
+        }
+
+        public void SetTrigger(string trigger)
+        {
+            _animator.SetTrigger(trigger);
+        }
+
         [UsedImplicitly]
         public void OnPlayedAttack()
         {

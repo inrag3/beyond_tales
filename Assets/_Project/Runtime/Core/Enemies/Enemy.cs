@@ -18,14 +18,14 @@ namespace _Project.Runtime.Core.Enemies
         [SerializeField] private Collider _collider;
         [field: SerializeField] public Point Point { get; private set; }
 
-        private Movement _movement;
-        private IAttacker _attack;
+        protected Movement _movement;
+        protected IAttacker _attack;
 
-        private EnemyAnimer _animer;
+        protected EnemyAnimer _animer;
         private PauseHandlersRegister _pauseHandlersRegister;
         public event Action<Enemy> Died;
 
-        private IHerbalistProvider _provider;
+        protected IHerbalistProvider _provider;
         private List<string> dropPaths = new();
         private IInstantiator _instantiator;
         private IAssetManager _assetManager;
@@ -113,13 +113,13 @@ namespace _Project.Runtime.Core.Enemies
         {
         }
 
-        public void Pause()
+        public virtual void Pause()
         {
             _movement.Pause();
             _animer.Pause();
         }
 
-        public void Resume()
+        public virtual void Resume()
         {
             _movement.Resume();
             _animer.Resume();

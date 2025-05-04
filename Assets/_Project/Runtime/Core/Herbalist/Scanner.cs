@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _Project.Runtime.Infrastructure.Factories;
-using ElectricServiceCompany;
+using Extensions;
 using ObservableCollections;
 using UnityEngine;
 using Zenject;

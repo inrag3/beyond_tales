@@ -2,7 +2,7 @@ using System.Collections;
 using _Project.Runtime.Core.Enemies;
 using _Project.Runtime.Infrastructure.Installers.GameObject;
 using _Project.Runtime.QuestSystem;
-using ElectricServiceCompany;
+using Extensions;
 using ObservableCollections;
 using UnityEngine;
 using Zenject;
