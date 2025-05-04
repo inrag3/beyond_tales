@@ -15,6 +15,11 @@ namespace _Project.Runtime.Core.Interactables
         private Attacker _attacker;
         private void Awake()
         {
+            CheckRigidBody();
+        }
+
+        public void CheckRigidBody()
+        {
             _collider ??= GetComponent<Collider>();
             _rigidbody ??= GetComponent<Rigidbody>();
         }

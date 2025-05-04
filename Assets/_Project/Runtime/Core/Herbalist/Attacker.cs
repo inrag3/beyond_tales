@@ -14,7 +14,6 @@ namespace _Project.Runtime.Core.Herbalist
         private readonly IInputService _inputService;
         private readonly HerbalistAnimer _animer;
         private readonly Transform _transform;
-        private readonly Detector _detector;
         private readonly Mover _mover;
         private readonly PauseHandlersRegister _pauseHandlersRegister;
         private readonly IAttackConfig _herbalistAttackConfig;
@@ -25,13 +24,11 @@ namespace _Project.Runtime.Core.Herbalist
             IInputService inputService,
             HerbalistAnimer animer,
             Transform transform,
-            Detector detector,
             Mover mover,
             PauseHandlersRegister pauseHandlersRegister,
             IAttackConfig herbalistAttackConfig)
         {
             _mover = mover;
-            _detector = detector;
             _transform = transform;
             _inputService = inputService;
             _animer = animer;

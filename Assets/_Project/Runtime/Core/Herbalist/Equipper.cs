@@ -20,7 +20,21 @@ namespace _Project.Runtime.Core.Herbalist
             _back = back;
             _hand = hand;
             _attacker = attacker;
+            TryEquipOnStart();
         }
+
+        private void TryEquipOnStart()
+        {
+            if (_hand.childCount != 0)
+            {
+                if (_hand.GetChild(0).TryGetComponent(out Weapon weapon))
+                {
+                    weapon.CheckRigidBody();
+                    Equip(weapon);
+                }
+            }
+        }
+        
 
         public void Tick()
         {
