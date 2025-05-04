@@ -1,6 +1,7 @@
 ﻿using _Project.Runtime.Config;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Infrastructure;
+using _Project.Runtime.Infrastructure.Factories;
 using UnityEngine;
 using Zenject;
 
@@ -8,7 +9,6 @@ namespace _Project.Runtime.Core.Grenades.PotionLogic
 {
     public class PotionApplierFactory : IPotionApplierFactory
     {
-        
         protected readonly IGrenadeConfig _grenadeConfig;
         protected readonly IAssetManager _assetManager;
         protected readonly IInstantiator _instantiator;
@@ -24,7 +24,7 @@ namespace _Project.Runtime.Core.Grenades.PotionLogic
             IPotionExplosionProvider iPotionExplosionProvider,
             IHealth health,
             IPoisoningProvider poisoningProvider
-            )
+        )
         {
             _grenadeConfig = grenadeConfig;
             _assetManager = assetManager;
@@ -47,15 +47,16 @@ namespace _Project.Runtime.Core.Grenades.PotionLogic
             grende.MakeAction();
         }
 
-        public void ApplyHealing(Vector3 mousePosition, Vector3 worldPosition)
+        public void ApplyHealing(IHerbalistProvider herbalistProvider)
         {
             var grende = new PotionHeal(
                 _grenadeConfig,
                 _assetManager,
                 _instantiator,
                 _health,
-                mousePosition,
-                worldPosition);
+                Vector3.down,
+                Vector3.down,
+                herbalistProvider);
             grende.MakeAction();
         }
 
@@ -79,20 +80,16 @@ namespace _Project.Runtime.Core.Grenades.PotionLogic
                 mousePosition,
                 worldPosition,
                 _poisoningProvider.StartPoisoning
-                );
+            );
             grende.MakeAction();
         }
-        
-        
     }
-    
+
     public interface IPotionApplierFactory
     {
         public void ApplyWorldChange(Vector3 mousePosition, Vector3 worldPosition);
-        public void ApplyHealing(Vector3 mousePosition, Vector3 worldPosition);
+        public void ApplyHealing(IHerbalistProvider herbalistProvider);
         public void ApplyExplosion(Vector3 mousePosition, Vector3 worldPosition);
         public void ApplyPoison(Vector3 mousePosition, Vector3 worldPosition);
     }
-    
-    
 }

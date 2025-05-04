@@ -68,8 +68,7 @@ namespace _Project.Runtime.Core.Grenades
                 },
                 () =>
                 {
-                    _potionApplierFactory.ApplyHealing(_inputService.Mouse,
-                        _herbalistProvider.Herbalist.Transform.position);
+                    _potionApplierFactory.ApplyHealing(herbalistProvider);
                 },
                 () =>
                 {
