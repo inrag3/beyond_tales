@@ -3155,7 +3155,6 @@ MonoBehaviour:
   output: {fileID: 0}
   QuestActions:
   - {fileID: 961415996}
-  - {fileID: 0}
   Index: 
 --- !u!1001 &271648837
 PrefabInstance:
@@ -11192,7 +11191,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue: {fileID: 245166566}
-  _onHit: []
+  _onHit:
+  - {fileID: 913536164}
+  - {fileID: 913536169}
 --- !u!136 &913536166
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15054,7 +15055,6 @@ MonoBehaviour:
   output: {fileID: 0}
   QuestActions:
   - {fileID: 1548678392}
-  - {fileID: 0}
   Index: 
 --- !u!114 &1227191462
 MonoBehaviour:
@@ -24442,7 +24442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb6f43361624573b6a7c8a222755db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  herbalistStartPosition: {x: 0, y: 0, z: 0}
+  herbalistStartPosition: {x: 57, y: 0, z: 0}
 --- !u!114 &1905024453
 MonoBehaviour:
   m_ObjectHideFlags: 0
