@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc8bdd0344a50944891a07e4343b7e0, type: 3}
+  m_Name: SoundSettings
+  m_EditorClassIdentifier: 
+  walkClip: {fileID: 8300000, guid: f8f360d224d4c3142b306fc83ea7dd2b, type: 3}
+  fightClip: {fileID: 8300000, guid: 8cb50fce6e391f9488843943df79799e, type: 3}

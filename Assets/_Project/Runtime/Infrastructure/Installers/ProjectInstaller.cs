@@ -11,6 +11,7 @@ using _Project.Runtime.Infrastructure.Factories.UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
+using _Project.Runtime.Audio;
 
 namespace _Project.Runtime.Infrastructure.Installers
 {
@@ -18,6 +19,7 @@ namespace _Project.Runtime.Infrastructure.Installers
     {
         [SerializeField] private CoroutinePerformer _coroutinePerformer;
         [SerializeField] private GizmosDrawer _gizmosDrawer;
+        [SerializeField] private SoundSettings _soundSettings;
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<SceneManager>().AsSingle().NonLazy();
@@ -42,6 +44,10 @@ namespace _Project.Runtime.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<PauseHandler>().AsSingle().NonLazy();
 
             Container.Bind<SearchSystem.SearchSystem>().AsSingle().NonLazy();
+
+            Container.Bind<SoundSettings>().FromInstance(_soundSettings).AsSingle().NonLazy();
+
+            Container.BindInterfacesAndSelfTo<AudioService>().FromNewComponentOnNewGameObject().WithGameObjectName("AudioService").AsSingle().NonLazy();
         }
 
         private void BindServices()
