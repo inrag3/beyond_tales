@@ -6,12 +6,12 @@ namespace _Project.Runtime.Core.Grenades
     {
         [SerializeField] GameObject _dragon;
         
-        public override void TriggerWorldChange()
+        protected override void TriggerWorldChange()
         {
             _dragon.SetActive(true);
         }
 
-        public override void TriggerWorldChangeBack()
+        protected override void TriggerWorldChangeBack()
         {
             _dragon.SetActive(false);
 

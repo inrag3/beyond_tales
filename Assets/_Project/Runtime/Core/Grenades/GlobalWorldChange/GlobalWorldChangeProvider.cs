@@ -48,7 +48,7 @@ namespace _Project.Runtime.Core.Grenades.GlobalWorldChange
 
         public void Deactivate()
         {
-            _changedObjects.ForEach(e => e.TriggerWorldChangeBack());
+            _changedObjects.ForEach(e => e.TryTriggerWorldChangeBack());
             _changedObjects.Clear();
             _worldChangeExplosion.SelfDestroy();
             _worldChangeExplosion = null;
@@ -64,7 +64,7 @@ namespace _Project.Runtime.Core.Grenades.GlobalWorldChange
             {
                 if (hitCollider.TryGetComponent(out SecondWorldExChangingTrigger trigger))
                 {
-                    trigger.TriggerWorldChange();
+                    trigger.TryTriggerWorldChange();
                     _changedObjects.Add(trigger);
                 }
             }

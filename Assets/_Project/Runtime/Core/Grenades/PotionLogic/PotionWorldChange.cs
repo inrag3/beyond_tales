@@ -35,14 +35,14 @@ namespace _Project.Runtime.Core.Grenades.PotionLogic
 
         protected override void OnExplosionFinished(Grenade grenade, GrenadeExplosion explosion)
         {
-            UpdateSecondWorldOverlap(explosion.transform.position, (a) => a.TriggerWorldChangeBack());
+            UpdateSecondWorldOverlap(explosion.transform.position, (a) => a.TryTriggerWorldChangeBack());
 
             _removeExplosionFromList.Invoke(explosion);
         }
 
         protected override void OnExplosionStart(Grenade grenade, GrenadeExplosion explosion)
         {
-            UpdateSecondWorldOverlap(explosion.transform.position, (a) => a.TriggerWorldChange());
+            UpdateSecondWorldOverlap(explosion.transform.position, (a) => a.TryTriggerWorldChange());
             explosion.Radius = _grenadeConfig.GrenadeTransformWorldRadius;
             _addExplosionToList.Invoke(explosion);
         }

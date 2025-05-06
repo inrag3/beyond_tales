@@ -5,7 +5,7 @@ namespace _Project.Runtime.Core.Grenades
     public class EnemySecondWorldChanger : SecondWorldExChangingTrigger
     {
         private bool _isChanged = false;
-        public override void TriggerWorldChange()
+        protected override void TriggerWorldChange()
         {
             if (!_isChanged)
             {
@@ -16,7 +16,7 @@ namespace _Project.Runtime.Core.Grenades
             }
         }
 
-        public override void TriggerWorldChangeBack()
+        protected override void TriggerWorldChangeBack()
         {
         }
     }

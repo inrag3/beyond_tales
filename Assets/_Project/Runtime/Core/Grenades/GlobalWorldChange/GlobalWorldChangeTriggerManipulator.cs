@@ -12,14 +12,14 @@ namespace _Project.Runtime.Core.Grenades.GlobalWorldChange
             globalWorldChangeBackTrigger.SetActive(false);
         }
 
-        public override void TriggerWorldChange()
+        protected override void TriggerWorldChange()
         {
             globalWorldChangeTrigger.gameObject.SetActive(false);
             globalWorldChangeBackTrigger.gameObject.SetActive(true);
             
         }
 
-        public override void TriggerWorldChangeBack()
+        protected override void TriggerWorldChangeBack()
         {
             globalWorldChangeTrigger.gameObject.SetActive(true);
             globalWorldChangeBackTrigger.gameObject.SetActive(false);

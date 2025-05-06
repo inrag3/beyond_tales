@@ -4,12 +4,12 @@ namespace _Project.Runtime.Core.Grenades
 {
     public class WellChanger : SecondWorldExChangingTrigger
     {
-        public override void TriggerWorldChange()
+        protected override void TriggerWorldChange()
         {
             gameObject.GetComponent<Renderer>().material.color = Color.red;
         }
 
-        public override void TriggerWorldChangeBack()
+        protected override void TriggerWorldChangeBack()
         {
             gameObject.GetComponent<Renderer>().material.color = Color.white;
         }
