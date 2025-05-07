@@ -1,6 +1,7 @@
 ﻿using _Project.Runtime.Config;
 using _Project.Runtime.Core.Enemies;
 using UnityEngine;
+using UnityEngine.VFX;
 using Zenject;
 
 namespace _Project.Runtime.Core.Grenades

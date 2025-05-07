@@ -28,7 +28,8 @@ namespace _Project.Runtime.Core.Grenades
 
         private IPotionSelector _potionSelector;
 
-        private Dictionary<string, Image> _iconDict = new();
+        //private Dictionary<string, Image> _iconDict = new();
+        private Dictionary<string, Image> _outlineDict = new(); // подсветки
 
         [Inject]
         private void Construct(IPotionSelector potionSelector)
@@ -48,21 +49,38 @@ namespace _Project.Runtime.Core.Grenades
             SetText(_potionSelector.GetCurrentPotionName());
         }
 
+
         private void initImages()
         {
             for (int i = 0; i < _potionObjects.Count; i++)
             {
                 var obj = _potionObjects[i];
-                obj.transform.GetChild(2).GetComponent<Image>().sprite = _icons[i].icon;
-                _iconDict.Add(_icons[i].Name, obj.transform.GetChild(1).GetComponent<Image>());
+        
+                var outline = obj.transform.Find("Outline").GetComponent<Image>();
+                var icon = obj.transform.Find("Icon").GetComponent<Image>();
+
+                icon.sprite = _icons[i].icon;
+                
+                outline.sprite = _icons[i].highlightIcon;
+                outline.color = new Color(1, 1, 1, 0); // изначально полностью прозрачная
+
+                _outlineDict.Add(_icons[i].Name, outline);
             }
         }
 
         private void SetText(string text)
         {
-            _iconDict[_potionTextName.text].color = Color.black;
+            foreach (var outline in _outlineDict.Values)
+            {
+                outline.color = new Color(1, 1, 1, 0);
+            }
+            
+            if (_outlineDict.TryGetValue(text, out var currentOutline))
+            {
+                currentOutline.color = Color.white; // прозрачность = 1
+            }
+
             _potionTextName.text = text;
-            _iconDict[_potionTextName.text].color = Color.green;
         }
 
         private void SetCurrentIngredients(PotionIngredients ingredients)
@@ -91,5 +109,6 @@ namespace _Project.Runtime.Core.Grenades
     {
         public string Name;
         public Sprite icon;
+        public Sprite highlightIcon; // Добавлено поле для подсветки
     }
 }

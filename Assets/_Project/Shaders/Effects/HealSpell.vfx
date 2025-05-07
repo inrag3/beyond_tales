@@ -140,12 +140,6 @@ MonoBehaviour:
     - model: {fileID: 8926484042661615158}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661615080}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615170}
-      id: 0
-      isStickyNote: 0
   - title: New Group Node
     position:
       serializedVersion: 2
@@ -153,15 +147,12 @@ MonoBehaviour:
       y: 0
       width: 100
       height: 100
-    contents:
-    - model: {fileID: 8926484042661615111}
-      id: 0
-      isStickyNote: 0
+    contents: []
   stickyNoteInfos: []
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: -0
+    x: 0
     y: -306
     width: 4720
     height: 2388
@@ -871,7 +862,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"frames":[{"time":0.0,"value":0.593780517578125,"inTangent":0.406219482421875,"outTangent":0.406219482421875,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":1.0,"value":1.0,"inTangent":0.406219482421875,"outTangent":0.406219482421875,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
+      m_SerializableObject: '{"frames":[{"time":-0.002349853515625,"value":0.5971755981445313,"inTangent":0.40188005566596987,"outTangent":0.40188005566596987,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":1.0,"value":1.0,"inTangent":0.40188005566596987,"outTangent":0.40188005566596987,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
     m_Space: 2147483647
   m_Property:
     name: Size
@@ -935,7 +926,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.35686275362968447,"g":1.0,"b":0.21698099374771119,"a":1.0},"time":0.0},{"color":{"r":0.35686275362968447,"g":1.0,"b":0.21698099374771119,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.10000763088464737},{"alpha":1.0,"time":0.14706645905971528},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.8382653594017029,"g":4.574532508850098,"b":0.0,"a":1.0},"time":0.0},{"color":{"r":0.35686275362968447,"g":1.0,"b":0.21698099374771119,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.10000763088464737},{"alpha":1.0,"time":0.14706645905971528},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
     m_Space: 2147483647
   m_Property:
     name: Color
@@ -2450,7 +2441,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.7595313787460327,"g":2.0,"b":0.3686274588108063,"a":1.0},"time":0.0},{"color":{"r":0.7595313787460327,"g":2.0,"b":0.3686274588108063,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":0.929947018623352,"time":0.4599984884262085},{"alpha":1.0,"time":0.5258869528770447},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":3.038125514984131,"g":8.0,"b":1.474509835243225,"a":1.0},"time":0.0},{"color":{"r":0.7595313787460327,"g":2.0,"b":0.3686274588108063,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":0.929947018623352,"time":0.4599984884262085},{"alpha":1.0,"time":0.5258869528770447},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
     m_Space: 2147483647
   m_Property:
     name: Color
@@ -4037,7 +4028,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":1.1217944622039796,"g":3.0091488361358644,"b":0.6983494162559509,"a":1.0},"time":0.0},{"color":{"r":0.35686275362968447,"g":1.0,"b":0.21698099374771119,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.10000763088464737},{"alpha":1.0,"time":0.3329365849494934},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":2.264371156692505,"g":8.034899711608887,"b":0.9550914764404297,"a":1.0},"time":0.0},{"color":{"r":0.35686275362968447,"g":1.0,"b":0.21698099374771119,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.10000763088464737},{"alpha":1.0,"time":0.3329365849494934},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
     m_Space: 2147483647
   m_Property:
     name: Color
@@ -7168,7 +7159,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.865778386592865,"g":2.230677366256714,"b":0.46717962622642519,"a":1.0},"time":0.0},{"color":{"r":0.9171456098556519,"g":2.2706031799316408,"b":0.5253552198410034,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.06706339865922928},{"alpha":1.0,"time":0.10000763088464737},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":1.73155677318573,"g":4.461354732513428,"b":0.9343592524528503,"a":1.0},"time":0.0},{"color":{"r":0.9171456098556519,"g":2.2706031799316408,"b":0.5253552198410034,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.06706339865922928},{"alpha":1.0,"time":0.10000763088464737},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
     m_Space: 2147483647
   m_Property:
     name: Color
