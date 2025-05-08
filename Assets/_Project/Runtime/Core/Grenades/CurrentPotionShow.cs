@@ -109,6 +109,8 @@ namespace _Project.Runtime.Core.Grenades
     {
         public string Name;
         public Sprite icon;
-        public Sprite highlightIcon; // Добавлено поле для подсветки
+        public Sprite highlightIcon; 
+
+        public Vector3Int Cost; 
     }
 }
