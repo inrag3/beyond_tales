@@ -14,14 +14,14 @@ namespace _Project.Runtime.Core.Grenades
 
         [SerializeField] private SpritePotionAssociation[] _icons;
 
-        [SerializeField] private RectTransform _greenIngrSlider;
-        [SerializeField] private RectTransform _redIngrSlider;
-        [SerializeField] private RectTransform _blueIngrSlider;
+        [SerializeField] private Image _greenIngrSlider;
+        [SerializeField] private Image _redIngrSlider;
+        [SerializeField] private Image _blueIngrSlider;
         [SerializeField] private float _maxIngrCount;
 
-        [SerializeField] private RectTransform _greenIngrCostSlider;
-        [SerializeField] private RectTransform _redIngrCostSlider;
-        [SerializeField] private RectTransform _blueIngrCostSlider;
+        [SerializeField] private Image _greenIngrCostSlider;
+        [SerializeField] private Image _redIngrCostSlider;
+        [SerializeField] private Image _blueIngrCostSlider;
 
         [SerializeField] private List<GameObject> _potionObjects;
 
@@ -85,16 +85,16 @@ namespace _Project.Runtime.Core.Grenades
 
         private void SetCurrentIngredients(PotionIngredients ingredients)
         {
-            _greenIngrSlider.anchorMax = _greenIngrSlider.anchorMax.MMSetY(ingredients.Green / _maxIngrCount);
-            _redIngrSlider.anchorMax = _redIngrSlider.anchorMax.MMSetY(ingredients.Red / _maxIngrCount);
-            _blueIngrSlider.anchorMax = _blueIngrSlider.anchorMax.MMSetY(ingredients.Blue / _maxIngrCount);
+            _greenIngrSlider.fillAmount = (ingredients.Green / _maxIngrCount);
+            _redIngrSlider.fillAmount = (ingredients.Red / _maxIngrCount);
+            _blueIngrSlider.fillAmount = (ingredients.Blue / _maxIngrCount);
         }
 
         private void SetCurrentPotionCost(PotionIngredients cost)
         {
-            _greenIngrCostSlider.anchorMax = _greenIngrCostSlider.anchorMax.MMSetY(cost.Green / _maxIngrCount);
-            _redIngrCostSlider.anchorMax = _redIngrCostSlider.anchorMax.MMSetY(cost.Red / _maxIngrCount);
-            _blueIngrCostSlider.anchorMax = _blueIngrCostSlider.anchorMax.MMSetY(cost.Blue / _maxIngrCount);
+            _greenIngrCostSlider.fillAmount = (cost.Green / _maxIngrCount);
+            _redIngrCostSlider.fillAmount = (cost.Red / _maxIngrCount);
+            _blueIngrCostSlider.fillAmount = (cost.Blue / _maxIngrCount);
         }
 
 

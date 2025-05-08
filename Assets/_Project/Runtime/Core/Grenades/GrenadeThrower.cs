@@ -85,13 +85,13 @@ namespace _Project.Runtime.Core.Grenades
             {
                 "Мир", "Подорожник", "Бдыщ", "Яд"
             });
-            _potionIngredients = new PotionIngredients(10, 10, 10);
+            _potionIngredients = new PotionIngredients(6, 6, 6);
             _potionPrices = new List<PotionIngredients>()
             {
-                new(0, 0, 0),
-                new(0, 0, 0),
-                new(0, 0, 0),
-                new(0, 0, 0),
+                new(2, 2, 2),
+                new(1, 2, 0),
+                new(0, 2, 1),
+                new(2, 0, 1),
             };
         }
 
