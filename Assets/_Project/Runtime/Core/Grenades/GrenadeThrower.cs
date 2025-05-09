@@ -85,13 +85,13 @@ namespace _Project.Runtime.Core.Grenades
             {
                 "Мир", "Подорожник", "Бдыщ", "Яд"
             });
-            _potionIngredients = new PotionIngredients(6, 6, 6);
+            _potionIngredients = new PotionIngredients(1, 0, 2);
             _potionPrices = new List<PotionIngredients>()
             {
+                new(3, 3, 3),
                 new(2, 2, 2),
-                new(1, 2, 0),
-                new(0, 2, 1),
-                new(2, 0, 1),
+                new(0, 0, 0),
+                new(0, 0, 0),
             };
         }
 
@@ -214,6 +214,11 @@ namespace _Project.Runtime.Core.Grenades
             _throwCoolDownTimer.TimeEnded -= ResetThrow;
             _grenadeRecoveryTimer.TimeEnded -= RecoverGrenade;
         }
+
+        public void FillIngredientTillPotion(int potionId)
+        {
+            AddIngredient((_potionPrices[potionId] - _potionIngredients).Clip());
+        }
     }
 
     public interface IPotionSelector
@@ -240,6 +245,8 @@ namespace _Project.Runtime.Core.Grenades
         public event Action<PotionIngredients> SelectedPotionAmountChanged;
 
         public void AddIngredient(PotionIngredients ingredient);
+
+        void FillIngredientTillPotion(int potionId);
     }
 
     //dto для хранения и передачи инфы об ингредиентах зелья
@@ -271,6 +278,11 @@ namespace _Project.Runtime.Core.Grenades
         public static PotionIngredients operator +(PotionIngredients o1, PotionIngredients o2)
         {
             return new PotionIngredients(o1.Red + o2.Red, o1.Green + o2.Green, o1.Blue + o2.Blue);
+        }
+        
+        public PotionIngredients Clip()
+        {
+            return new PotionIngredients(Mathf.Max(Red,0),Mathf.Max(Green,0),Mathf.Max(Blue,0));
         }
 
         public bool IsNotLess(PotionIngredients o2)

@@ -17,16 +17,17 @@ public class RotatingStatuesManipulator : SecondWorldExChangingTrigger
     [SerializeField] private float maxTurnSpeed = 720f;  // °/с
     [SerializeField] private float corridorAngle = 20f;   // «Коридор», градусы
     [SerializeField] private float finalTolerance = 0.5f;
+    public event Action OnStatueRotated;
     private bool _isBroken = true;
     private bool _isFixed = false;
     private State _state = State.TrackPlayer;
-    private bool Fixed
+    public bool Fixed
     {
         get
         {
             return _isFixed;
         }
-        set
+        private set
         {
             foreach (var item in _redEyes)
                 item.SetActive(value);
@@ -94,6 +95,8 @@ public class RotatingStatuesManipulator : SecondWorldExChangingTrigger
                     _state = State.Locked;
                     Fixed = true;
                     _callback.Activate();
+                    Debug.unityLogger.Log("Rotating statue in statue");
+                    OnStatueRotated?.Invoke();
                 }
                 break;
 
