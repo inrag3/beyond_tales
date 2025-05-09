@@ -1,3 +1,4 @@
+using _Project.Runtime.Core.Grenades;
 using _Project.Runtime.Core.Grenades.GlobalWorldChange;
 using _Project.Runtime.Core.Herbalist;
 using _Project.Runtime.Core.Interactables.Items;
@@ -11,13 +12,15 @@ namespace _Project.Runtime.Core.Interactables.Processors
         private readonly DoorProcessor _doorProcessor;
         private readonly GlobalWorldChangeProcessor _globalWorldChangeProcessor;
         private readonly Equipper _equipper;
-
+        private readonly GrenadeThrower _grenadeThrower;
+    
         public Processor(
             ItemProcessor itemProcessor,
             BedProcessor bedProcessor,
             DoorProcessor doorProcessor,
             GlobalWorldChangeProcessor globalWorldChangeProcessor,
-            Equipper equipper
+            Equipper equipper,
+            GrenadeThrower grenadeThrower
         )
         {
             _equipper = equipper;
@@ -25,6 +28,7 @@ namespace _Project.Runtime.Core.Interactables.Processors
             _itemProcessor = itemProcessor;
             _doorProcessor = doorProcessor;
             _globalWorldChangeProcessor = globalWorldChangeProcessor;
+            _grenadeThrower = grenadeThrower;
         }
 
         public void Accept(Item item)
@@ -55,6 +59,11 @@ namespace _Project.Runtime.Core.Interactables.Processors
         public void Accept(Weapon weapon)
         {
             _equipper.Equip(weapon);
+        }
+        public void Accept(BushGetWorldChange bush)
+        {
+            _grenadeThrower.FillIngredientTillWorldChangePotion();
+
         }
     }
 }

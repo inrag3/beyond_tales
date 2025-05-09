@@ -11,5 +11,6 @@ namespace _Project.Runtime.Core.Interactables.Processors
         public void Accept(GlobalWorldChangeTrigger trigger);
         public void Accept(GlobalWorldChangeBackTrigger trigger);
         public void Accept(Weapon weapon);
+        public void Accept(BushGetWorldChange weapon);
     }
 }
