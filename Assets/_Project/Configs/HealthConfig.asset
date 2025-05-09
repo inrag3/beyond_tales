@@ -20,15 +20,15 @@ MonoBehaviour:
   <GrenadeRecoveryTimeout>k__BackingField: 4
   <GrenadeExplosionTimeout>k__BackingField: 1.5
   <GrenadeTransformWorldRadius>k__BackingField: 3
-  <PotionHealPoints>k__BackingField: 10
-  <PotionExplosionRadius>k__BackingField: 50
-  <PotionExplosionDamage>k__BackingField: 100
-  <PotionPoisonDamage>k__BackingField: 2
+  <PotionHealPoints>k__BackingField: 50
+  <PotionExplosionRadius>k__BackingField: 3
+  <PotionExplosionDamage>k__BackingField: 20
+  <PotionPoisonDamage>k__BackingField: 5
   <PotionPoisonTimeDelay>k__BackingField: 0.5
   <PotionPoisonTimesCount>k__BackingField: 10
-  <HerbalistDamage>k__BackingField: 25
-  <Radius>k__BackingField: 0
-  <MaxLootCount>k__BackingField: 3
+  <HerbalistDamage>k__BackingField: 50
+  <Radius>k__BackingField: 1
+  <MaxLootCount>k__BackingField: 7
   <LootMinDistance>k__BackingField: 0
   <LootMaxDistance>k__BackingField: 2
   <LootFrontForce>k__BackingField: 20

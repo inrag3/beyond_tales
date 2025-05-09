@@ -85,19 +85,19 @@ namespace _Project.Runtime.Core.Grenades
             {
                 "Мир", "Подорожник", "Бдыщ", "Яд"
             });
-            _potionIngredients = new PotionIngredients(1, 0, 2);
+            _potionIngredients = new PotionIngredients(1, 1, 2);
             _potionPrices = new List<PotionIngredients>()
             {
-                new(3, 3, 3),
-                new(2, 2, 2),
-                new(0, 0, 0),
-                new(0, 0, 0),
+                new(1, 1, 1),
+                new(2, 0, 0),
+                new(0, 2, 0),
+                new(0, 0, 2),
             };
         }
 
         public void AddIngredient(PotionIngredients ingredient)
         {
-            _potionIngredients += ingredient;
+            _potionIngredients = (_potionIngredients+ingredient).ClipTop();
             CurrentIngredientCountChanged?.Invoke(CurrentIngredientsCount);
         }
 
@@ -283,6 +283,11 @@ namespace _Project.Runtime.Core.Grenades
         public PotionIngredients Clip()
         {
             return new PotionIngredients(Mathf.Max(Red,0),Mathf.Max(Green,0),Mathf.Max(Blue,0));
+        }
+        
+        public PotionIngredients ClipTop()
+        {
+            return new PotionIngredients(Mathf.Min(Red,6),Mathf.Min(Green,6),Mathf.Min(Blue,6));
         }
 
         public bool IsNotLess(PotionIngredients o2)

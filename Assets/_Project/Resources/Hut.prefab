@@ -187,14 +187,14 @@ MonoBehaviour:
   <Point>k__BackingField: {fileID: 1472475183297877202}
   _followDistanceRange: {x: 3, y: 6}
   _backwardMovementSpeed: 2
-  _timeInRangeToStartAttack: 1
-  _runAwayCheckDistance: 2
-  _timeOnPrepareJump: 0.4
+  _timeInRangeToStartAttack: 2
+  _runAwayCheckDistance: 3
+  _timeOnPrepareJump: 0.8
   _timeOnEndJump: 0.3
   _jumpGravity: 10
   _timeInJump: 1
-  _attackRange: 2
-  _attackDamage: 50
+  _attackRange: 4
+  _attackDamage: 1
 --- !u!114 &5715674376584624418
 MonoBehaviour:
   m_ObjectHideFlags: 0
