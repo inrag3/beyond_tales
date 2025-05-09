@@ -89,7 +89,7 @@ namespace _Project.Runtime.Core.Grenades
             _potionPrices = new List<PotionIngredients>()
             {
                 new(3, 3, 3),
-                new(0, 0, 0),
+                new(2, 2, 2),
                 new(0, 0, 0),
                 new(0, 0, 0),
             };
@@ -215,9 +215,9 @@ namespace _Project.Runtime.Core.Grenades
             _grenadeRecoveryTimer.TimeEnded -= RecoverGrenade;
         }
 
-        public void FillIngredientTillWorldChangePotion()
+        public void FillIngredientTillPotion(int potionId)
         {
-            AddIngredient((_potionPrices[0] - _potionIngredients).Clip());
+            AddIngredient((_potionPrices[potionId] - _potionIngredients).Clip());
         }
     }
 
@@ -246,7 +246,7 @@ namespace _Project.Runtime.Core.Grenades
 
         public void AddIngredient(PotionIngredients ingredient);
 
-        void FillIngredientTillWorldChangePotion();
+        void FillIngredientTillPotion(int potionId);
     }
 
     //dto для хранения и передачи инфы об ингредиентах зелья

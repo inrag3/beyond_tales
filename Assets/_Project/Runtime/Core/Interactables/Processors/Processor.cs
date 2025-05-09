@@ -60,9 +60,9 @@ namespace _Project.Runtime.Core.Interactables.Processors
         {
             _equipper.Equip(weapon);
         }
-        public void Accept(BushGetWorldChange bush)
+        public void Accept(BushGetWorldChange bush,int potionNumber)
         {
-            _grenadeThrower.FillIngredientTillWorldChangePotion();
+            _grenadeThrower.FillIngredientTillPotion(potionNumber);
 
         }
     }
