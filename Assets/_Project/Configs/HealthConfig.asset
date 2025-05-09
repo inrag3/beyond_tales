@@ -21,8 +21,8 @@ MonoBehaviour:
   <GrenadeExplosionTimeout>k__BackingField: 1.5
   <GrenadeTransformWorldRadius>k__BackingField: 3
   <PotionHealPoints>k__BackingField: 10
-  <PotionExplosionRadius>k__BackingField: 5
-  <PotionExplosionDamage>k__BackingField: 20
+  <PotionExplosionRadius>k__BackingField: 50
+  <PotionExplosionDamage>k__BackingField: 100
   <PotionPoisonDamage>k__BackingField: 2
   <PotionPoisonTimeDelay>k__BackingField: 0.5
   <PotionPoisonTimesCount>k__BackingField: 10
