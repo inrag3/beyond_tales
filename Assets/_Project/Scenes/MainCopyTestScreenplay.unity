@@ -2464,7 +2464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 1
-  _enemySpawnCount: 1
+  _enemySpawnCount: 2
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 183188176}
   - {fileID: 1512728148}
@@ -2927,7 +2927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a30f9f22ec74e379085051ea35d1a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 0.3
+  _cooldown: 0.8
   _enemySpawnCount: 2
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 231158625}
@@ -18759,12 +18759,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 1
-  _enemySpawnCount: 2
+  _enemySpawnCount: 3
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 1370115514}
   - {fileID: 1370115516}
   - {fileID: 936687940}
-  _enemyType: 0
+  _enemyType: 1
 --- !u!114 &1370115516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21381,8 +21381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a30f9f22ec74e379085051ea35d1a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 0.3
-  _enemySpawnCount: 2
+  _cooldown: 0.8
+  _enemySpawnCount: 4
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 1563024239}
   _enemyType: 0
@@ -21688,10 +21688,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 0.3
-  _enemySpawnCount: 2
+  _enemySpawnCount: 1
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 1585271850}
-  _enemyType: 0
+  _enemyType: 1
 --- !u!114 &1593228885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25139,10 +25139,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 0.3
-  _enemySpawnCount: 2
+  _enemySpawnCount: 3
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 1886618174}
-  _enemyType: 0
+  _enemyType: 1
 --- !u!1001 &1891047950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29008,7 +29008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a30f9f22ec74e379085051ea35d1a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 0.3
+  _cooldown: 1
   _enemySpawnCount: 4
   _questActionsToActivateAfterAllEnemiesDied:
   - {fileID: 2129621579}
