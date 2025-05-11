@@ -8,5 +8,8 @@ namespace _Project.Runtime.Audio
         [Header("Character Audio Clips")]
         public AudioClip walkClip;
         public AudioClip fightClip;
+        public AudioClip solvePuzzleClip;
+        public AudioClip battleMusic;
+        public AudioClip peacefulMusic;
     }
 }

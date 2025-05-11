@@ -1,4 +1,5 @@
 using System.Collections;
+using _Project.Runtime.Audio;
 using _Project.Runtime.Core.Enemies;
 using _Project.Runtime.Infrastructure.Installers.GameObject;
 using _Project.Runtime.QuestSystem;
@@ -27,15 +28,22 @@ namespace _Project.Runtime.Infrastructure.Factories
         private int _spawnedEnemies = 0;
         private int _diedEnemies = 0;
 
+        private SoundSettings _soundSettings;
+        private AudioService _audioService;
+ 
         [Inject]
-        private void Construct(IEnemyFactory factory, ActorFactory actorFactory)
+        private void Construct(IEnemyFactory factory, ActorFactory actorFactory, 
+            SoundSettings soundSettings, AudioService audioService)
         {
             _actorFactory = actorFactory;
             _factory = factory;
+            _soundSettings = soundSettings;
+            _audioService = audioService;
         }
         
         public void Begin()
         {
+            _audioService.ChangeMusic(_soundSettings.battleMusic);
             _enemyTargetCount = _enemySpawnCount;
             _coroutine = StartCoroutine(Spawn());
         }
@@ -80,6 +88,7 @@ namespace _Project.Runtime.Infrastructure.Factories
 
             if (/*_enemySpawnCount != -1 && _diedEnemies == _enemySpawnCount*/ _enemies.Count == 0 )
             {
+                _audioService.ChangeMusic(_soundSettings.peacefulMusic);
                 foreach (var quest in _questActionsToActivateAfterAllEnemiesDied)
                 {
                     quest.Activate();

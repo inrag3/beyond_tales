@@ -1,4 +1,5 @@
 ﻿using System;
+using _Project.Runtime.Audio;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Core.PauseHandler;
@@ -18,10 +19,12 @@ namespace _Project.Runtime.Core.Herbalist
         private Attacker _attacker;
         private HerbalistAnimer _animer;
         private PlayerData _playerData;
+        private IAudioService _audioService;
 
         [Inject]
         private void Construct(IHealth health, IScanner<Interactable> scanner, Mover mover, 
-            Attacker attacker, HerbalistAnimer animer, PlayerData playerData, PauseHandlersRegister pauseHandlersRegister)
+            Attacker attacker, HerbalistAnimer animer, PlayerData playerData, 
+            PauseHandlersRegister pauseHandlersRegister, IAudioService audioService)
         {
             _animer = animer;
             _attacker = attacker;
@@ -32,6 +35,7 @@ namespace _Project.Runtime.Core.Herbalist
             _playerData = playerData;
             _pauseHandlersRegister = pauseHandlersRegister;
             _pauseHandlersRegister.RegisterPauseHandler(this);
+            _audioService = audioService;
         }
 
         public IScanner<Interactable> Scanner { get; private set; }
@@ -66,6 +70,18 @@ namespace _Project.Runtime.Core.Herbalist
             _animer.PlayDeath();
             _mover.Pause();
             _attacker.Pause();
+        }
+
+        private void Update()
+        {
+            if (_mover.IsMoving)
+            {
+                _audioService.PlayWalkSound();
+            }
+            else
+            {
+                _audioService.StopWalkSound();
+            }
         }
 
         public void TakeDamage(float value)

@@ -39,7 +39,7 @@ namespace _Project.Runtime.Audio
 
             bool attackKey = Input.GetMouseButton(0);
 
-            if (attackKey && !_isAttacking)
+            /*if (attackKey && !_isAttacking)
             {
                 _audioService.PlayFightSound();
                 _isAttacking = true;
@@ -48,9 +48,8 @@ namespace _Project.Runtime.Audio
             {
                 _audioService.StopFightSound();
                 _isAttacking = false;
-            }
+            }*/
         }
         public void PlayWalkSound() => _audioService.PlayWalkSound();
-        public void PlayFightSound() => _audioService.PlayFightSound();
     }
 }

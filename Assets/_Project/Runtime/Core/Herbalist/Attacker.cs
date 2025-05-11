@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _Project.Runtime.Audio;
 using _Project.Runtime.Config;
 using _Project.Runtime.Core.Enemies;
 using _Project.Runtime.Core.PauseHandler;
@@ -20,13 +21,15 @@ namespace _Project.Runtime.Core.Herbalist
         private HashSet<Creature> _targets = new();
         private bool _isPause;
 
+        private IAudioService _audioService;
+        private SoundSettings _soundSettings;
         public Attacker(
             IInputService inputService,
             HerbalistAnimer animer,
             Transform transform,
             Mover mover,
             PauseHandlersRegister pauseHandlersRegister,
-            IAttackConfig herbalistAttackConfig)
+            IAttackConfig herbalistAttackConfig, IAudioService audioService, SoundSettings soundSettings)
         {
             _mover = mover;
             _transform = transform;
@@ -35,6 +38,8 @@ namespace _Project.Runtime.Core.Herbalist
             _pauseHandlersRegister = pauseHandlersRegister;
             _pauseHandlersRegister.RegisterPauseHandler(this);
             _herbalistAttackConfig = herbalistAttackConfig;
+            _audioService = audioService;
+            _soundSettings = soundSettings;
         }
 
         public void Initialize()
@@ -44,6 +49,7 @@ namespace _Project.Runtime.Core.Herbalist
 
         private void OnAttacked()
         {
+            _audioService.PlayOneShot(_soundSettings.fightClip);
             foreach (var creature in _targets)
             {
                 creature.TakeDamage(_herbalistAttackConfig.HerbalistDamage);

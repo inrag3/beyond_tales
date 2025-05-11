@@ -2,6 +2,7 @@
 using _Project.Runtime.Config.Herbalist;
 using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
+using Extensions;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,10 @@ namespace _Project.Runtime.Core.Herbalist
         private const float GRAVITY = -9.81f;
         private Vector3 _velocity;
         private bool _isPaused;
+
+        private bool _isMoving;
+
+        public bool IsMoving => !_isPaused && _isMoving;
 
         public Mover(
             ISpeedConfig config,
@@ -78,9 +83,13 @@ namespace _Project.Runtime.Core.Herbalist
             _controller.Move(_velocity * Time.deltaTime); // Применяем гравитацию
 
             // Поворот персонажа в направлении движения
-            if (!(movement.magnitude > 0)) 
+            if (!(movement.magnitude > 0))
+            {
+                _isMoving = false;
                 return;
-            
+            }
+
+            _isMoving = true;
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
         }

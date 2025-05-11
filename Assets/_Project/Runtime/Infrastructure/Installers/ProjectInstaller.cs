@@ -20,6 +20,7 @@ namespace _Project.Runtime.Infrastructure.Installers
         [SerializeField] private CoroutinePerformer _coroutinePerformer;
         [SerializeField] private GizmosDrawer _gizmosDrawer;
         [SerializeField] private SoundSettings _soundSettings;
+        [SerializeField] private AudioService _audioService;
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<SceneManager>().AsSingle().NonLazy();
@@ -46,8 +47,8 @@ namespace _Project.Runtime.Infrastructure.Installers
             Container.Bind<SearchSystem.SearchSystem>().AsSingle().NonLazy();
 
             Container.Bind<SoundSettings>().FromInstance(_soundSettings).AsSingle().NonLazy();
-
-            Container.BindInterfacesAndSelfTo<AudioService>().FromNewComponentOnNewGameObject().WithGameObjectName("AudioService").AsSingle().NonLazy();
+            
+            Container.BindInterfacesAndSelfTo<AudioService>().FromMethod((InjectContext context) => Instantiate(_audioService).GetComponent<AudioService>()).AsSingle().NonLazy();
         }
 
         private void BindServices()
