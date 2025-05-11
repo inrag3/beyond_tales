@@ -106,7 +106,6 @@ namespace _Project.Runtime.Audio
             else
             {
                 StopAllCoroutines();
-                Debug.Log($"Start playing music");
                 StartCoroutine(ChangeMusicCoroutine(clip, true));
             }
             

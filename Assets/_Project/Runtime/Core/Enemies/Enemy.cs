@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using _Project.Runtime.Config;
 using _Project.Runtime.Core.Grenades.Ingredients;
@@ -18,6 +19,8 @@ namespace _Project.Runtime.Core.Enemies
         [SerializeField] private Collider _collider;
         [field: SerializeField] public Point Point { get; private set; }
 
+        [SerializeField] private float _hitColorFeedbackTime;
+
         protected Movement _movement;
         protected IAttacker _attack;
 
@@ -30,6 +33,8 @@ namespace _Project.Runtime.Core.Enemies
         private IInstantiator _instantiator;
         private IAssetManager _assetManager;
         private ILootConfig _lootConfig;
+
+        private Renderer[] _cashRenderers;
 
         [Inject]
         private void Construct(
@@ -61,6 +66,7 @@ namespace _Project.Runtime.Core.Enemies
 
         private void Start()
         {
+            _cashRenderers = GetComponentsInChildren<Renderer>();
             _animer.Hitted += OnHitted;
             //Died += SpawnLoot;
         }
@@ -82,12 +88,34 @@ namespace _Project.Runtime.Core.Enemies
             _movement.Resume();
         }
 
+        private void HitFeedback()
+        {
+            foreach (var renderer in _cashRenderers)
+            {
+                renderer.material.color = Color.red;
+            }
+            StopCoroutine(RecoverDefaultColor());
+            StartCoroutine(RecoverDefaultColor());
+        }
+
+
+        private IEnumerator RecoverDefaultColor()
+        {
+            yield return new WaitForSeconds(_hitColorFeedbackTime);
+            
+            foreach (var renderer in _cashRenderers)
+            {
+                renderer.material.color = Color.white;
+            }
+        }
+
         public override void TakeDamage(float value)
         {
             if (Health.Value.CurrentValue - value <= 0)
                 SpawnLoot(this);
             _animer.PlayHit();
             _movement.Pause();
+            HitFeedback();
             base.TakeDamage(value);
         }
 
