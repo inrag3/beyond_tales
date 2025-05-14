@@ -12,6 +12,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
 using _Project.Runtime.Audio;
+using _Project.Runtime.Core.SaveSystem;
 
 namespace _Project.Runtime.Infrastructure.Installers
 {
@@ -26,8 +27,10 @@ namespace _Project.Runtime.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<SceneManager>().AsSingle().NonLazy();
             Container.Bind<GizmosDrawer>().FromInstance(_gizmosDrawer).AsSingle().NonLazy();
             Container.Bind<PauseHandlersRegister>().FromInstance(new PauseHandlersRegister()).AsSingle().NonLazy();
-            
-           
+            Container.BindInterfacesAndSelfTo<SaveLoader>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<GameSaver>().AsSingle().NonLazy();
+
+
             BindAssetManager();
             BindFactories();
             BindServices();
@@ -46,9 +49,16 @@ namespace _Project.Runtime.Infrastructure.Installers
 
             Container.Bind<SearchSystem.SearchSystem>().AsSingle().NonLazy();
 
-            Container.Bind<SoundSettings>().FromInstance(_soundSettings).AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<AudioService>().FromMethod((InjectContext context) =>
+            {
+                var audioService = Instantiate(_audioService).GetComponent<AudioService>();
+                //return Instantiate(_audioService).GetComponent<AudioService>();
+                
+                DontDestroyOnLoad(audioService);
+                return audioService;
+            }).AsSingle().NonLazy();
             
-            Container.BindInterfacesAndSelfTo<AudioService>().FromMethod((InjectContext context) => Instantiate(_audioService).GetComponent<AudioService>()).AsSingle().NonLazy();
+            Container.Bind<SoundSettings>().FromInstance(_soundSettings).AsSingle().NonLazy();
         }
 
         private void BindServices()

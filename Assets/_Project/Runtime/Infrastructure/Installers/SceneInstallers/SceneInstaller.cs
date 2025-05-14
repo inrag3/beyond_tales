@@ -26,6 +26,7 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
             
             Container.Bind<Bed[]>().FromMethod(_ => FindObjectsOfType<Bed>()).AsSingle();
             Container.Bind<Door[]>().FromMethod(_ => FindObjectsOfType<Door>()).AsSingle();
+            Container.Bind<SaveGameQuestAction[]>().FromMethod(_ => FindObjectsOfType<SaveGameQuestAction>()).AsSingle();
             Container.BindInterfacesAndSelfTo<Waver>().AsSingle().NonLazy();
             
             BindSearchIndices();

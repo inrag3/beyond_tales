@@ -7,7 +7,7 @@ namespace _Project.Runtime.Audio
 {
     public class AudioService : MonoBehaviour, IAudioService
     {
-        [Inject] private SoundSettings _soundSettings;
+        [SerializeField]private SoundSettings _soundSettings;
         [SerializeField] private GameObject _audioSourcePrefab;
         [SerializeField] private int _initialPoolSize;
         [SerializeField] private float _timeToMusicTransfer;

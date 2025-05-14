@@ -17,6 +17,8 @@ namespace _Project.Runtime.Core.Interactables
         [SerializeField] private NavMeshObstacle _navMeshObstacle;
         [SerializeField] private bool _singleUse;
         [SerializeField] private bool _isLocked;
+
+        public bool IsLocked => _isLocked;
         [field: SerializeField] public bool IsOpen { get; private set; } = false;
 
         private bool _isAnimationPlaying = false;
