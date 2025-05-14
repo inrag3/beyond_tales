@@ -83,6 +83,8 @@ MonoBehaviour:
   _soundSettings: {fileID: 11400000, guid: 10d26513a7a78b44bbdd795eeaa5606e, type: 2}
   _audioService: {fileID: 944157736718091031, guid: fc66984958ab0f949a3883117d3e37c9,
     type: 3}
+  _dontDestroyContainer: {fileID: 3845646147108232471, guid: d83d483ebc97d53409d2703487ae0acb,
+    type: 3}
 --- !u!114 &925202841205832800
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Infrastructure.Factories;
+using UnityEngine;
 using Zenject;
 
 namespace _Project.Runtime.Core.SaveSystem
@@ -9,20 +10,23 @@ namespace _Project.Runtime.Core.SaveSystem
     {
         private SaveLoader _saveLoader;
         private IHerbalistProvider _herbalistProvider;
-        private Door[] _doors;
+        private DontDestroyContainer _dontDestroyContainer;
         
         [Inject]
         private void Construct(SaveLoader saveLoader,
-            IHerbalistProvider herbalistProvider, Door[] doors)
+            IHerbalistProvider herbalistProvider, Door[] doors, ISceneManager sceneManager, DontDestroyContainer dontDestroyContainer)
         {
             _saveLoader = saveLoader;
             _herbalistProvider = herbalistProvider;
-            _doors = doors;
+            _dontDestroyContainer = dontDestroyContainer;
+            _dontDestroyContainer.OnActivateScene += OnLoadScene;
         }
         public void LoadGame()
         {
+            var _doors = GameObject.FindObjectsOfType<Door>();
+            
             var save = _saveLoader.Save;
-            _herbalistProvider.Herbalist.Transform.position = save.playerPos;
+            _herbalistProvider.Herbalist.Transform.position = save.playerPos.UnityVector;
             _herbalistProvider.Herbalist.PlayerData.AddStoryMarks(save.storyMarks.ToArray());
             
             var sortedDoors = _doors.OrderBy((d) => d.Transform.position.x)
@@ -31,6 +35,7 @@ namespace _Project.Runtime.Core.SaveSystem
             int i = 0;
             foreach (var door in sortedDoors)
             {
+                Debug.Log($"Load door at pos {door.Transform.position}, lock = {save.doors[i].isLocked}, open = {save.doors[i].isOpen}");
                 door.Lock(save.doors[i].isLocked);
                 if (door.IsOpen)
                 {
@@ -48,6 +53,32 @@ namespace _Project.Runtime.Core.SaveSystem
                 }
 
                 ++i;
+            }
+
+            var storyMarksHandlers = GameObject.FindObjectsOfType<DisableObjectIfHasStoryMark>();
+            foreach (var handler in storyMarksHandlers)
+            {
+                if (_herbalistProvider.Herbalist.PlayerData.HasStoryMarks(new string[]{handler.StoryMark}))
+                {
+                    handler.Activate();
+                }
+            }
+
+            if (save.plantPuzzleSolved)
+            {
+                GameObject.FindObjectOfType<BedsObserver>().CompletePuzzle();
+            }
+        }
+
+        private void OnLoadScene(Scene scene)
+        {
+            if (scene == Scene.MainCopyTestScreenplay)
+            {
+                if (_dontDestroyContainer.RequireSaveLoad)
+                {
+                    _dontDestroyContainer.RequireSaveLoad = false;
+                    LoadGame();
+                }
             }
         }
     }

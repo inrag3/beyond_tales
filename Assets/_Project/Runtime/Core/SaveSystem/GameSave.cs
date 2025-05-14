@@ -7,9 +7,10 @@ namespace _Project.Runtime.Core.SaveSystem
     [Serializable]
     public class GameSave
     {
-        public Vector3 playerPos;
+        public SerializableVector3 playerPos;
         public List<string> storyMarks;
         public List<DoorSave> doors;
+        public bool plantPuzzleSolved;
 
 
         public void SetDefaultState()

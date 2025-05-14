@@ -62,6 +62,7 @@ namespace _Project.Runtime.Core.Interactables
 
         public void Close()
         {
+            Debug.Log($"Close door");
             _playableDirector.Play(_closeDoorAnimation);
             _isAnimationPlaying = true;
             _navMeshObstacle.carving = true;
@@ -70,6 +71,7 @@ namespace _Project.Runtime.Core.Interactables
 
         public void Open()
         {
+            Debug.Log($"Open door");
             _playableDirector.Play(_openDoorAnimation);
             _isAnimationPlaying = true;
             IsOpen = true;

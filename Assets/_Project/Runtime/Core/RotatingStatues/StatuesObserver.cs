@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using _Project.Runtime.Core.Interactables;
+using _Project.Runtime.QuestSystem;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +11,7 @@ namespace _Project.Runtime.Core.RotatingStatues
     {
         [SerializeField] private RotatingStatuesManipulator[] _statues;
         [SerializeField] private Door _door;
+        [SerializeField] private SaveGameQuestAction _saveGameAction;
 
         private void Start()
         {
@@ -31,7 +33,11 @@ namespace _Project.Runtime.Core.RotatingStatues
 
         private void OnAllBedsCompleted()
         {
-            _door.Open();
+            if (!_door.IsOpen)
+            {
+                _door.Open();
+                _saveGameAction.Activate();
+            }
         }
 
         private void OnDestroy()

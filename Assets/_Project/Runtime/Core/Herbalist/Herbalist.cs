@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using _Project.Runtime.Audio;
 using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Interactables;
@@ -12,6 +13,7 @@ namespace _Project.Runtime.Core.Herbalist
     [RequireComponent(typeof(Rigidbody), typeof(Animator))]
     public class Herbalist : MonoBehaviour, IHerbalist, IPauseHandler
     {
+
         private readonly CompositeDisposable _disposables = new();
         private PauseHandlersRegister _pauseHandlersRegister;
         private Rigidbody _rigidbody;
@@ -20,6 +22,8 @@ namespace _Project.Runtime.Core.Herbalist
         private HerbalistAnimer _animer;
         private PlayerData _playerData;
         private IAudioService _audioService;
+        
+        private Renderer[] _cashRenderers;
 
         [Inject]
         private void Construct(IHealth health, IScanner<Interactable> scanner, Mover mover, 
@@ -49,6 +53,11 @@ namespace _Project.Runtime.Core.Herbalist
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void Start()
+        {
+            _cashRenderers = GetComponentsInChildren<Renderer>();
         }
 
         private void OnEnable()
@@ -87,6 +96,28 @@ namespace _Project.Runtime.Core.Herbalist
         public void TakeDamage(float value)
         {
             Health.Decrease(value);
+            HitFeedback();
+        }
+        
+        private void HitFeedback()
+        {
+            foreach (var renderer in _cashRenderers)
+            {
+                renderer.material.color = Color.red;
+            }
+            StopCoroutine(RecoverDefaultColor());
+            StartCoroutine(RecoverDefaultColor());
+        }
+
+
+        private IEnumerator RecoverDefaultColor()
+        {
+            yield return new WaitForSeconds(0.3f);
+            
+            foreach (var renderer in _cashRenderers)
+            {
+                renderer.material.color = Color.white;
+            }
         }
 
         private void OnDestroy()

@@ -234,6 +234,50 @@ MonoBehaviour:
   output: {fileID: 0}
   QuestActions: []
   Index: Door3B
+--- !u!114 &-3368369423535438353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4ee9b04ca65437296d4163243cfa22b, type: 3}
+  m_Name: Activate Quest Actions
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1048, y: -136}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: -3368369423535438353}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 7179533921863684428}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -3368369423535438353}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  QuestActions: []
+  Index: Checkpoint3
 --- !u!114 &-787952323947821024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +471,7 @@ MonoBehaviour:
   - {fileID: -787952323947821024}
   - {fileID: 5502364030593916276}
   - {fileID: -168574400584172585}
+  - {fileID: -3368369423535438353}
 --- !u!114 &5480536509877466769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,7 +604,10 @@ MonoBehaviour:
       _node: {fileID: 7179533921863684428}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: input
+        node: {fileID: -3368369423535438353}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0

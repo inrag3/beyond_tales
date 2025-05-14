@@ -3,6 +3,7 @@ using System.Linq;
 using _Project.Runtime.AI.Core;
 using _Project.Runtime.Core;
 using _Project.Runtime.Core.Interactables;
+using _Project.Runtime.Core.UI;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.Infrastructure.Installers.GameObject;
 using _Project.Runtime.QuestSystem;
@@ -28,6 +29,7 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
             Container.Bind<Door[]>().FromMethod(_ => FindObjectsOfType<Door>()).AsSingle();
             Container.Bind<SaveGameQuestAction[]>().FromMethod(_ => FindObjectsOfType<SaveGameQuestAction>()).AsSingle();
             Container.BindInterfacesAndSelfTo<Waver>().AsSingle().NonLazy();
+            Container.Bind<SaveGameNotifier>().FromMethod(_ => FindObjectOfType<SaveGameNotifier>()).AsSingle().NonLazy();
             
             BindSearchIndices();
         }

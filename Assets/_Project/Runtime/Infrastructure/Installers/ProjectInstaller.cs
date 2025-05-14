@@ -22,13 +22,23 @@ namespace _Project.Runtime.Infrastructure.Installers
         [SerializeField] private GizmosDrawer _gizmosDrawer;
         [SerializeField] private SoundSettings _soundSettings;
         [SerializeField] private AudioService _audioService;
+        [SerializeField] private DontDestroyContainer _dontDestroyContainer;
         public override void InstallBindings()
         {
+            Container.Bind<DontDestroyContainer>().FromMethod((InjectContext context) =>
+            {
+                var dontDestroyContainer = Instantiate(_dontDestroyContainer).GetComponent<DontDestroyContainer>();
+                //return Instantiate(_audioService).GetComponent<AudioService>();
+
+                DontDestroyOnLoad(dontDestroyContainer);
+                return dontDestroyContainer;
+            }).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<SceneManager>().AsSingle().NonLazy();
             Container.Bind<GizmosDrawer>().FromInstance(_gizmosDrawer).AsSingle().NonLazy();
             Container.Bind<PauseHandlersRegister>().FromInstance(new PauseHandlersRegister()).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<SaveLoader>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameSaver>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<GameLoader>().AsSingle().NonLazy();
 
 
             BindAssetManager();

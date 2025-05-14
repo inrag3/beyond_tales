@@ -22,6 +22,12 @@ namespace _Project.Runtime.Core.SaveSystem
             }
         }
 
+        public bool HasSave()
+        {
+            var path = Path.Combine(Application.persistentDataPath, _savePath);
+            return File.Exists(path);
+        }
+
         private void LoadSave()
         {
             var path = Path.Combine(Application.persistentDataPath, _savePath);
@@ -36,16 +42,23 @@ namespace _Project.Runtime.Core.SaveSystem
             }
         }
 
-        public void SaveGame(Vector3 position, List<string> storyMarks, List<GameSave.DoorSave> saveDoors)
+        public void SaveGame(Vector3 position, List<string> storyMarks, List<GameSave.DoorSave> saveDoors, bool plantPuzzleSolved)
         {
-            _save.playerPos = position;
-            _save.storyMarks = storyMarks;
-            _save.doors = saveDoors;
+            var newSave = new GameSave();
+            newSave.playerPos = new SerializableVector3(position);
+            newSave.storyMarks = storyMarks;
+            newSave.doors = saveDoors;
+            newSave.plantPuzzleSolved = plantPuzzleSolved;
+
+            SaveGameInternal(newSave);
+            _save = newSave;
         }
 
         private void SaveGameInternal(GameSave save)
         {
             var path = Path.Combine(Application.persistentDataPath, _savePath);
+            var settings = new JsonSerializerSettings();
+            
             File.WriteAllText(path,JsonConvert.SerializeObject(save));
         }
     }
