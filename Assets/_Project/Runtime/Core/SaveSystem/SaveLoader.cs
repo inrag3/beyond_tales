@@ -7,7 +7,7 @@ namespace _Project.Runtime.Core.SaveSystem
 {
     public class SaveLoader
     {
-        private const string _savePath = "/save.ear";
+        private const string _savePath = "save.ear";
         private GameSave _save;
 
         public GameSave Save
@@ -57,6 +57,8 @@ namespace _Project.Runtime.Core.SaveSystem
         private void SaveGameInternal(GameSave save)
         {
             var path = Path.Combine(Application.persistentDataPath, _savePath);
+            Debug.Log($"try to save to {Application.persistentDataPath}");
+            Debug.Log($"try to save to {path}");
             var settings = new JsonSerializerSettings();
             
             File.WriteAllText(path,JsonConvert.SerializeObject(save));
