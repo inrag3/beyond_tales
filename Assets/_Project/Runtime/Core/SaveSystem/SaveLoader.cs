@@ -7,7 +7,7 @@ namespace _Project.Runtime.Core.SaveSystem
 {
     public class SaveLoader
     {
-        private const string _savePath = "/save.ear";
+        private const string _savePath = "save.ear";
         private GameSave _save;
 
         public GameSave Save
