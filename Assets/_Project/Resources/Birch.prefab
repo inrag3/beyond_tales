@@ -330,7 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Distance>k__BackingField: 2
   _damage: 12
-  _cooldown: 3
+  _cooldown: 2
   _currentCooldown: 0
 --- !u!65 &4334465752479949071
 BoxCollider:

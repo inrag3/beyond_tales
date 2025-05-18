@@ -22,13 +22,13 @@ MonoBehaviour:
   <GrenadeTransformWorldRadius>k__BackingField: 3
   <PotionHealPoints>k__BackingField: 50
   <PotionExplosionRadius>k__BackingField: 3
-  <PotionExplosionDamage>k__BackingField: 20
-  <PotionPoisonDamage>k__BackingField: 5
+  <PotionExplosionDamage>k__BackingField: 80
+  <PotionPoisonDamage>k__BackingField: 20
   <PotionPoisonTimeDelay>k__BackingField: 0.5
   <PotionPoisonTimesCount>k__BackingField: 10
-  <HerbalistDamage>k__BackingField: 50
+  <HerbalistDamage>k__BackingField: 30
   <Radius>k__BackingField: 1
-  <MaxLootCount>k__BackingField: 7
+  <MaxLootCount>k__BackingField: 3
   <LootMinDistance>k__BackingField: 0
   <LootMaxDistance>k__BackingField: 2
   <LootFrontForce>k__BackingField: 20

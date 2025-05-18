@@ -194,8 +194,8 @@ MonoBehaviour:
   _timeOnEndJump: 0.3
   _jumpGravity: 10
   _timeInJump: 1
-  _attackRange: 4
-  _attackDamage: 1
+  _attackRange: 2
+  _attackDamage: 20
 --- !u!114 &5715674376584624418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Distance>k__BackingField: 2
-  _damage: 12
+  _damage: 50
   _cooldown: 3
   _currentCooldown: 0
 --- !u!65 &4334465752479949071
