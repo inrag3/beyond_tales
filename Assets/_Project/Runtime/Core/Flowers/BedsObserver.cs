@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using _Project.Runtime.Audio;
 using _Project.Runtime.Core.Interactables;
@@ -16,6 +17,8 @@ public class BedsObserver : MonoBehaviour
     private SoundSettings _soundSettings;
     private IAudioService _audioService;
     private IFlowerFactory _flowerFactory;
+    
+    private bool _updateFlag = false;
 
     private bool _puzzleCompleted;
     public bool PuzzleCompleted => _puzzleCompleted;
@@ -47,13 +50,22 @@ public class BedsObserver : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (_updateFlag && _herbalistProvider.Herbalist.PlayerData.HasStoryMarks(new []{"PlantWatered"}))
+        {
+            _puzzleCompleted = true;
+            _herbalistProvider.Herbalist.PlayerData.AddStoryMarks(new []{"PlantPuzzleSolved"});
+            _audioService.PlayOneShot(_soundSettings.solvePuzzleClip);
+            _door.Open();
+            _saveGameQuestAction.Activate();
+            _updateFlag = false;
+        }
+    }
+
     private void OnAllBedsCompleted()
     {
-        _puzzleCompleted = true;
-        _herbalistProvider.Herbalist.PlayerData.AddStoryMarks(new []{"PlantPuzzleSolved"});
-        _audioService.PlayOneShot(_soundSettings.solvePuzzleClip);
-        _door.Open();
-        _saveGameQuestAction.Activate();
+        _updateFlag = true;
     }
 
     public void CompletePuzzle()
