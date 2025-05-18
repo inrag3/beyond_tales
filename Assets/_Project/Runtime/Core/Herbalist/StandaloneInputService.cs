@@ -16,8 +16,11 @@ namespace _Project.Runtime.Core.Herbalist
         public float Vertical => Input.GetAxisRaw("Vertical");
         public bool IsRollButtonPressed => Input.GetKeyDown(KeyCode.Space);
         public bool IsPotionApplyButtonPressed => Input.GetKeyDown(KeyCode.Q);
-        public bool IsPotionNextButtonPressed => Input.GetKeyDown(KeyCode.X);
-        public bool IsPotionPreviousButtonPressed => Input.GetKeyDown(KeyCode.Z);
+        
+        public bool IsPotionFirstButtonPressed => Input.GetKeyDown(KeyCode.Alpha1);
+        public bool IsPotionSecondButtonPressed => Input.GetKeyDown(KeyCode.Alpha2);
+        public bool IsPotionThirdButtonPressed => Input.GetKeyDown(KeyCode.Alpha3);
+        public bool IsPotionFourthButtonPressed => Input.GetKeyDown(KeyCode.Alpha4);
         
         public bool IsDialogButtonPressed => Input.GetKeyDown(KeyCode.Tab);
         public bool IsAttackButtonPressed => Input.GetMouseButtonDown(0);

@@ -9,8 +9,10 @@ namespace _Project.Runtime.Core.Herbalist
         public bool IsRollButtonPressed { get; }
         
         public bool IsPotionApplyButtonPressed { get; }
-        public bool IsPotionNextButtonPressed { get; }
-        public bool IsPotionPreviousButtonPressed { get; }
+        public bool IsPotionFirstButtonPressed { get; }
+        public bool IsPotionSecondButtonPressed { get; }
+        public bool IsPotionThirdButtonPressed { get; }
+        public bool IsPotionFourthButtonPressed { get; }
 
         public bool IsInteractButtonPressed { get; }
         public bool IsDialogButtonPressed { get; }

@@ -119,10 +119,27 @@ namespace _Project.Runtime.Core.Grenades
 
         public void Tick()
         {
-            if (_inputService.IsPotionNextButtonPressed)
-                MoveNextPotion();
-            if (_inputService.IsPotionPreviousButtonPressed)
-                MovePreviousPotion();
+            if (_inputService.IsPotionFirstButtonPressed)
+            {
+                MovePotionIndex(0);
+                return;
+            }
+            if (_inputService.IsPotionSecondButtonPressed)
+            {
+                MovePotionIndex(1);
+                return;
+            }
+            if (_inputService.IsPotionThirdButtonPressed)
+            {
+                MovePotionIndex(2);
+                return;
+            }
+            if (_inputService.IsPotionFourthButtonPressed)
+            {
+                MovePotionIndex(3);
+                return;
+            }
+            
             if (_inputService.IsPotionApplyButtonPressed)
                 TryCallPotion();
         }
@@ -149,18 +166,9 @@ namespace _Project.Runtime.Core.Grenades
             return name;
         }
 
-        private void MovePreviousPotion()
+        private void MovePotionIndex(int ind)
         {
-            _currentPotionIntex =
-                (_currentPotionIntex - 1 + _potionsApplyFunctions.Count) % _potionsApplyFunctions.Count;
-            SelectedPotionUpdated?.Invoke(_potionsNames[_currentPotionIntex]);
-            SelectedPotionAmountChanged?.Invoke(CurrentPotionAmount);
-        }
-
-        private void MoveNextPotion()
-        {
-            _currentPotionIntex++;
-            _currentPotionIntex %= _potionsApplyFunctions.Count;
+            _currentPotionIntex = ind;
             SelectedPotionUpdated?.Invoke(_potionsNames[_currentPotionIntex]);
             SelectedPotionAmountChanged?.Invoke(CurrentPotionAmount);
         }
