@@ -33,7 +33,7 @@ namespace _Project.Runtime.Core.Grenades.PotionLogic
 
         public override void MakeAction()
         {
-            _health.Increase(_grenadeConfig.PotionHealPoints);
+            _health.Increase(_health.MaxValue - _health.Value.CurrentValue);
             GameObject prefab = _assetManager.Get(ExplosionPath);
             var explosion = _instantiator.InstantiatePrefabForComponent<GrenadeExplosion>(prefab);
             explosion.transform.parent = _herbalistProvider.Herbalist.Transform;
