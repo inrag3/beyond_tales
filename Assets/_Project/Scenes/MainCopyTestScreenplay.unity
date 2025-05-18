@@ -855,12 +855,12 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1176265949}
     m_Modifications:
     - target: {fileID: 6112420349062723870, guid: b4890043077ed8748821e0813c105e31,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.655003
+      value: -13.575001
       objectReference: {fileID: 0}
     - target: {fileID: 6112420349062723870, guid: b4890043077ed8748821e0813c105e31,
         type: 3}
@@ -870,7 +870,7 @@ PrefabInstance:
     - target: {fileID: 6112420349062723870, guid: b4890043077ed8748821e0813c105e31,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6778755
+      value: -26.812124
       objectReference: {fileID: 0}
     - target: {fileID: 6112420349062723870, guid: b4890043077ed8748821e0813c105e31,
         type: 3}
@@ -880,17 +880,17 @@ PrefabInstance:
     - target: {fileID: 6112420349062723870, guid: b4890043077ed8748821e0813c105e31,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6112420349062723870, guid: b4890043077ed8748821e0813c105e31,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6112420349062723870, guid: b4890043077ed8748821e0813c105e31,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6112420349062723870, guid: b4890043077ed8748821e0813c105e31,
         type: 3}
@@ -15617,6 +15617,7 @@ Transform:
   - {fileID: 802466703}
   - {fileID: 936687936}
   - {fileID: 320636098}
+  - {fileID: 2047695355}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1185176017
@@ -28394,6 +28395,12 @@ MonoBehaviour:
   output: {fileID: 0}
   Bed: {fileID: 1322978311}
   FlowerType: 0
+--- !u!4 &2047695355 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6112420349062723870, guid: b4890043077ed8748821e0813c105e31,
+    type: 3}
+  m_PrefabInstance: {fileID: 90375234}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2048181036
 GameObject:
   m_ObjectHideFlags: 0
@@ -30410,6 +30417,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7490641147524144666, guid: b4890043077ed8748821e0813c105e31,
+        type: 3}
+      propertyPath: _potionNumber
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8152591892395832611, guid: b4890043077ed8748821e0813c105e31,
         type: 3}
       propertyPath: m_Name
@@ -30445,4 +30457,3 @@ SceneRoots:
   - {fileID: 1176265949}
   - {fileID: 431085863}
   - {fileID: 476837307}
-  - {fileID: 90375234}

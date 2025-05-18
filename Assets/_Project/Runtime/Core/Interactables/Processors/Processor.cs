@@ -63,7 +63,6 @@ namespace _Project.Runtime.Core.Interactables.Processors
         public void Accept(BushGetWorldChange bush,int potionNumber)
         {
             _grenadeThrower.FillIngredientTillPotion(potionNumber);
-
         }
     }
 }

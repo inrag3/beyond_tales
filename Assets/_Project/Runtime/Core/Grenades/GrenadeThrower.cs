@@ -227,6 +227,12 @@ namespace _Project.Runtime.Core.Grenades
         {
             AddIngredient((_potionPrices[potionId] - _potionIngredients).Clip());
         }
+        
+        public bool NeedIngredient(int potionId)
+        {
+            var potion =(_potionPrices[potionId] - _potionIngredients).Clip();
+            return potion.Red+potion.Green+potion.Blue > 0;
+        }
     }
 
     public interface IPotionSelector
