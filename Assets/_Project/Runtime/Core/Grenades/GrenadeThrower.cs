@@ -91,7 +91,7 @@ namespace _Project.Runtime.Core.Grenades
                 new(1, 1, 1),
                 new(2, 0, 0),
                 new(0, 2, 0),
-                new(0, 0, 2),
+                new(0, 2, 2),
             };
         }
 
