@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 33563218622397094}
   - component: {fileID: 23987460129925920}
   - component: {fileID: 6649903082621372294}
+  - component: {fileID: 3507474857828257336}
   - component: {fileID: 5514377535571767325}
-  - component: {fileID: -7501609584566681253}
+  - component: {fileID: -335489437265855905}
   m_Layer: 6
-  m_Name: ExplosionCenter
+  m_Name: WorldChangeGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +35,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2934146281778745579}
+  - {fileID: 6697020592732158958}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33563218622397094
@@ -114,6 +115,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3507474857828257336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115775021158874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 259eef3e3e7e4b1c9c9fc511c57f59f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &5514377535571767325
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -131,25 +144,34 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.035510406
   m_Height: 0.40725988
   m_Direction: 1
   m_Center: {x: 0, y: 0.04534643, z: 0.00000007636845}
---- !u!114 &-7501609584566681253
-MonoBehaviour:
+--- !u!135 &-335489437265855905
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115775021158874}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1d2fdc7fa1449c84a2ba1605d037d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &2107867882354252989
+  serializedVersion: 3
+  m_Radius: 0.26
+  m_Center: {x: 0, y: -0.01, z: 0.00000007636845}
+--- !u!1001 &7568317228733183928
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -220,9 +242,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea3d63c49b85e6f4dbf6b6068f9e4ead, type: 3}
---- !u!4 &2934146281778745579 stripped
+--- !u!4 &6697020592732158958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3889008724854606934, guid: ea3d63c49b85e6f4dbf6b6068f9e4ead,
     type: 3}
-  m_PrefabInstance: {fileID: 2107867882354252989}
+  m_PrefabInstance: {fileID: 7568317228733183928}
   m_PrefabAsset: {fileID: 0}

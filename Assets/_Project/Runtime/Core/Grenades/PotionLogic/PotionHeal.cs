@@ -9,7 +9,7 @@ namespace _Project.Runtime.Core.Grenades.PotionLogic
 {
     public class PotionHeal : PotionBaseLogicProvider
     {
-        private const string GRENADE_PATH = "Granade";
+        private const string GRENADE_PATH = "HealGrenade";
         private const string EXPOSION_PATH = "HealthPotionCenter";
         protected override string GrenadePath => GRENADE_PATH;
         protected override string ExplosionPath => EXPOSION_PATH;
