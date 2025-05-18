@@ -146,8 +146,12 @@ namespace _Project.Runtime.Core.Enemies
                 {
                     if (!_attackDamageApplied)
                     {
-                        if (Vector3.SqrMagnitude(PlayerTarget.Transform.position - transform.position) <= Mathf.Pow(_attackRange, 2f))
+                        if (Vector3.SqrMagnitude(PlayerTarget.Transform.position - transform.position) <=
+                            Mathf.Pow(_attackRange, 2f))
+                        {
                             PlayerTarget.TakeDamage(_attackDamage);
+                            _attackDamageApplied = true;
+                        }
                     }
 
                     Animer.SetBool("InMiddleJump", false);

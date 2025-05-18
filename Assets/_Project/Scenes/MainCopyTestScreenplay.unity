@@ -17044,7 +17044,7 @@ MonoBehaviour:
   - {fileID: 1391889102}
   - {fileID: 787763249}
   _door: {fileID: 2117258435}
-  _saveGameAction: {fileID: 0}
+  _saveGameAction: {fileID: 902087644}
 --- !u!1 &1279193798
 GameObject:
   m_ObjectHideFlags: 0
