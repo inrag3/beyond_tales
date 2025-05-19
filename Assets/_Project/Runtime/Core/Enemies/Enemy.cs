@@ -160,7 +160,7 @@ namespace _Project.Runtime.Core.Enemies
             for (int i = 0; i < lootCount; i++)
             {
                 GameObject prefab = _assetManager.Get(dropPaths[UnityEngine.Random.Range(0, dropPaths.Count)]);
-                var ingredient = _instantiator.InstantiatePrefabForComponent<CollectableIngredient>(prefab);
+                var ingredient = _instantiator.InstantiatePrefab(prefab);
                 ingredient.transform.position = spawnPosition;
                 ingredient.transform.parent = null;
             }

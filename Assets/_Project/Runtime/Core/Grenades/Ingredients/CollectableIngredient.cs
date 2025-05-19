@@ -11,7 +11,7 @@ namespace _Project.Runtime.Core.Grenades.Ingredients
             if (other.gameObject.TryGetComponent(out IngredientCollector ingredientCollector))
             {
                 ingredientCollector.AddIngredient(GetPotionIngredients);
-                Destroy(gameObject);
+                Destroy(gameObject.transform.parent.gameObject);
             }
         }
     }
