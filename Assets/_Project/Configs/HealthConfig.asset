@@ -18,7 +18,7 @@ MonoBehaviour:
   <GrenadeMaxDistance>k__BackingField: 8
   <GrenadeThrowsTimeout>k__BackingField: 0.5
   <GrenadeRecoveryTimeout>k__BackingField: 4
-  <GrenadeExplosionTimeout>k__BackingField: 1.5
+  <GrenadeExplosionTimeout>k__BackingField: 3
   <GrenadeTransformWorldRadius>k__BackingField: 3
   <PotionHealPoints>k__BackingField: 50
   <PotionExplosionRadius>k__BackingField: 3
