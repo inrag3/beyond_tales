@@ -137,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1388775732613374511}
   - component: {fileID: 2618238068376929637}
+  - component: {fileID: 9118667058268637055}
   - component: {fileID: 5715674376584624418}
   - component: {fileID: 4051103559903051531}
   - component: {fileID: 209344499242872097}
@@ -186,6 +187,20 @@ MonoBehaviour:
   _collider: {fileID: 4334465752479949071}
   <Point>k__BackingField: {fileID: 1472475183297877202}
   _hitColorFeedbackTime: 0.6
+--- !u!114 &9118667058268637055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183632784922271414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f226380f3d78ead489e3f5577540d1ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 5542453123100241405}
+  _health: {fileID: 2618238068376929637}
 --- !u!114 &5715674376584624418
 MonoBehaviour:
   m_ObjectHideFlags: 0
