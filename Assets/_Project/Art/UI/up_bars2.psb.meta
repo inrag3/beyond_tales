@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d8b0bc123eaf56e41974a5d50c5e187b
+guid: 276b987ca852f9240970f166107a6cdb
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,69 +94,6 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: y_light
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1141
-      y: 373
-      width: 489
-      height: 123
-    spriteID: 2de7137c75a5d2e43903c9d0986ba2ab
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1141, y: 373}
-    spritePosition: {x: 78, y: 313}
-  - name: y_flowers
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 621
-      width: 486
-      height: 117
-    spriteID: 66cb52fd3e453f3419aabe4cb9b6711a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 621}
-    spritePosition: {x: 78, y: 313}
-  - name: y_podlozhka
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1141
-      y: 260
-      width: 555
-      height: 107
-    spriteID: 9fcf87ac5c053bb4f81bc93cf5115f56
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1141, y: 260}
-    spritePosition: {x: 3, y: 318}
   - name: p_light
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -164,11 +101,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1512
-      y: 621
-      width: 458
-      height: 118
-    spriteID: 5d08168fe83d565459c9c908b1f20a95
+      x: 4
+      y: 247
+      width: 459
+      height: 116
+    spriteID: d319c03e4a35f0b40960269f88050443
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -176,8 +113,29 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 1511, y: 621}
-    spritePosition: {x: 52, y: 222}
+    uvTransform: {x: 4, y: 247}
+    spritePosition: {x: 52, y: 221}
+  - name: p_line Copy
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 471
+      y: 247
+      width: 459
+      height: 116
+    spriteID: 0110329950bca164dab8821032fc9dfd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 471, y: 247}
+    spritePosition: {x: 52, y: 221}
   - name: p_flowers
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -185,11 +143,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 5
-      y: 744
-      width: 458
-      height: 115
-    spriteID: 6c5fb7981844c2d4d939507572616f46
+      x: 4
+      y: 490
+      width: 448
+      height: 103
+    spriteID: 370e7b71dfa9f26449eefb9a94bb3dc7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -197,8 +155,29 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 744}
-    spritePosition: {x: 52, y: 222}
+    uvTransform: {x: 4, y: 490}
+    spritePosition: {x: 58, y: 227}
+  - name: p_line
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 460
+      y: 490
+      width: 470
+      height: 92
+    spriteID: 3adbb862cf820404a8a5f67d41cea92e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 460, y: 490}
+    spritePosition: {x: 0, y: 235}
   - name: p_podlozhka
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -206,11 +185,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 497
-      y: 621
-      width: 506
+      x: 4
+      y: 132
+      width: 503
       height: 107
-    spriteID: b16e15e36a397e449a6e40cac6e6373b
+    spriteID: c827022a9f396df4790c5b82b14e7ef3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -218,7 +197,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 497, y: 621}
+    uvTransform: {x: 4, y: 132}
     spritePosition: {x: 0, y: 225}
   - name: b_light
     originalName: 
@@ -227,74 +206,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1141
-      y: 4
-      width: 485
-      height: 125
-    spriteID: 8fe9397b9373b794c9b8263f6e769bf2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1141, y: 4}
-    spritePosition: {x: 22, y: 131}
-  - name: b_flowers
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1141
-      y: 132
-      width: 487
-      height: 111
-    spriteID: 88fab2ea2dcdb044db130fde382ad8e8
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1141, y: 132}
-    spritePosition: {x: 22, y: 131}
-  - name: b_podlozhka
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1008
-      y: 621
-      width: 500
-      height: 112
-    spriteID: 357a66b2143637e4e85c0a5c6f671416
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1008, y: 621}
-    spritePosition: {x: 0, y: 138}
-  - name: branch
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
       x: 4
       y: 4
-      width: 1129
-      height: 511
-    spriteID: 244daadc273970e44b40fb4b02a1a0a3
+      width: 486
+      height: 120
+    spriteID: 79f64e2cd1d08e7468003b787285cd39
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -303,19 +219,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 0, y: 1}
-  - name: red_line
+    spritePosition: {x: 23, y: 131}
+  - name: b_line Copy
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1029
-      y: 523
-      width: 994
-      height: 62
-    spriteID: b4aed23b6470b3249922b05557c90e39
+      x: 498
+      y: 4
+      width: 486
+      height: 120
+    spriteID: 95f998504927e1440adda8ea815a57ff
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -323,9 +239,9 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 1029, y: 523}
-    spritePosition: {x: 108, y: 427}
-  - name: podlozhka
+    uvTransform: {x: 498, y: 4}
+    spritePosition: {x: 23, y: 131}
+  - name: b_flowers
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -333,10 +249,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 523
-      width: 1017
-      height: 90
-    spriteID: dd24f1d039cf1754cb5ba2ef0051e9ee
+      y: 371
+      width: 475
+      height: 111
+    spriteID: 44efcd7df86288143b97ff4d3afd7a67
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -344,8 +260,50 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 523}
-    spritePosition: {x: 93, y: 405}
+    uvTransform: {x: 4, y: 371}
+    spritePosition: {x: 26, y: 136}
+  - name: b_line
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 487
+      y: 371
+      width: 467
+      height: 101
+    spriteID: 7e5da87b93f11b143856e9069862b9e5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 487, y: 371}
+    spritePosition: {x: 0, y: 141}
+  - name: b_podlozhka
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 515
+      y: 132
+      width: 500
+      height: 107
+    spriteID: 4214f5dd39406554b9bfbec1ce5826e7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 515, y: 132}
+    spritePosition: {x: 0, y: 138}
   characterData:
     bones: []
     parts: []
@@ -386,48 +344,68 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: c51af0dab581b714d9b85acf3cae8210
-    layerID: 24
+    spriteID: 5c9fc89fc9bd7664a99b2c4aaca4bb93
+    layerID: 0
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: y_light
+    spriteName: 
+    isGroup: 0
+    parentIndex: 0
+    spriteID: ca0421bf8a7a79249bb453f52896f554
+    layerID: 1958935722
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: y_light
-    spriteName: y_light
+  - name: y_line Copy
+    spriteName: 
     isGroup: 0
     parentIndex: 0
-    spriteID: 2de7137c75a5d2e43903c9d0986ba2ab
-    layerID: 23
-    mosaicPosition: {x: 1141, y: 373}
+    spriteID: fca5e28ce2f3ecb418655c637645e12e
+    layerID: -2138890559
+    mosaicPosition: {x: 0, y: 0}
     flatten: 0
-    isImported: 1
+    isImported: 0
     isVisible: 1
   - name: y_flowers
-    spriteName: y_flowers
+    spriteName: 
     isGroup: 0
     parentIndex: 0
-    spriteID: 66cb52fd3e453f3419aabe4cb9b6711a
-    layerID: 21
-    mosaicPosition: {x: 4, y: 621}
+    spriteID: f95d9e4a0da94024097fad8902f3eb90
+    layerID: 101425538
+    mosaicPosition: {x: 0, y: 0}
     flatten: 0
-    isImported: 1
+    isImported: 0
+    isVisible: 1
+  - name: y_line
+    spriteName: 
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 48624467fd4cabc4db702d2b63888e91
+    layerID: 823482572
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
     isVisible: 1
   - name: y_podlozhka
-    spriteName: y_podlozhka
+    spriteName: 
     isGroup: 0
     parentIndex: 0
-    spriteID: 9fcf87ac5c053bb4f81bc93cf5115f56
-    layerID: 20
-    mosaicPosition: {x: 1141, y: 260}
+    spriteID: 774a07069728b9c4e94d6f3250aca256
+    layerID: -310022634
+    mosaicPosition: {x: 0, y: 0}
     flatten: 0
-    isImported: 1
+    isImported: 0
     isVisible: 1
   - name: pink_flowers
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: f1f8b97135287874cb52f85df38c281a
-    layerID: 18
+    spriteID: 30bcae8c9c052f84683d1f65890f1ef4
+    layerID: 2002324389
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
@@ -435,30 +413,50 @@ ScriptedImporter:
   - name: p_light
     spriteName: p_light
     isGroup: 0
-    parentIndex: 4
-    spriteID: 5d08168fe83d565459c9c908b1f20a95
-    layerID: 17
-    mosaicPosition: {x: 1511, y: 621}
+    parentIndex: 6
+    spriteID: d319c03e4a35f0b40960269f88050443
+    layerID: 1958631889
+    mosaicPosition: {x: 4, y: 247}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: p_line Copy
+    spriteName: p_line Copy
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 0110329950bca164dab8821032fc9dfd
+    layerID: 1824560602
+    mosaicPosition: {x: 471, y: 247}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: p_flowers
     spriteName: p_flowers
     isGroup: 0
-    parentIndex: 4
-    spriteID: 6c5fb7981844c2d4d939507572616f46
-    layerID: 15
-    mosaicPosition: {x: 4, y: 744}
+    parentIndex: 6
+    spriteID: 370e7b71dfa9f26449eefb9a94bb3dc7
+    layerID: 90841673
+    mosaicPosition: {x: 4, y: 490}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: p_line
+    spriteName: p_line
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 3adbb862cf820404a8a5f67d41cea92e
+    layerID: 823473349
+    mosaicPosition: {x: 460, y: 490}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: p_podlozhka
     spriteName: p_podlozhka
     isGroup: 0
-    parentIndex: 4
-    spriteID: b16e15e36a397e449a6e40cac6e6373b
-    layerID: 14
-    mosaicPosition: {x: 497, y: 621}
+    parentIndex: 6
+    spriteID: c827022a9f396df4790c5b82b14e7ef3
+    layerID: -659928593
+    mosaicPosition: {x: 4, y: 132}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -466,8 +464,8 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: c0ed05902d2ebce45b01d15f7f464581
-    layerID: 12
+    spriteID: 6be014e69c0d48e4eb8e22a816267175
+    layerID: 816503363
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
@@ -475,30 +473,50 @@ ScriptedImporter:
   - name: b_light
     spriteName: b_light
     isGroup: 0
-    parentIndex: 8
-    spriteID: 8fe9397b9373b794c9b8263f6e769bf2
-    layerID: 11
-    mosaicPosition: {x: 1141, y: 4}
+    parentIndex: 12
+    spriteID: 79f64e2cd1d08e7468003b787285cd39
+    layerID: 1958267935
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: b_line Copy
+    spriteName: b_line Copy
+    isGroup: 0
+    parentIndex: 12
+    spriteID: 95f998504927e1440adda8ea815a57ff
+    layerID: 1428319276
+    mosaicPosition: {x: 498, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: b_flowers
     spriteName: b_flowers
     isGroup: 0
-    parentIndex: 8
-    spriteID: 88fab2ea2dcdb044db130fde382ad8e8
-    layerID: 9
-    mosaicPosition: {x: 1141, y: 132}
+    parentIndex: 12
+    spriteID: 44efcd7df86288143b97ff4d3afd7a67
+    layerID: 78695127
+    mosaicPosition: {x: 4, y: 371}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: b_line
+    spriteName: b_line
+    isGroup: 0
+    parentIndex: 12
+    spriteID: 7e5da87b93f11b143856e9069862b9e5
+    layerID: 823462323
+    mosaicPosition: {x: 487, y: 371}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: b_podlozhka
     spriteName: b_podlozhka
     isGroup: 0
-    parentIndex: 8
-    spriteID: 357a66b2143637e4e85c0a5c6f671416
-    layerID: 8
-    mosaicPosition: {x: 1008, y: 621}
+    parentIndex: 12
+    spriteID: 4214f5dd39406554b9bfbec1ce5826e7
+    layerID: -1017941571
+    mosaicPosition: {x: 515, y: 132}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -506,41 +524,41 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 97f265ec2cca7ea4db90e18e263c3dc0
-    layerID: 6
+    spriteID: 20d82bfa635792a4492abde823943302
+    layerID: 951797962
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: branch
+    spriteName: 
+    isGroup: 0
+    parentIndex: 18
+    spriteID: caaf82eb0bc427d40b35659f1795a423
+    layerID: -677309670
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: branch
-    spriteName: branch
-    isGroup: 0
-    parentIndex: 12
-    spriteID: 244daadc273970e44b40fb4b02a1a0a3
-    layerID: 5
-    mosaicPosition: {x: 4, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
   - name: red_line
-    spriteName: red_line
+    spriteName: 
     isGroup: 0
-    parentIndex: 12
-    spriteID: b4aed23b6470b3249922b05557c90e39
-    layerID: 4
-    mosaicPosition: {x: 1029, y: 523}
+    parentIndex: 18
+    spriteID: 04b3b7697a6a5dc47b6f5404af1316a7
+    layerID: 487906800
+    mosaicPosition: {x: 0, y: 0}
     flatten: 0
-    isImported: 1
+    isImported: 0
     isVisible: 1
   - name: podlozhka
-    spriteName: podlozhka
+    spriteName: 
     isGroup: 0
-    parentIndex: 12
-    spriteID: dd24f1d039cf1754cb5ba2ef0051e9ee
-    layerID: 3
-    mosaicPosition: {x: 4, y: 523}
+    parentIndex: 18
+    spriteID: 6688899f5892ab3439e1740dae74b641
+    layerID: -1438952054
+    mosaicPosition: {x: 0, y: 0}
     flatten: 0
-    isImported: 1
+    isImported: 0
     isVisible: 1
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
