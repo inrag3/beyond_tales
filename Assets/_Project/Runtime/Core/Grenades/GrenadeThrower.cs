@@ -85,7 +85,7 @@ namespace _Project.Runtime.Core.Grenades
             {
                 "Мир", "Подорожник", "Бдыщ", "Яд"
             });
-            _potionIngredients = new PotionIngredients(2, 2, 2);
+            _potionIngredients = new PotionIngredients(0,0,0);
             _potionPrices = new List<PotionIngredients>()
             {
                 new(1, 1, 1),
@@ -177,10 +177,12 @@ namespace _Project.Runtime.Core.Grenades
         {
             if (!_readyToThrow || _globalWorldChangeProvider.IsActive)
                 return;
-            if (!CurrentIngredientsCount.IsNotLess(CurrentPotionAmount))
+            if (!CurrentIngredientsCount.IsNotLess(CurrentPotionAmount) )
             {
                 return;
             }
+            if(_currentPotionIntex == 1 && Mathf.Approximately(_herbalistProvider.Herbalist.Health.Value.CurrentValue, _herbalistProvider.Herbalist.Health.MaxValue))
+                return;
 
             _readyToThrow = false;
 
