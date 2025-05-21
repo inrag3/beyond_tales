@@ -33,7 +33,7 @@ namespace _Project.Runtime.Core
             asyncOperation.completed += operation =>
             {
                 OnSceneLoaded?.Invoke(scene);
-                _dontDestroyContainer.ActivateScene(0.2f, scene);
+                _dontDestroyContainer.ActivateScene(0.5f, scene);
             };
         }
     }

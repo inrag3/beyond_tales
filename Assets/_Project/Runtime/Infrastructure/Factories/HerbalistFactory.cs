@@ -22,7 +22,9 @@ namespace _Project.Runtime.Infrastructure.Factories
         {
             GameObject prefab = _assetManager.Get(HerbalistPath);
             Herbalist = _instantiator.InstantiatePrefabForComponent<Herbalist>(prefab);
-            Herbalist.Transform.position = position;
+            Debug.Log($"set herbalist pos to {position}");
+            //Herbalist.Transform.position = position;
+            Herbalist.Teleport(position);
         }
     }
 

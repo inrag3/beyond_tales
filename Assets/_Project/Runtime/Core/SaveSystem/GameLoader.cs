@@ -26,9 +26,11 @@ namespace _Project.Runtime.Core.SaveSystem
             var _doors = GameObject.FindObjectsOfType<Door>();
             
             var save = _saveLoader.Save;
-            _herbalistProvider.Herbalist.Transform.position = save.playerPos.UnityVector;
+            //_herbalistProvider.Herbalist.Transform.position = save.playerPos.UnityVector;
+            _herbalistProvider.Herbalist.Teleport(save.playerPos.UnityVector);
+            Debug.Log($"Load herbalist pos {save.playerPos.UnityVector}");
             _herbalistProvider.Herbalist.PlayerData.AddStoryMarks(save.storyMarks.ToArray());
-            
+
             var sortedDoors = _doors.OrderBy((d) => d.Transform.position.x)
                 .ThenBy((d) => d.Transform.position.z);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using _Project.Runtime.Config.Herbalist;
 using _Project.Runtime.Core.PauseHandler;
 using _Project.Runtime.Infrastructure.Factories;
@@ -20,6 +21,13 @@ namespace _Project.Runtime.Core.Herbalist
         private const float GRAVITY = -9.81f;
         private Vector3 _velocity;
         private bool _isPaused;
+        private bool _inTeleport;
+
+        public bool InTeleport
+        {
+            get => _inTeleport;
+            set => _inTeleport = value;
+        }
 
         private bool _isMoving;
 
@@ -46,7 +54,7 @@ namespace _Project.Runtime.Core.Herbalist
         
         public void Tick()
         {
-            if (_isPaused)
+            if (_isPaused || _inTeleport)
                 return;
             
             Transform transform = _provider.Herbalist.Transform;
@@ -88,10 +96,12 @@ namespace _Project.Runtime.Core.Herbalist
                 _isMoving = false;
                 return;
             }
-
+            
+            //Debug.Log($"move character to {transform.position}!");
             _isMoving = true;
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            
         }
 
         private void OnRollCompleted()
@@ -110,5 +120,6 @@ namespace _Project.Runtime.Core.Herbalist
         {
             _isPaused = false;
         }
+
     }
 }
