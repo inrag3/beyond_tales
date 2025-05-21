@@ -17,6 +17,12 @@ namespace _Project.Runtime.Core.Herbalist
         private int endAttack = 0;
         
         protected Animator _animator;
+
+        public Animator Animator
+        {
+            get => _animator;
+            set => _animator = value;
+        }
         private event Action _onAttackComplete;
         public event Action Attacked;
         public event Action Hitted;

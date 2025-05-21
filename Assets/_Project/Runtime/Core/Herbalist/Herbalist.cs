@@ -25,6 +25,9 @@ namespace _Project.Runtime.Core.Herbalist
         
         private Renderer[] _cashRenderers;
 
+        public event Action OnDeath;
+        public GameObject GameObject => gameObject;
+
         [Inject]
         private void Construct(IHealth health, IScanner<Interactable> scanner, Mover mover, 
             Attacker attacker, HerbalistAnimer animer, PlayerData playerData, 
@@ -58,6 +61,7 @@ namespace _Project.Runtime.Core.Herbalist
         private void Start()
         {
             _cashRenderers = GetComponentsInChildren<Renderer>();
+            _animer.Animator = GetComponent<Animator>();
         }
 
         private void OnEnable()
@@ -79,6 +83,7 @@ namespace _Project.Runtime.Core.Herbalist
             _animer.PlayDeath();
             _mover.Pause();
             _attacker.Pause();
+            OnDeath?.Invoke();
         }
 
         private void Update()
@@ -128,11 +133,27 @@ namespace _Project.Runtime.Core.Herbalist
         public void Pause()
         {
             _animer.Pause();
+            _mover.Pause();
         }
 
         public void Resume()
         {
             _animer.Resume();
+            _mover.Resume();
+        }
+        
+        public void Teleport(Vector3 pos)
+        {
+            StartCoroutine(Teleportation(pos));
+        }
+
+        private IEnumerator Teleportation(Vector3 pos)
+        {
+            _mover.InTeleport = true;
+            yield return new WaitForSeconds(0.1f);
+            transform.position = pos;
+            yield return new WaitForSeconds(0.1f);
+            _mover.InTeleport = false;
         }
     }
 }

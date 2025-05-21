@@ -33,19 +33,18 @@ namespace _Project.Runtime.Core.Grenades.PotionLogic
 
         public override void MakeAction()
         {
+            if (_health.MaxValue - _health.Value.CurrentValue <= 0)
+                return;
+
             _health.Increase(_health.MaxValue - _health.Value.CurrentValue);
             GameObject prefab = _assetManager.Get(ExplosionPath);
             var explosion = _instantiator.InstantiatePrefabForComponent<GrenadeExplosion>(prefab);
             explosion.transform.parent = _herbalistProvider.Herbalist.Transform;
             explosion.transform.localPosition = Vector3.zero;
             explosion.transform.rotation = Quaternion.identity;
-            explosion.Timer.TimeEnded += () =>
-            {
-                explosion.SelfDestroy();
-            };
+            explosion.Timer.TimeEnded += () => { explosion.SelfDestroy(); };
 
             explosion.Timer.Start(_grenadeConfig.GrenadeExplosionTimeout);
-            
         }
     }
 }

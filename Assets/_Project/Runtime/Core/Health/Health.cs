@@ -30,5 +30,10 @@ namespace _Project.Runtime.Core.Health
 
             _value.Value = Math.Clamp(_value.Value - value, 0, MaxValue);
         }
+
+        public void Reset()
+        {
+            _value.Value = MaxValue;
+        }
     }
 }

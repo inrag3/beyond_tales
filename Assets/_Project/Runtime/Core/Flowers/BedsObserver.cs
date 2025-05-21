@@ -12,6 +12,7 @@ public class BedsObserver : MonoBehaviour
     private Bed[] _beds;
     [SerializeField] private Door _door;
     [SerializeField] private SaveGameQuestAction _saveGameQuestAction;
+    [SerializeField] private event Action _afterOpenAction;
 
     private IHerbalistProvider _herbalistProvider;
     private SoundSettings _soundSettings;
@@ -60,6 +61,7 @@ public class BedsObserver : MonoBehaviour
             _door.Open();
             _saveGameQuestAction.Activate();
             _updateFlag = false;
+            _afterOpenAction?.Invoke();
         }
     }
 

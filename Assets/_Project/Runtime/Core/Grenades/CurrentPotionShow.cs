@@ -101,6 +101,8 @@ namespace _Project.Runtime.Core.Grenades
         private void OnDestroy()
         {
             _potionSelector.SelectedPotionUpdated -= SetText;
+            _potionSelector.SelectedPotionAmountChanged -= SetCurrentPotionCost;
+            _potionSelector.CurrentIngredientCountChanged -= SetCurrentIngredients;
         }
     }
 

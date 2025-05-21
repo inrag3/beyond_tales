@@ -25,6 +25,7 @@ namespace _Project.Runtime.Infrastructure.Installers
         [SerializeField] private DontDestroyContainer _dontDestroyContainer;
         public override void InstallBindings()
         {
+            Container.BindInterfacesTo<Health>().AsSingle().NonLazy();
             Container.Bind<DontDestroyContainer>().FromMethod((InjectContext context) =>
             {
                 var dontDestroyContainer = Instantiate(_dontDestroyContainer).GetComponent<DontDestroyContainer>();
@@ -45,8 +46,6 @@ namespace _Project.Runtime.Infrastructure.Installers
             BindFactories();
             BindServices();
 
-            Container.BindInterfacesTo<Health>().AsSingle().NonLazy();
-            
             Container.Bind<Timer>().AsTransient().NonLazy();
             Container.BindInterfacesAndSelfTo<GrenadeThrower>().AsSingle().NonLazy();
             

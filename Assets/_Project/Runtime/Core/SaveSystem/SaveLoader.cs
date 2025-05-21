@@ -45,6 +45,7 @@ namespace _Project.Runtime.Core.SaveSystem
         public void SaveGame(Vector3 position, List<string> storyMarks, List<GameSave.DoorSave> saveDoors, bool plantPuzzleSolved)
         {
             var newSave = new GameSave();
+            Debug.Log($"Save player pos {position}");
             newSave.playerPos = new SerializableVector3(position);
             newSave.storyMarks = storyMarks;
             newSave.doors = saveDoors;

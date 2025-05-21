@@ -10,5 +10,7 @@ namespace _Project.Runtime.Core.Health
         public void Increase(float value);
 
         public void Decrease(float value);
+
+        public void Reset();
     }
 }
