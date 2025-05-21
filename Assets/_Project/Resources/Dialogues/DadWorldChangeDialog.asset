@@ -118,7 +118,7 @@ MonoBehaviour:
       _dynamic: 0
   input: {fileID: 0}
   output: {fileID: 0}
-  ActorName: "\u0414\u0435\u0434"
+  ActorName: "\u041C\u0438\u043A\u0443\u043B\u0430"
   message: "\u041D\u0435\u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u0432\u0435\u0449\u0438
     \u0432 \u0434\u0440\u0443\u0433\u043E\u043C \u043C\u0438\u0440\u0435 \u0432\u0435\u0434\u0443\u0442
     \u0441\u0435\u0431\u044F \u0438\u043D\u0430\u0447\u0435"
@@ -164,10 +164,11 @@ MonoBehaviour:
       _dynamic: 0
   input: {fileID: 0}
   output: {fileID: 0}
-  ActorName: "\u0414\u0435\u0434"
+  ActorName: "\u041C\u0438\u043A\u0443\u043B\u0430"
   message: "\u0415\u0441\u043B\u0438 \u043A\u043E\u043D\u0447\u0430\u0442\u0441\u044F
-    \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F, \u043F\u0440\u043E\u0432\u0435\u0440\u044C
-    \u043A\u0443\u0441\u0442"
+    \u0442\u0440\u0430\u0432\u044B, \u0442\u044B \u0441\u043C\u043E\u0436\u0435\u0448\u044C
+    \u0441\u043E\u0440\u0432\u0430\u0442\u044C \u043D\u043E\u0432\u044B\u0435 \u043D\u0430
+    \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u043C \u043A\u0443\u0441\u0442\u0435"
 --- !u!114 &-2339904601071775801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ MonoBehaviour:
       _dynamic: 0
   input: {fileID: 0}
   output: {fileID: 0}
-  ActorName: "\u0414\u0435\u0434"
+  ActorName: "\u041C\u0438\u043A\u0443\u043B\u0430"
   message: "\u0423 \u0442\u0435\u0431\u044F \u0435\u0441\u0442\u044C \u0441\u043D\u0430\u0434\u043E\u0431\u044C\u0435,
     \u043A\u043E\u0442\u043E\u0440\u043E\u0435 \u043C\u043E\u0436\u0435\u0442 \u043C\u0435\u043D\u044F\u0442\u044C
     \u0441\u0443\u0449\u043D\u043E\u0441\u0442\u044C \u0432\u0435\u0449\u0435\u0439"
@@ -285,7 +286,7 @@ MonoBehaviour:
       _dynamic: 0
   input: {fileID: 0}
   output: {fileID: 0}
-  ActorName: "\u0414\u0435\u0434"
+  ActorName: "\u041C\u0438\u043A\u0443\u043B\u0430"
   message: "\u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439 \u0441\u0430\u043C\u0430"
 --- !u!114 &5335329453266900026
 MonoBehaviour:
@@ -330,8 +331,9 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   initializableActors:
-  - name: "\u0414\u0435\u0434"
-    avatar: {fileID: 21300002, guid: 079f5a8d00f74c84181be0a872b4c39d, type: 3}
+  - name: "\u041C\u0438\u043A\u0443\u043B\u0430"
+    avatar: {fileID: 1111104057748657372, guid: d2fac2d16c0b792478b5ca29f6b8801f,
+      type: 3}
 --- !u!114 &5636242006773092821
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -228,7 +228,7 @@ MonoBehaviour:
   output: {fileID: 0}
   initializableActors:
   - name: "\u041A\u043E\u043B\u043E\u0434\u0435\u0446"
-    avatar: {fileID: 21300006, guid: 079f5a8d00f74c84181be0a872b4c39d, type: 3}
+    avatar: {fileID: 0}
 --- !u!114 &6106230787573042169
 MonoBehaviour:
   m_ObjectHideFlags: 0
