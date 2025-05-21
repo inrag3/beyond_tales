@@ -6,7 +6,9 @@ using Zenject;
 
 public class TestInventoryView : MonoBehaviour
 {
-    [SerializeField] private Text _text;
+    [SerializeField] private GameObject _blue;
+    [SerializeField] private GameObject _red;
+    [SerializeField] private GameObject _yellow;
     private IPlayerInventory _playerInventory;
 
     [Inject]
@@ -24,13 +26,10 @@ public class TestInventoryView : MonoBehaviour
 
     private void OnChangeInventory(ItemEnum itemEnum, int prev, int cur)
     {
-        StringBuilder sb = new StringBuilder();
-        foreach (var kv in _playerInventory.Items)
-        {
-            sb.Append($"{kv.Key}: {kv.Value}\n");
-        }
-
-        _text.text = sb.ToString();
+        _blue.SetActive(_playerInventory.Items.ContainsKey(ItemEnum.BlueFlower) && _playerInventory.Items[ItemEnum.BlueFlower] > 0);
+        _red.SetActive(_playerInventory.Items.ContainsKey(ItemEnum.RedFlower) && _playerInventory.Items[ItemEnum.RedFlower] > 0);
+        _yellow.SetActive(_playerInventory.Items.ContainsKey(ItemEnum.YellowFlower) && _playerInventory.Items[ItemEnum.YellowFlower] > 0);
+        // Debug.Log($"updated inventory blue:{_playerInventory.Items[ItemEnum.BlueFlower] > 0} red:{_playerInventory.Items[ItemEnum.RedFlower] > 0} yellow:{_playerInventory.Items[ItemEnum.YellowFlower] > 0}");
     }
 
     private void OnDestroy()
