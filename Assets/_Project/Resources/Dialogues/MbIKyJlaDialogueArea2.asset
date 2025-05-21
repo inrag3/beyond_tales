@@ -762,7 +762,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   QuestActions: []
-  Index: 
+  Index: DedDissappear
 --- !u!114 &5003036965875599830
 MonoBehaviour:
   m_ObjectHideFlags: 0

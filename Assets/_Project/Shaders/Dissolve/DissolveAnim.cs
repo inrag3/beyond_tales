@@ -50,7 +50,6 @@ public class DissolveAnim : MonoBehaviour
             StopCoroutine(_show);
         
         _show = StartCoroutine(Appear());
-        _action?.Invoke();
     }
     public void StartDissolveCoroutineDissolve()
     {
@@ -58,7 +57,6 @@ public class DissolveAnim : MonoBehaviour
             StopCoroutine(_show);
         
         _show = StartCoroutine(Dissolve());
-        _action?.Invoke();
     }
 
     public IEnumerator Dissolve()
@@ -71,6 +69,7 @@ public class DissolveAnim : MonoBehaviour
             yield return null;
         }
         _dissolveMaterial.SetFloat(TresholdKey, MaxTreshhold);
+        _action?.Invoke();
     }
     
     public IEnumerator Appear()
@@ -83,6 +82,7 @@ public class DissolveAnim : MonoBehaviour
             yield return null;
         }
         _dissolveMaterial.SetFloat(TresholdKey, MinTreshhold);
+        _action?.Invoke();
     }
     
     private void OnDestroy()

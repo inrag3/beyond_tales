@@ -9745,6 +9745,7 @@ GameObject:
   - component: {fileID: 576221542}
   - component: {fileID: 576221544}
   - component: {fileID: 576221543}
+  - component: {fileID: 576221545}
   m_Layer: 0
   m_Name: EmptyForDissolve4
   m_TagString: Untagged
@@ -9808,11 +9809,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinTreshhold: -0.05
   MaxTreshhold: 1.01
-  AnimationSpeed: 1.2
+  AnimationSpeed: 0.5
   _obj: {fileID: 1293304072}
   _action:
     m_PersistentCalls:
       m_Calls: []
+--- !u!23 &576221545
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576221541}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &578121155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10589,6 +10632,7 @@ GameObject:
   - component: {fileID: 628707167}
   - component: {fileID: 628707169}
   - component: {fileID: 628707168}
+  - component: {fileID: 628707170}
   m_Layer: 0
   m_Name: EmptyForDissolve2_2
   m_TagString: Untagged
@@ -10638,7 +10682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinTreshhold: -0.05
   MaxTreshhold: 1.01
-  AnimationSpeed: 1.2
+  AnimationSpeed: 0.5
   _obj: {fileID: 2098049605}
   _action:
     m_PersistentCalls:
@@ -10655,6 +10699,48 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!23 &628707170
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628707166}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &630052806
 GameObject:
   m_ObjectHideFlags: 0
@@ -14045,7 +14131,8 @@ MonoBehaviour:
   output: {fileID: 0}
   initializableActors:
   - name: "\u0420\u0430\u0441\u0441\u043A\u0430\u0437\u0447\u0438\u043A"
-    avatar: {fileID: 21300006, guid: 079f5a8d00f74c84181be0a872b4c39d, type: 3}
+    avatar: {fileID: 3176288375560225787, guid: d2fac2d16c0b792478b5ca29f6b8801f,
+      type: 3}
 --- !u!114 &891936442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14199,7 +14286,7 @@ GameObject:
   - component: {fileID: 896926622}
   - component: {fileID: 896926625}
   - component: {fileID: 896926624}
-  - component: {fileID: 896926623}
+  - component: {fileID: 896926626}
   m_Layer: 0
   m_Name: EmptyForDissolve4_2
   m_TagString: Untagged
@@ -14222,33 +14309,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1927621170}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &896926623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896926621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7770e41b0c46569a9b70276ed82b66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 896926624}
-        m_TargetAssemblyTypeName: ModelDisintegration, Assembly-CSharp
-        m_MethodName: Disable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &896926624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14276,11 +14336,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinTreshhold: -0.05
   MaxTreshhold: 1.01
-  AnimationSpeed: 1.2
+  AnimationSpeed: 0.5
   _obj: {fileID: 1293304072}
   _action:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 896926624}
+        m_TargetAssemblyTypeName: ModelDisintegration, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!23 &896926626
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896926621}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &898320261
 GameObject:
   m_ObjectHideFlags: 0
@@ -21891,9 +22005,9 @@ MonoBehaviour:
   _action:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 896926624}
-        m_TargetAssemblyTypeName: ModelDisintegration, Assembly-CSharp
-        m_MethodName: Disable
+      - m_Target: {fileID: 896926625}
+        m_TargetAssemblyTypeName: DissolveAnim, Assembly-CSharp
+        m_MethodName: StartDissolveCoroutineDissolve
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23678,6 +23792,7 @@ GameObject:
   - component: {fileID: 1349540007}
   - component: {fileID: 1349540006}
   - component: {fileID: 1349540005}
+  - component: {fileID: 1349540008}
   m_Layer: 0
   m_Name: EmptyForDissolve3_2
   m_TagString: Untagged
@@ -23715,9 +23830,9 @@ MonoBehaviour:
   _action:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1349540006}
-        m_TargetAssemblyTypeName: ModelDisintegration, Assembly-CSharp
-        m_MethodName: Disable
+      - m_Target: {fileID: 1349540007}
+        m_TargetAssemblyTypeName: DissolveAnim, Assembly-CSharp
+        m_MethodName: StartDissolveCoroutineDissolve
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23754,11 +23869,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinTreshhold: -0.05
   MaxTreshhold: 1.01
-  AnimationSpeed: 1.2
+  AnimationSpeed: 0.5
   _obj: {fileID: 936687937}
   _action:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349540006}
+        m_TargetAssemblyTypeName: ModelDisintegration, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1349540008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349540003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51490c670864056a9dc030cd8997aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _index: DedDissappear
+  _indexedComponents:
+  - {fileID: 1349540005}
 --- !u!1 &1358089732
 GameObject:
   m_ObjectHideFlags: 0
@@ -26990,25 +27132,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1491318448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491318437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d6d42e17adb97e47a43d40467d130e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MinTreshhold: -0.2
-  MaxTreshhold: 1.01
-  AnimationSpeed: 0.5
-  _obj: {fileID: 0}
-  _action:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1492124579
 GameObject:
   m_ObjectHideFlags: 0
@@ -28347,6 +28470,7 @@ GameObject:
   - component: {fileID: 1590217123}
   - component: {fileID: 1590217125}
   - component: {fileID: 1590217124}
+  - component: {fileID: 1590217126}
   m_Layer: 0
   m_Name: EmptyForDissolve
   m_TagString: Untagged
@@ -28422,11 +28546,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinTreshhold: -0.05
   MaxTreshhold: 1.01
-  AnimationSpeed: 1.2
+  AnimationSpeed: 0.5
   _obj: {fileID: 1491318437}
   _action:
     m_PersistentCalls:
       m_Calls: []
+--- !u!23 &1590217126
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590217122}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1593228885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31959,7 +32125,8 @@ MonoBehaviour:
   output: {fileID: 0}
   initializableActors:
   - name: "\u0420\u0430\u0441\u0441\u043A\u0430\u0437\u0447\u0438\u043A"
-    avatar: {fileID: 21300006, guid: 079f5a8d00f74c84181be0a872b4c39d, type: 3}
+    avatar: {fileID: 3176288375560225787, guid: d2fac2d16c0b792478b5ca29f6b8801f,
+      type: 3}
 --- !u!1001 &1814645432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34491,7 +34658,8 @@ MonoBehaviour:
   output: {fileID: 0}
   initializableActors:
   - name: "\u0420\u0430\u0441\u0441\u043A\u0430\u0437\u0447\u0438\u043A"
-    avatar: {fileID: 21300006, guid: 079f5a8d00f74c84181be0a872b4c39d, type: 3}
+    avatar: {fileID: 3176288375560225787, guid: d2fac2d16c0b792478b5ca29f6b8801f,
+      type: 3}
 --- !u!1 &1946854170
 GameObject:
   m_ObjectHideFlags: 0
@@ -34503,6 +34671,7 @@ GameObject:
   - component: {fileID: 1946854171}
   - component: {fileID: 1946854173}
   - component: {fileID: 1946854172}
+  - component: {fileID: 1946854174}
   m_Layer: 0
   m_Name: EmptyForDissolve3
   m_TagString: Untagged
@@ -34566,11 +34735,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinTreshhold: -0.05
   MaxTreshhold: 1.01
-  AnimationSpeed: 1.2
+  AnimationSpeed: 0.5
   _obj: {fileID: 936687937}
   _action:
     m_PersistentCalls:
       m_Calls: []
+--- !u!23 &1946854174
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946854170}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &1950262835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35090,7 +35301,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   QuestActions:
-  - {fileID: 0}
+  - {fileID: 1317501679}
   Index: 
 --- !u!1 &1973145887
 GameObject:
@@ -35617,7 +35828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2000138156}
   - component: {fileID: 2000138158}
-  - component: {fileID: 2000138157}
+  - component: {fileID: 2000138159}
   m_Layer: 0
   m_Name: EmptyForDissolve2
   m_TagString: Untagged
@@ -35640,33 +35851,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 431085863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2000138157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000138155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7770e41b0c46569a9b70276ed82b66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2000138158}
-        m_TargetAssemblyTypeName: DissolveAnim, Assembly-CSharp
-        m_MethodName: StartDissolveCoroutineDissolve
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2000138158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35681,11 +35865,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinTreshhold: -0.05
   MaxTreshhold: 1.01
-  AnimationSpeed: 1.2
+  AnimationSpeed: 0.5
   _obj: {fileID: 2098049605}
   _action:
     m_PersistentCalls:
       m_Calls: []
+--- !u!23 &2000138159
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000138155}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2001337155
 GameObject:
   m_ObjectHideFlags: 0
@@ -38094,10 +38320,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3446507315395146161, guid: 56fb2648780868340ac69557dbcb1b1d,
-        type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 1491318448}
     - targetCorrespondingSourceObject: {fileID: 3446507315395146161, guid: 56fb2648780868340ac69557dbcb1b1d,
         type: 3}
       insertIndex: -1
