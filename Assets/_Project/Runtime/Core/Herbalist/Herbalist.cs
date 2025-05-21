@@ -26,6 +26,7 @@ namespace _Project.Runtime.Core.Herbalist
         private Renderer[] _cashRenderers;
 
         public event Action OnDeath;
+        public GameObject GameObject => gameObject;
 
         [Inject]
         private void Construct(IHealth health, IScanner<Interactable> scanner, Mover mover, 
@@ -94,7 +95,6 @@ namespace _Project.Runtime.Core.Herbalist
             {
                 _audioService.StopWalkSound();
             }
-            Debug.Log($"herbalist position = {transform.position}");
         }
 
         public void TakeDamage(float value)

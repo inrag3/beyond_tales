@@ -15,6 +15,8 @@ namespace _Project.Runtime.Core.Herbalist
         public void Teleport(Vector3 pos);
 
         public event Action OnDeath;
+
+        public GameObject GameObject { get; }
     }
 
     public interface ITarget : ITransformable, IDamageable

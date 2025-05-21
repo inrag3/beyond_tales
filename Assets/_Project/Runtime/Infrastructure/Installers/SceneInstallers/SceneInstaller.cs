@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _Project.Runtime.AI.Core;
 using _Project.Runtime.Core;
+using _Project.Runtime.Core.Health;
 using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Core.UI;
 using _Project.Runtime.Infrastructure.Factories;
@@ -17,9 +18,12 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
     {
         [SerializeField]
         private Vector3 herbalistStartPosition;
+
+        [SerializeField] private DeathHandler _deathHandler;
         
         public override void InstallBindings()
         {
+            Container.BindInterfacesTo<Health>().AsSingle().NonLazy();
             Container.BindInterfacesTo<SceneInstaller>().FromInstance(this).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ActorFactory>().AsSingle().NonLazy();
             Container.BindInterfacesTo<ActorUpdater>().AsSingle().NonLazy();
@@ -30,6 +34,7 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
             Container.Bind<SaveGameQuestAction[]>().FromMethod(_ => FindObjectsOfType<SaveGameQuestAction>()).AsSingle();
             Container.BindInterfacesAndSelfTo<Waver>().AsSingle().NonLazy();
             Container.Bind<SaveGameNotifier>().FromMethod(_ => FindObjectOfType<SaveGameNotifier>()).AsSingle().NonLazy();
+            Container.Bind<DeathHandler>().FromInstance(_deathHandler).AsSingle();
             
             BindSearchIndices();
         }
@@ -58,6 +63,11 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
         {
             var indices = FindObjectsOfType<SearchIndex>();
             Container.Bind<SearchIndex[]>().FromInstance(indices).AsSingle();
+        }
+
+        private void BindHerbalistSystems()
+        {
+            
         }
     }
 
