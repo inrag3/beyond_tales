@@ -178,6 +178,27 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
     spritePosition: {x: 3, y: 0}
+  - name: Empty
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1942
+      y: 5901
+      width: 826
+      height: 634
+    spriteID: 4757ae3325dc2fb40baf49f53c490203
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 1942, y: 5901}
+    spritePosition: {x: 0, y: 0}
   characterData:
     bones: []
     parts: []

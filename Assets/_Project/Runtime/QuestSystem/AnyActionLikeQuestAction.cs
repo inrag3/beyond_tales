@@ -1,11 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _Project.Runtime.QuestSystem
 {
     public class AnyActionLikeQuestAction: BaseQuestAction
     {
-        [SerializeField] public event Action _action;
+        [SerializeField] public UnityEvent _action;
         
         public override void Activate()
         {

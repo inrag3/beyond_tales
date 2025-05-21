@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
-[RequireComponent(typeof(MeshRenderer))]
 public class DissolveAnim : MonoBehaviour
 { 
     [Header("Dissolve Settings")]
     [Tooltip("MinTreshhold")]
-    public float MinTreshhold = -0.2f;
+    public float MinTreshhold = -0.05f;
 
     [Tooltip("MaxTreshhold")]
     public float MaxTreshhold = 1.01f;
@@ -15,13 +15,16 @@ public class DissolveAnim : MonoBehaviour
     public float AnimationSpeed = 0.5f;
     private const string TresholdKey = "_Edge";
     
+    [SerializeField] public GameObject _obj;
+    [SerializeField] public UnityEvent _action;
     private MeshRenderer _renderer;
     private Material _dissolveMaterial;
     private Coroutine _show;
 
     private void Awake()
     {
-        _renderer = GetComponent<MeshRenderer>();
+        
+        _renderer = _obj.GetComponent<MeshRenderer>();
         _dissolveMaterial = _renderer.sharedMaterials[0];
         
         if(_dissolveMaterial == null)
@@ -33,23 +36,32 @@ public class DissolveAnim : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.F))
         {
-            StartDissolveCoroutine(Dissolve());
+            StartDissolveCoroutineAppear();
         }
         else if (Input.GetKeyUp(KeyCode.G))
         {
-            StartDissolveCoroutine(Appear());
+            StartDissolveCoroutineDissolve();
         }
     }
 
-    private void StartDissolveCoroutine(IEnumerator routine)
+    public void StartDissolveCoroutineAppear()
     {
         if(_show != null)
             StopCoroutine(_show);
         
-        _show = StartCoroutine(routine);
+        _show = StartCoroutine(Appear());
+        _action?.Invoke();
+    }
+    public void StartDissolveCoroutineDissolve()
+    {
+        if(_show != null)
+            StopCoroutine(_show);
+        
+        _show = StartCoroutine(Dissolve());
+        _action?.Invoke();
     }
 
-    private IEnumerator Dissolve()
+    public IEnumerator Dissolve()
     {
         float treshold = _dissolveMaterial.GetFloat(TresholdKey);
         while (treshold < MaxTreshhold)
@@ -61,7 +73,7 @@ public class DissolveAnim : MonoBehaviour
         _dissolveMaterial.SetFloat(TresholdKey, MaxTreshhold);
     }
     
-    private IEnumerator Appear()
+    public IEnumerator Appear()
     {
         float treshold = _dissolveMaterial.GetFloat(TresholdKey);
         while (treshold >= MinTreshhold)

@@ -3,6 +3,7 @@ using System.Linq;
 using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.QuestSystem;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace _Project.Runtime.Core.RotatingStatues
@@ -12,6 +13,7 @@ namespace _Project.Runtime.Core.RotatingStatues
         [SerializeField] private RotatingStatuesManipulator[] _statues;
         [SerializeField] private Door _door;
         [SerializeField] private SaveGameQuestAction _saveGameAction;
+        [SerializeField] public UnityEvent _action;
 
         private void Start()
         {
@@ -37,6 +39,7 @@ namespace _Project.Runtime.Core.RotatingStatues
             {
                 _door.Open();
                 _saveGameAction.Activate();
+                _action?.Invoke();
             }
         }
 

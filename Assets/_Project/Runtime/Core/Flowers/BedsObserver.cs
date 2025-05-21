@@ -5,6 +5,7 @@ using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Infrastructure.Factories;
 using _Project.Runtime.QuestSystem;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 public class BedsObserver : MonoBehaviour
@@ -13,6 +14,7 @@ public class BedsObserver : MonoBehaviour
     [SerializeField] private Door _door;
     [SerializeField] private SaveGameQuestAction _saveGameQuestAction;
     [SerializeField] private event Action _afterOpenAction;
+    [SerializeField] public UnityEvent _action;
 
     private IHerbalistProvider _herbalistProvider;
     private SoundSettings _soundSettings;
@@ -62,6 +64,7 @@ public class BedsObserver : MonoBehaviour
             _saveGameQuestAction.Activate();
             _updateFlag = false;
             _afterOpenAction?.Invoke();
+            _action?.Invoke();
         }
     }
 

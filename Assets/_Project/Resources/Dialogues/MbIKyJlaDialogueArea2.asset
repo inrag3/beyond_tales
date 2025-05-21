@@ -202,7 +202,10 @@ MonoBehaviour:
       _node: {fileID: -6349178389447269679}
       _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: input
+        node: {fileID: 3948335868340169533}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -616,6 +619,7 @@ MonoBehaviour:
   - {fileID: 8073057502706972933}
   - {fileID: -6349178389447269679}
   - {fileID: -3331649958512855588}
+  - {fileID: 3948335868340169533}
 --- !u!114 &2039207424673449060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +719,50 @@ MonoBehaviour:
   ActorName: "\u041C\u0438\u043A\u0443\u043B\u0430"
   message: "\u041E \u043A\u0430\u043A! \u0421\u043C\u043E\u0442\u0440\u044E \u0442\u0435\u0431\u0435
     \u043F\u043E\u0445\u043E\u0440\u043E\u0448\u0435\u043B\u043E!"
+--- !u!114 &3948335868340169533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4ee9b04ca65437296d4163243cfa22b, type: 3}
+  m_Name: Activate Quest Actions
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1432, y: 136}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 3948335868340169533}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -6349178389447269679}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 3948335868340169533}
+      _typeQualifiedName: DialogueBaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  QuestActions: []
+  Index: 
 --- !u!114 &5003036965875599830
 MonoBehaviour:
   m_ObjectHideFlags: 0
