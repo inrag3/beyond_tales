@@ -25,6 +25,7 @@ namespace _Project.Runtime.Infrastructure.Installers
         [SerializeField] private DontDestroyContainer _dontDestroyContainer;
         public override void InstallBindings()
         {
+            Container.BindInterfacesTo<Health>().AsSingle().NonLazy();
             Container.Bind<DontDestroyContainer>().FromMethod((InjectContext context) =>
             {
                 var dontDestroyContainer = Instantiate(_dontDestroyContainer).GetComponent<DontDestroyContainer>();

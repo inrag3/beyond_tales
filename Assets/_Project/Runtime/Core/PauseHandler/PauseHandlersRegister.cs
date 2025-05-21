@@ -32,5 +32,10 @@ namespace _Project.Runtime.Core.PauseHandler
                 handler.Resume();
             }
         }
+
+        public void Reset()
+        {
+            _pauseHandlers.Clear();
+        }
     }
 }

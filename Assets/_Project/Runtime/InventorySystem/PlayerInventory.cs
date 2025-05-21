@@ -127,6 +127,11 @@ public class PlayerInventory : IPlayerInventory, IInitializable
             RemoveItem(itPair.itemType, itPair.quantity);
         }
     }
+
+    public void Reset()
+    {
+        Initialize();
+    }
 }
 
 public interface IPlayerInventory

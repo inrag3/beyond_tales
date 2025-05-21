@@ -61,6 +61,7 @@ namespace _Project.Runtime.Core.Herbalist
         private void Start()
         {
             _cashRenderers = GetComponentsInChildren<Renderer>();
+            _animer.Animator = GetComponent<Animator>();
         }
 
         private void OnEnable()

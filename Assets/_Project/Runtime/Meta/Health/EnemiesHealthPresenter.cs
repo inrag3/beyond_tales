@@ -63,6 +63,7 @@ namespace _Project.Runtime.Meta.Health
         private void Register(Enemy enemy)
         {
             HealthView view = _healthViewFactory.Create(_canvas.transform);
+            view.Transform.SetAsFirstSibling();
             _presenterFactory.Create(view, enemy.Health);
             _indicatorHandler.Register(enemy.Point, view);
         }

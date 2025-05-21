@@ -23,7 +23,6 @@ namespace _Project.Runtime.Infrastructure.Installers.SceneInstallers
         
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<Health>().AsSingle().NonLazy();
             Container.BindInterfacesTo<SceneInstaller>().FromInstance(this).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ActorFactory>().AsSingle().NonLazy();
             Container.BindInterfacesTo<ActorUpdater>().AsSingle().NonLazy();

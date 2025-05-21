@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Runtime.Core.Enemies;
+using Extensions;
 using UnityEngine;
 using Zenject;
 
@@ -44,7 +45,11 @@ namespace _Project.Runtime.Core.Herbalist
         public void Draw()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(_transform.position, _direction*2f);
+            if (!_transform.IsNullOrDestroyed())
+            {
+                Gizmos.DrawRay(_transform.position, _direction * 2f);
+            }
+
             if(Target != null)
                 Gizmos.DrawSphere(Target.transform.position, .5f);
         }

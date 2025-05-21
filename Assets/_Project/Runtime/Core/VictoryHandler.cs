@@ -1,10 +1,7 @@
-﻿using System;
-using _Project.Runtime.Audio;
+﻿using _Project.Runtime.Audio;
 using _Project.Runtime.Core.Enemies;
 using _Project.Runtime.Core.Health;
-using _Project.Runtime.Core.Interactables;
 using _Project.Runtime.Core.PauseHandler;
-using _Project.Runtime.Core.SaveSystem;
 using _Project.Runtime.Infrastructure.Factories;
 using Extensions;
 using UnityEngine;
@@ -12,10 +9,10 @@ using Zenject;
 
 namespace _Project.Runtime.Core
 {
-    public class DeathHandler : MonoBehaviour
+    public class VictoryHandler : MonoBehaviour
     {
         [SerializeField] private GameObject _uiHolder;
-
+        
         private ISceneManager _sceneManager;
         private IHerbalistProvider _herbalistProvider;
         private DontDestroyContainer _dontDestroyContainer;
@@ -31,7 +28,7 @@ namespace _Project.Runtime.Core
         private void Construct(IHerbalistProvider herbalistProvider, 
             ISceneManager sceneManager, DontDestroyContainer dontDestroyContainer, 
             AudioService audioService, SoundSettings soundSettings, IHealth health, 
-            PlayerInventory playerInventory, PauseHandlersRegister pauseHandlersRegister)
+            PlayerInventory playerInventory, PauseHandlersRegister pauseHandler)
         {
             _herbalistProvider = herbalistProvider;
             _sceneManager = sceneManager;
@@ -40,26 +37,20 @@ namespace _Project.Runtime.Core
             _soundSettings = soundSettings;
             _health = health;
             _playerInventory = playerInventory;
-            _pauseHandler = pauseHandlersRegister;
+            _pauseHandler = pauseHandler;
         }
 
-        private void Update()
+        public void ShowVictory()
         {
-            if (!_subscribed)
+            _audioService.ChangeMusic(_soundSettings.peacefulMusic);
+            _uiHolder.gameObject.SetActive(true);
+            foreach (var creature in GameObject.FindObjectsByType<Creature>(FindObjectsInactive.Include,FindObjectsSortMode.None))
             {
-                if (!_herbalistProvider.Herbalist.IsNullOrDestroyed())
-                {
-                    _herbalistProvider.Herbalist.OnDeath += OnPlayerDeath;
-                    _subscribed = true;
-                }
+                Destroy(creature.gameObject);
             }
         }
 
-        private void OnPlayerDeath()
-        {
-            _audioService.ChangeMusic(_soundSettings.peacefulMusic);
-            _uiHolder.SetActive(true);
-        }
+
 
         public void RestartGame()
         {
@@ -67,11 +58,9 @@ namespace _Project.Runtime.Core
             _sceneManager.LoadScene(Scene.MainCopyTestScreenplay);
         }
 
-        public void ReloadGame()
+        public void QuitGame()
         {
-            PrepareForUnloadScene();
-            _dontDestroyContainer.RequireSaveLoad = true;
-            _sceneManager.LoadScene(Scene.MainCopyTestScreenplay);
+            Application.Quit();
         }
 
         private void PrepareForUnloadScene()
