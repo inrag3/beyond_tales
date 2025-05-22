@@ -1,6 +1,3 @@
-// Example Shader for Universal RP
-// Written by @Cyanilux
-// https://www.cyanilux.com/tutorials/urp-shader-code
 
 /*
 Roughly equivalent to the URP/Lit.shader (but Forward path only)
