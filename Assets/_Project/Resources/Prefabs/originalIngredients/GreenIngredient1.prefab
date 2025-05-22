@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8901753113673464735}
   - component: {fileID: 1819898850786142661}
   - component: {fileID: 6957016545267429693}
-  - component: {fileID: 3892762260201223361}
+  - component: {fileID: 2019884070965354076}
   - component: {fileID: 7161917337898136333}
   m_Layer: 0
   m_Name: GreenIngredient1
@@ -110,7 +110,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3892762260201223361
+--- !u!114 &2019884070965354076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

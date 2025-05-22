@@ -49,7 +49,6 @@ namespace _Project.Runtime.Core.Herbalist
 
         private void OnAttacked()
         {
-            _audioService.PlayOneShot(_soundSettings.fightClip);
             foreach (var creature in _targets)
             {
                 creature.TakeDamage(_herbalistAttackConfig.HerbalistDamage);
@@ -74,6 +73,7 @@ namespace _Project.Runtime.Core.Herbalist
             if (!_animer.IsAttacking())
             {
                 _targets.Clear();
+                _audioService.PlayOneShot(_soundSettings.fightClip);
                 _animer.PlayAttack();
                 _mover.Pause();
                 _transform.DOLookAt(_inputService.Mouse, 0.2f).OnComplete(() => { _mover.Resume(); });

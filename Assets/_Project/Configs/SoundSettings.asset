@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc8bdd0344a50944891a07e4343b7e0, type: 3}
   m_Name: SoundSettings
   m_EditorClassIdentifier: 
-  walkClip: {fileID: 8300000, guid: f8f360d224d4c3142b306fc83ea7dd2b, type: 3}
+  walkClip: {fileID: 0}
   fightClip: {fileID: 8300000, guid: 6be3965d98ac8404d8d2b12bfd9708e7, type: 3}
   solvePuzzleClip: {fileID: 8300000, guid: 3c7dcb2cbba3b5c4ba9ecffa811de798, type: 3}
   battleMusic: {fileID: 8300000, guid: 35fe7810cbf416d4c8ba583564e0270d, type: 3}
