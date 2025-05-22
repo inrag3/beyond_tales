@@ -1630,6 +1630,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7386377744949442290, guid: b4890043077ed8748821e0813c105e31,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7490641147524144666, guid: b4890043077ed8748821e0813c105e31,
         type: 3}
       propertyPath: _potionNumber
@@ -16500,6 +16505,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7161917337898136333, guid: dd327c760811cd642ae4eef2f53392df,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7161917337898136333, guid: dd327c760811cd642ae4eef2f53392df,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8093067994976018019, guid: dd327c760811cd642ae4eef2f53392df,
         type: 3}
       propertyPath: m_Name
@@ -22241,6 +22256,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 14.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 7161917337898136333, guid: dd327c760811cd642ae4eef2f53392df,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7161917337898136333, guid: dd327c760811cd642ae4eef2f53392df,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8093067994976018019, guid: dd327c760811cd642ae4eef2f53392df,
         type: 3}
