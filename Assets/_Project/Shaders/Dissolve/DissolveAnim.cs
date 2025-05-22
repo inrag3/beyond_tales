@@ -62,6 +62,7 @@ public class DissolveAnim : MonoBehaviour
     public IEnumerator Dissolve()
     {
         float treshold = _dissolveMaterial.GetFloat(TresholdKey);
+        treshold = MinTreshhold;
         while (treshold < MaxTreshhold)
         {
             treshold += Time.deltaTime * AnimationSpeed;
@@ -75,6 +76,7 @@ public class DissolveAnim : MonoBehaviour
     public IEnumerator Appear()
     {
         float treshold = _dissolveMaterial.GetFloat(TresholdKey);
+        treshold = MaxTreshhold;
         while (treshold >= MinTreshhold)
         {
             treshold -= Time.deltaTime * AnimationSpeed;
