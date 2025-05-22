@@ -103,7 +103,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 2311
-      width: 1400
+      width: 1848
       height: 2298
     spriteID: 989797c56102f1746a624513a5125fe2
     spriteBone: []
@@ -117,14 +117,14 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   - name: Slava
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.55715173, y: 0.44968244}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1860
-      y: 4
-      width: 1097
+      x: 1853
+      y: 3
+      width: 1585
       height: 2099
     spriteID: 97b167b9607bb1f4c92c2b0b63335ff1
     spriteBone: []
@@ -143,9 +143,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 0
       y: 4617
-      width: 1121
+      width: 1718
       height: 2300
     spriteID: 08d7c8452ce6ca441a350a9dc00d0c3d
     spriteBone: []
@@ -164,8 +164,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
+      x: 23
+      y: 0
       width: 1848
       height: 2299
     spriteID: 56bba2493f7370f4bac37d7be6a2a3ca
