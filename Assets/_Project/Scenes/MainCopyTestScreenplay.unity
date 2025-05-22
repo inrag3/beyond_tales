@@ -13126,8 +13126,8 @@ RectTransform:
   m_GameObject: {fileID: 833699336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 30}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 18.365488, y: 38.271, z: 38.271}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1670160510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15519,8 +15519,8 @@ RectTransform:
   m_GameObject: {fileID: 950420124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30.000002, y: 30.000002, z: 30.000002}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 19.134352, y: 38.271, z: 38.271}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1670160510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22667,8 +22667,8 @@ RectTransform:
   m_GameObject: {fileID: 1308340555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30.000002, y: 30.000002, z: 30.000002}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 19.897095, y: 38.271, z: 38.271}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1670160510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29744,7 +29744,7 @@ RectTransform:
   m_GameObject: {fileID: 1670160509}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.83028, y: 0.83028, z: 0.83028}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 833699337}
@@ -29756,7 +29756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 697.6664, y: 243.8098}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1670160511
@@ -29778,7 +29778,7 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 5
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
